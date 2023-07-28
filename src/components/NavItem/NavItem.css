@@ -1,0 +1,11 @@
+.navbar__item {
+  @apply border border-transparent py-1 px-2 rounded-md
+}
+
+.navbar__item-active {
+  @apply underline underline-offset-4;
+}
+
+.navbar__item-hover {
+  @apply hover:bg-purple-300 hover:border hover:border-purple-300 hover:rounded-md hover:transition-all hover:ease-in-out hover:duration-500
+}
