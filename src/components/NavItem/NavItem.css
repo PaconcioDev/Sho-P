@@ -3,7 +3,7 @@
 }
 
 .navbar__item-active {
-  @apply underline underline-offset-4;
+  @apply underline-offset-4 bg-purple-300;
 }
 
 .navbar__item-hover {

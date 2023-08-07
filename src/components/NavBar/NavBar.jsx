@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../context/ShoppingCartContext";
 import { NavLink } from "react-router-dom";
 import { NavItem } from "../NavItem/NavItem";
 
 const NavBar = () => {
+  const { count } = useContext(ShoppingCartContext);
+
   return (
     <nav className="flex justify-between items-center fixed z-10 w-full py-4 px-8 text-sm font-light top-0 shadow-xl bg-gray-100">
       <ul className="flex items-center gap-4">
@@ -38,7 +42,7 @@ const NavBar = () => {
         <li>
           <NavItem to={"/sign-in"}>Sign In</NavItem>
         </li>
-        <li>🛒0</li>
+        <li>🛒{count}</li>
       </ul>
     </nav>
   );
