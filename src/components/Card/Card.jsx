@@ -2,12 +2,15 @@ import { useContext } from "react";
 import { ProductContext } from "../../context/ProductContext.jsx";
 
 const Card = ({ data }) => {
-  const { count, setCount, toggleProductDetail } = useContext(ProductContext);
+  const { count, setCount, toggleProductDetail, setProductToShow } = useContext(ProductContext);
 
   return (
     <article 
       className="bg-gray-50 cursor-pointer w-56 h-60 rounded-lg shadow-lg"
-      onClick={() => toggleProductDetail()}
+      onClick={() => {
+        toggleProductDetail();
+        setProductToShow(data);
+      }}
     >
       <figure className="relative mb-2 w-full h-4/5">
         <span className="m-2 px-3 py-0.5 absolute bottom-0 left-0 bg-white/60 rounded-lg text-gray-900 text-sm capitalize">

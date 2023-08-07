@@ -3,18 +3,17 @@ import { ProductContext } from "../../context/ProductContext.jsx";
 import "./ProductDetail.css";
 
 const ProductDetail = () => {
-  const { closeProductDetail } = useContext(ProductContext);
+  const { closeProductDetail, productToShow } = useContext(ProductContext);
 
   return (
-    <aside className="product-detail flex flex-col border border-gray-800 rounded-l-lg bg-gray-50 z-10">
-      <div className="flex justify-between items-center p-6">
-        <h2 className="text-xl">Detail</h2>
+    <aside className="product-detail flex flex-col border border-gray-300 rounded-l-lg bg-gray-50 z-10">
+      <div className="pr-4 pt-4 absolute right-0 top-0">
         <button onClick={() => closeProductDetail()}>
           <svg
             xmlns="https://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-6 h-6 hover:fill-purple-700"
+            className="w-8 h-8 hover:fill-purple-600 bg-gray-300 bg-opacity-50 rounded-full"
           >
             <path
               fillRule="evenodd"
@@ -24,6 +23,26 @@ const ProductDetail = () => {
           </svg>
         </button>
       </div>
+      <figure>
+        <img
+          className="w-full h-auto rounded-lg"
+          src={productToShow.image}
+          alt={productToShow.title}
+        />
+        <figcaption className="flex flex-col p-6">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-gray-900 font-bold text-2xl w-1/2">
+              {productToShow.title}
+            </span>
+            <span className="text-gray-900 font-semibold text-xl bg-purple-400 p-2 rounded-lg shadow-lg">
+              ${productToShow.price}
+            </span>
+          </div>
+          <span className="text-gray-900 font-light">
+            {productToShow.description}
+          </span>
+        </figcaption>
+      </figure>
     </aside>
   );
 };
