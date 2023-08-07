@@ -1,11 +1,14 @@
 import { useContext } from "react";
-import { ShoppingCartContext } from "../../context/ShoppingCartContext";
+import { ProductContext } from "../../context/ProductContext.jsx";
 
 const Card = ({ data }) => {
-  const { count, setCount } = useContext(ShoppingCartContext);
+  const { count, setCount, toggleProductDetail } = useContext(ProductContext);
 
   return (
-    <article className="bg-gray-50 cursor-pointer w-56 h-60 rounded-lg shadow-lg">
+    <article 
+      className="bg-gray-50 cursor-pointer w-56 h-60 rounded-lg shadow-lg"
+      onClick={() => toggleProductDetail()}
+    >
       <figure className="relative mb-2 w-full h-4/5">
         <span className="m-2 px-3 py-0.5 absolute bottom-0 left-0 bg-white/60 rounded-lg text-gray-900 text-sm capitalize">
           {data.category}
@@ -17,9 +20,25 @@ const Card = ({ data }) => {
         />
         <button
           className="m-2 p-1 absolute top-0 right-0 flex justify-center items-center bg-gray-50 w-6 h-6 rounded-full"
-          onClick={() => setCount(count + 1)}
+          onClick={(e) => {
+            e.stopPropagation()
+            setCount(count + 1);
+          }}
         >
-          +
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6 text-black"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
         </button>
       </figure>
       <p className="flex justify-between items-center px-4">
