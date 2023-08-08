@@ -2,13 +2,22 @@ import { useContext } from "react";
 import { ProductContext } from "../../context/ProductContext.jsx";
 
 const Card = ({ data }) => {
-  const { count, setCount, toggleProductDetail, setProductToShow } = useContext(ProductContext);
+  const {
+    count,
+    setCount,
+    toggleProductDetail,
+    setProductToShow,
+    cartProducts,
+    setCartProducts,
+    closeCheckoutSideMenu
+  } = useContext(ProductContext);
 
   return (
-    <article 
+    <article
       className="bg-gray-50 cursor-pointer w-56 h-60 rounded-lg shadow-lg"
       onClick={() => {
         toggleProductDetail();
+        closeCheckoutSideMenu();
         setProductToShow(data);
       }}
     >
@@ -24,8 +33,9 @@ const Card = ({ data }) => {
         <button
           className="m-2 p-1 absolute top-0 right-0 flex justify-center items-center bg-gray-50 w-6 h-6 rounded-full"
           onClick={(e) => {
-            e.stopPropagation()
+            e.stopPropagation();
             setCount(count + 1);
+            setCartProducts([...cartProducts, data]);
           }}
         >
           <svg

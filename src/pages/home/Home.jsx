@@ -2,12 +2,13 @@ import { useState, useEffect, useContext } from "react";
 import { ProductContext } from "../../context/ProductContext.jsx";
 import { Card } from "../../components/Card/Card.jsx";
 import { ProductDetail } from "../../components/ProductDetail/ProductDetail.jsx";
+import { CheckoutSideMenu } from "../../components/CheckoutSideMenu/CheckoutSideMenu.jsx";
 import { API_URL } from "../../api";
 import React from "react";
 
 function Home() {
   const [items, setItems] = useState(null);
-  const { isProductDetailOpen } = useContext(ProductContext);
+  const { isProductDetailOpen, isCheckoutSideMenuOpen } = useContext(ProductContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +29,7 @@ function Home() {
           <Card key={item.id} data={item} />
         ))}
       </div>
+      {isCheckoutSideMenuOpen && <CheckoutSideMenu />}
       {isProductDetailOpen && <ProductDetail />}
     </div>
   );
