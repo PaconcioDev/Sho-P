@@ -1,7 +1,20 @@
+@tailwind utilities;
+
 .checkout-side-menu {
-  width: 460px;
+  width: 560px;
   height: calc(100vh - 60px);
   position: fixed;
   top: 60px;
   right: 0;
+}
+
+@layer utilities {
+  .order-card-section::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  .order-card-section::-webkit-scrollbar-thumb {
+    @apply w-2 bg-violet-300 rounded-md;
+  }
+
 }

@@ -4,7 +4,16 @@ import { OrderCard } from "../OrderCard/OrderCard.jsx";
 import "./CheckoutSideMenu.css";
 
 const CheckoutSideMenu = () => {
-  const { closeCheckoutSideMenu, cartProducts } = useContext(ProductContext);
+  const { closeCheckoutSideMenu, cartProducts, setCartProducts, count, setCount } =
+    useContext(ProductContext);
+
+  const handleDelete = (id, quantity) => {
+    const filteredProducts = cartProducts.filter(
+      (product) => product.id !== id
+    );
+    setCartProducts(filteredProducts);
+    setCount(count - quantity)
+  };
 
   return (
     <aside className="checkout-side-menu flex flex-col border border-gray-300 rounded-l-lg bg-gray-50 z-10">
@@ -25,15 +34,16 @@ const CheckoutSideMenu = () => {
           </svg>
         </button>
       </section>
-      <section className="px-6 space-y-2">
-        {cartProducts.map((product, index) => { return (
-          <OrderCard
-            key={`${product.id}_${index}`}
-            title={product.title}
-            price={product.price}
-            imageUrl={product.image}
-          />
-        )})}
+      <section className="order-card-section px-4 space-y-4 mb-4 overflow-y-scroll ">
+        {cartProducts.map((product, index) => {
+          return (
+            <OrderCard
+              key={`${product.id}_${index}`}
+              product={product}
+              handleDelete={handleDelete}
+            />
+          );
+        })}
       </section>
     </aside>
   );

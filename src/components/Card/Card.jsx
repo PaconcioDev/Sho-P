@@ -3,13 +3,10 @@ import { ProductContext } from "../../context/ProductContext.jsx";
 
 const Card = ({ data }) => {
   const {
-    count,
-    setCount,
     toggleProductDetail,
     setProductToShow,
-    cartProducts,
-    setCartProducts,
-    closeCheckoutSideMenu
+    closeCheckoutSideMenu,
+    onAdd,
   } = useContext(ProductContext);
 
   return (
@@ -34,8 +31,7 @@ const Card = ({ data }) => {
           className="m-2 p-1 absolute top-0 right-0 flex justify-center items-center bg-gray-50 w-6 h-6 rounded-full"
           onClick={(e) => {
             e.stopPropagation();
-            setCount(count + 1);
-            setCartProducts([...cartProducts, data]);
+            onAdd(data);
           }}
         >
           <svg
