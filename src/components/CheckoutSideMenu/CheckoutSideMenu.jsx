@@ -1,20 +1,21 @@
 import { useContext } from "react";
 import { ProductContext } from "../../context/ProductContext.jsx";
+import { OrderCard } from "../OrderCard/OrderCard.jsx";
 import "./CheckoutSideMenu.css";
 
 const CheckoutSideMenu = () => {
-  const { closeCheckoutSideMenu } = useContext(ProductContext);
+  const { closeCheckoutSideMenu, cartProducts } = useContext(ProductContext);
 
   return (
     <aside className="checkout-side-menu flex flex-col border border-gray-300 rounded-l-lg bg-gray-50 z-10">
-      <div className="pr-4 pt-4 absolute right-0 top-0">
+      <section className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">My Order</h2>
         <button onClick={() => closeCheckoutSideMenu()}>
           <svg
             xmlns="https://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-8 h-8 hover:fill-purple-600 bg-gray-300 bg-opacity-50 rounded-full"
+            className="w-8 h-8 hover:fill-purple-600"
           >
             <path
               fillRule="evenodd"
@@ -23,7 +24,17 @@ const CheckoutSideMenu = () => {
             />
           </svg>
         </button>
-      </div>
+      </section>
+      <section className="px-6 space-y-2">
+        {cartProducts.map((product, index) => { return (
+          <OrderCard
+            key={`${product.id}_${index}`}
+            title={product.title}
+            price={product.price}
+            imageUrl={product.image}
+          />
+        )})}
+      </section>
     </aside>
   );
 };
