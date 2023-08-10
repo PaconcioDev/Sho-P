@@ -8,7 +8,7 @@ const ProductProvider = ({ children }) => {
 
   //* Shopping Cart - Add Products To Cart
   const [cartProducts, setCartProducts] = useState([]);
-  
+
   const onAdd = (product) => {
     const productExists = cartProducts.some(
       (cartProduct) => cartProduct.id === product.id
@@ -22,7 +22,7 @@ const ProductProvider = ({ children }) => {
         (cartProduct) => cartProduct.id === product.id
       );
       productCart.quantity += 1;
-      setCartProducts([...cartProducts])
+      setCartProducts([...cartProducts]);
     }
     setCount(count + 1);
   };
@@ -42,6 +42,9 @@ const ProductProvider = ({ children }) => {
     setIsCheckoutSideMenuOpen(!isCheckoutSideMenuOpen);
   const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
+  //* Shopping Cart - Order
+  const [order, setOrder] = useState([]);
+
   return (
     <ProductContext.Provider
       value={{
@@ -58,6 +61,8 @@ const ProductProvider = ({ children }) => {
         toggleCheckoutSideMenu,
         closeCheckoutSideMenu,
         onAdd,
+        order,
+        setOrder,
       }}
     >
       {children}

@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ProductContext } from "../../context/ProductContext.jsx";
 import { OrderCard } from "../OrderCard/OrderCard.jsx";
 import { totalPrice } from "../../utils/totalPrice.js";
@@ -11,6 +12,8 @@ const CheckoutSideMenu = () => {
     setCartProducts,
     count,
     setCount,
+    order,
+    setOrder,
   } = useContext(ProductContext);
 
   const handleDelete = (id, quantity) => {
@@ -19,6 +22,19 @@ const CheckoutSideMenu = () => {
     );
     setCartProducts(filteredProducts);
     setCount(count - quantity);
+  };
+
+  const handleCheckout = () => {
+    const orderToAdd = {
+      date: "01.02.23",
+      products: cartProducts,
+      totalProducts: count,
+      totalPrice: totalPrice(cartProducts),
+    };
+    setOrder([...order, orderToAdd]);
+    setCartProducts([])
+    setCount(0);
+    closeCheckoutSideMenu()
   };
 
   return (
@@ -54,8 +70,18 @@ const CheckoutSideMenu = () => {
       {cartProducts.length >= 1 && (
         <section className="px-20 mt-4 mb-2">
           <span className="text-2xl font-semibold">Total:</span>
-          <span className="ml-5 font-bold text-xl">${totalPrice(cartProducts)}</span>
-          <hr className="mt-1 bg-purple-300 border-transparent"/>
+          <span className="ml-5 font-bold text-xl">
+            ${totalPrice(cartProducts)}
+          </span>
+          <hr className="mt-1 mb-4 bg-purple-300 border-transparent" />
+          <Link to="/my-orders/last">
+            <button
+              onClick={() => handleCheckout()}
+              className="w-full py-3 rounded-md font-semibold text-lg bg-purple-400 text-gray-50"
+            >
+              Checkout
+            </button>
+          </Link>
         </section>
       )}
     </aside>
