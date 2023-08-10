@@ -43,14 +43,12 @@ const OrderCard = ({ product, handleDelete }) => {
         </div>
       </section>
       <section className="flex items-center gap-4 mr-2">
-        {product.quantity > 1 && (
-          <button 
-            className="h-7 w-7 rounded-lg hover:bg-red-400 hover:text-gray-50"
-            //TODO: onClick={() => onRemove()}
-          >
+        {/* TODO: make this btn functional */}
+        {/* {product.quantity > 1 && (
+          <button className="h-7 w-7 rounded-lg hover:bg-red-400 hover:text-gray-50">
             -
           </button>
-        )}
+        )} */}
         <p className="text-lg font-medium">{product.quantity}</p>
         <button
           className="h-7 w-7 rounded-lg hover:bg-green-300 hover:text-gray-50"

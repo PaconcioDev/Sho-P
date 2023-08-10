@@ -8,6 +8,7 @@ const ProductProvider = ({ children }) => {
 
   //* Shopping Cart - Add Products To Cart
   const [cartProducts, setCartProducts] = useState([]);
+  
   const onAdd = (product) => {
     const productExists = cartProducts.some(
       (cartProduct) => cartProduct.id === product.id

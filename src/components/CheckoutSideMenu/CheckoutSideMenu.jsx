@@ -1,18 +1,24 @@
 import { useContext } from "react";
 import { ProductContext } from "../../context/ProductContext.jsx";
 import { OrderCard } from "../OrderCard/OrderCard.jsx";
+import { totalPrice } from "../../utils/totalPrice.js";
 import "./CheckoutSideMenu.css";
 
 const CheckoutSideMenu = () => {
-  const { closeCheckoutSideMenu, cartProducts, setCartProducts, count, setCount } =
-    useContext(ProductContext);
+  const {
+    closeCheckoutSideMenu,
+    cartProducts,
+    setCartProducts,
+    count,
+    setCount,
+  } = useContext(ProductContext);
 
   const handleDelete = (id, quantity) => {
     const filteredProducts = cartProducts.filter(
       (product) => product.id !== id
     );
     setCartProducts(filteredProducts);
-    setCount(count - quantity)
+    setCount(count - quantity);
   };
 
   return (
@@ -35,16 +41,23 @@ const CheckoutSideMenu = () => {
         </button>
       </section>
       <section className="order-card-section px-4 space-y-4 mb-4 overflow-y-scroll ">
-        {cartProducts.map((product, index) => {
+        {cartProducts.map((product) => {
           return (
             <OrderCard
-              key={`${product.id}_${index}`}
+              key={product.id}
               product={product}
               handleDelete={handleDelete}
             />
           );
         })}
       </section>
+      {cartProducts.length >= 1 && (
+        <section className="px-20 mt-4 mb-2">
+          <span className="text-2xl font-semibold">Total:</span>
+          <span className="ml-5 font-bold text-xl">${totalPrice(cartProducts)}</span>
+          <hr className="mt-1 bg-purple-300 border-transparent"/>
+        </section>
+      )}
     </aside>
   );
 };
