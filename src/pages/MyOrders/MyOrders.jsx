@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 import { ProductContext } from "../../context/ProductContext.jsx";
 import { OrdersCard } from "../../components/OrdersCard/OrdersCard.jsx";
 
@@ -9,17 +8,16 @@ function MyOrders() {
   return (
     <>
       <div className="flex items-center justify-center w-80 relative">
-        <h1>My Orders</h1>
+        <h1 className="mb-5 text-2xl font-bold text-gray-50 bg-purple-400 p-2 rounded-lg">My Orders</h1>
       </div>
-      {order.map((order, index) => {
-        <Link key={index} to={`/my-orders/${order.id}`}>
-          <OrdersCard
-            totalPrice={order.totalPrice}
-            totalProducts={order.totalProducts}
-          />
-          ;
-        </Link>;
-      })}
+      {order.map((order, index) => (
+        <OrdersCard
+          key={index}
+          index={index}
+          totalPrice={order.totalPrice}
+          totalProducts={order.totalProducts}
+        />
+      ))}
     </>
   );
 }
