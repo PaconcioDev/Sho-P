@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { API_URL } from "../api";
 
 const ProductContext = createContext();
 
@@ -45,6 +46,37 @@ const ProductProvider = ({ children }) => {
   //* Shopping Cart - Order
   const [order, setOrder] = useState([]);
 
+  //* Get Products
+  const [items, setItems] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        setItems(data);
+      } catch (error) {}
+    };
+    fetchData();
+  }, []);
+
+  //* Search Products
+  const [search, setSearch] = useState(null);
+  const [filteredItems, setFilteredItems] = useState(null);
+
+  const filterItems = (items, search) => {
+    return items?.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase())
+    );
+  };
+
+  useEffect(() => {
+    if (!search) {
+    } else {
+      setFilteredItems(filterItems(items, search));
+    }
+  }, [items, search]);
+
   return (
     <ProductContext.Provider
       value={{
@@ -63,6 +95,11 @@ const ProductProvider = ({ children }) => {
         onAdd,
         order,
         setOrder,
+        items,
+        setItems,
+        search,
+        setSearch,
+        filteredItems
       }}
     >
       {children}
