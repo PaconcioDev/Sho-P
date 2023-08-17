@@ -26,7 +26,7 @@ const ProductDetail = () => {
       <figure>
         <img
           className="w-full h-auto rounded-lg"
-          src={productToShow.image}
+          src={productToShow.images[0]}
           alt={productToShow.title}
         />
         <figcaption className="flex flex-col p-6">

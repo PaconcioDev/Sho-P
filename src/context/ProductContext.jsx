@@ -99,7 +99,7 @@ const ProductProvider = ({ children }) => {
         setItems,
         search,
         setSearch,
-        filteredItems
+        filteredItems,
       }}
     >
       {children}

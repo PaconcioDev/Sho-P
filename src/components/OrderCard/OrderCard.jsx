@@ -31,7 +31,7 @@ const OrderCard = ({ product, handleDelete }) => {
         <figure className="w-20 h-20 border border-transparent shadow-xl">
           <img
             className="h-full w-full rounded-lg object-cover"
-            src={product.image}
+            src={product.images[0]}
             alt={product.title}
           />
         </figure>
@@ -40,7 +40,7 @@ const OrderCard = ({ product, handleDelete }) => {
             {product.title}
           </p>
           <p className="text-sm font-semibold bg-purple-400 rounded-md py-1 px-2 text-gray-50 w-fit">
-            ${(product.price * product.quantity).toFixed(2)}
+            ${(product.price * product.quantity)}
           </p>
         </div>
       </section>

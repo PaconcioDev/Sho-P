@@ -20,11 +20,11 @@ const Card = ({ data }) => {
     >
       <figure className="relative mb-2 w-full h-4/5">
         <span className="m-2 px-3 py-0.5 absolute bottom-0 left-0 bg-white/60 rounded-lg text-gray-900 text-sm capitalize">
-          {data.category}
+          {data.category.name}
         </span>
         <img
           className="w-full h-full object-cover rounded-t-lg"
-          src={data.image}
+          src={data.images[0]}
           alt={data.title}
         />
         <button
