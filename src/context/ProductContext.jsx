@@ -82,7 +82,9 @@ const ProductProvider = ({ children }) => {
         const res = await fetch(API_URL);
         const data = await res.json();
         setItems(data);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
     };
     fetchData();
   }, []);

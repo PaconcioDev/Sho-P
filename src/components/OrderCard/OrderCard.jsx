@@ -31,13 +31,13 @@ const OrderCard = ({ product, handleDelete }) => {
         <figure className="w-20 h-20 border border-transparent shadow-xl">
           <img
             className="h-full w-full rounded-lg object-cover"
-            src={product.images[0]}
-            alt={product.title}
+            src={product.image}
+            alt={product.name}
           />
         </figure>
         <div className="flex flex-col w-2/3 h-20 justify-around">
           <p className="text-sm font-medium mb-2 w-3/4 line-clamp-2">
-            {product.title}
+            {product.name}
           </p>
           <p className="text-sm font-semibold bg-purple-400 rounded-md py-1 px-2 text-gray-50 w-fit">
             ${(product.price * product.quantity)}

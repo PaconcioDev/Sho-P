@@ -24,8 +24,8 @@ const Card = ({ data }) => {
         </span>
         <img
           className="w-full h-full object-cover rounded-t-lg"
-          src={data.images[0]}
-          alt={data.title}
+          src={data.image}
+          alt={data.name}
         />
         <button
           className="m-2 p-1 absolute top-0 right-0 flex justify-center items-center bg-gray-50 w-6 h-6 rounded-full"
@@ -51,11 +51,12 @@ const Card = ({ data }) => {
         </button>
       </figure>
       <p className="flex justify-between items-center px-4">
-        <span className="text-sm font-light mr-2 truncate">{data.title}</span>
+        <span className="text-sm font-light mr-2 truncate">{data.name}</span>
         <span className="text-lg font-bold">${data.price}</span>
       </p>
     </article>
   );
 };
+
 
 export { Card };

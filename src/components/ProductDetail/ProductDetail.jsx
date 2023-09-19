@@ -26,13 +26,13 @@ const ProductDetail = () => {
       <figure>
         <img
           className="w-full h-auto rounded-lg"
-          src={productToShow.images[0]}
-          alt={productToShow.title}
+          src={productToShow.image}
+          alt={productToShow.name}
         />
         <figcaption className="flex flex-col p-6">
           <div className="flex justify-between items-center mb-2">
             <span className="text-gray-900 font-bold text-2xl w-1/2">
-              {productToShow.title}
+              {productToShow.name}
             </span>
             <span className="text-gray-900 font-semibold text-xl bg-purple-400 p-2 rounded-lg shadow-lg">
               ${productToShow.price}

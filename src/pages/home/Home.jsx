@@ -1,9 +1,9 @@
+import React from "react";
 import { useContext } from "react";
 import { ProductContext } from "../../context/ProductContext.jsx";
 import { Card } from "../../components/Card/Card.jsx";
 import { ProductDetail } from "../../components/ProductDetail/ProductDetail.jsx";
 import { CheckoutSideMenu } from "../../components/CheckoutSideMenu/CheckoutSideMenu.jsx";
-import React from "react";
 
 function Home() {
   const {
