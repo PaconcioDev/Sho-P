@@ -76,7 +76,7 @@ const CheckoutSideMenu = () => {
             ${totalPrice(cartProducts)}
           </span>
           <hr className="mt-1 mb-4 bg-purple-300 border-transparent" />
-          <Link to="/my-orders/last">
+          <Link to="my-orders/last">
             <button
               onClick={() => handleCheckout()}
               className="w-full py-3 rounded-md font-semibold text-lg bg-purple-400 text-gray-50"

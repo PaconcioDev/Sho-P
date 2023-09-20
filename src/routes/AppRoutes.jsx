@@ -14,13 +14,15 @@ const AppRoutes = () => {
   const isSignOut = signOut || parsedSignOut
 
   let routes = useRoutes([
-    { path: "/", element: <Home /> },
-    { path: "/my-orders", element: !isSignOut ? <MyOrders /> : <Navigate replace to={"/sign-in"}/> },
-    { path: "/my-order", element: !isSignOut ? <MyOrder /> : <Navigate replace to={"/sign-in"}/> },
-    { path: "/my-orders/last", element: !isSignOut ? <MyOrder /> : <Navigate replace to={"/sign-in"}/> },
-    { path: "/my-orders/:id", element: !isSignOut ? <MyOrder /> : <Navigate replace to={"/sign-in"}/> },
-    { path: "/my-account", element: !isSignOut ? <MyAccount /> : <Navigate replace to={"/sign-in"}/> },
-    { path: "/sign-in", element: <SignIn /> },
+    { path: "/", element: <Navigate replace to={"/Sho-P"} /> },
+    { path: "/Sho-P", element: <Home /> },
+    { path: "/Sho-P/my-orders", element: !isSignOut ? <MyOrders /> : <Navigate replace to={"/Sho-P/sign-in"}/> },
+    { path: "/Sho-P/my-order", element: !isSignOut ? <MyOrder /> : <Navigate replace to={"/Sho-P/sign-in"}/> },
+    { path: "/Sho-P/my-orders/last", element: !isSignOut ? <MyOrder /> : <Navigate replace to={"/Sho-P/sign-in"}/> },
+    { path: "/Sho-P/my-orders/:id", element: !isSignOut ? <MyOrder /> : <Navigate replace to={"/Sho-P/sign-in"}/> },
+    { path: "/Sho-P/my-account", element: !isSignOut ? <MyAccount /> : <Navigate replace to={"/Sho-P/sign-in"}/> },
+    { path: "/Sho-P/sign-in", element: <SignIn /> },
+    { path: "/Sho-P/*", element: <NotFound /> },
     { path: "/*", element: <NotFound /> },
   ]);
   return routes;

@@ -57,7 +57,7 @@ const OrdersCard = ({ totalPrice, totalProducts, index }) => {
         {date}
       </span>
       <span className="-ml-3">
-        <Link to={`/my-orders/${index}`}>
+        <Link to={`/Sho-P/my-orders/${index}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

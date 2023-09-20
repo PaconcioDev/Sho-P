@@ -95,15 +95,14 @@ const ProductProvider = ({ children }) => {
 
   const filterItems = (items, search) => {
     return items?.filter((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase())
+      item.name.toLowerCase().includes(search.toLowerCase())
     );
   };
 
   useEffect(() => {
-    if (!search) {
-    } else {
+    if (search) {
       setFilteredItems(filterItems(items, search));
-    }
+    } 
   }, [items, search]);
 
   return (

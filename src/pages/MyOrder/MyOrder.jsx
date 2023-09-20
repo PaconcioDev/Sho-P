@@ -13,7 +13,7 @@ function MyOrder() {
   return (
     <>
       <div className="flex items-center justify-center w-80 relative mb-6">
-        <Link to={"/my-orders"} className="absolute left-0 top-3">
+        <Link to={"/Sho-P/my-orders"} className="absolute left-0 top-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

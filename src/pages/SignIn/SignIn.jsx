@@ -22,7 +22,7 @@ function SignIn() {
     const stringifiedSignOut = JSON.stringify(false);
     localStorage.setItem("sign-out", stringifiedSignOut);
     setSignOut(false);
-    return <Navigate replace to={"/"} />;
+    return <Navigate replace to={"/Sho-P"} />;
   };
 
   const createAccount = () => {
@@ -48,7 +48,7 @@ function SignIn() {
           <span className="font-light">Password: </span>
           <span className="font-bold">{parsedAccount?.password}</span>
         </p>
-        <Link to={"/"}>
+        <Link to={"/Sho-P"}>
           <button
             className="bg-purple-400 text-gray-50 font-medium py-3 mt-4 mb-2 w-full rounded-lg disabled:bg-black/40"
             onClick={() => handleSignIn()}
@@ -60,7 +60,7 @@ function SignIn() {
         <div className="text-center">
           <a
             className="font-light text-xs underline underline-offset-4 hover:text-purple-400"
-            href="/"
+            href="/Sho-P"
           >
             Forgot my password
           </a>
