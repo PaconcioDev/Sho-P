@@ -147,12 +147,14 @@ function SignIn() {
             </button>
           </div>
         </div>
-        <button
-          className="bg-purple-400 rounded-lg p-3 w-full text-gray-50 font-medium disabled:bg-slate-600"
-          onClick={() => createAccount()}
-        >
-          Create
-        </button>
+        <Link to={"/Sho-P/my-account"}>
+          <button
+            className="bg-purple-400 rounded-lg p-3 w-full text-gray-50 font-medium disabled:bg-slate-600"
+            onClick={() => createAccount()}
+          >
+            Create
+          </button>
+        </Link>
       </form>
     );
   };
