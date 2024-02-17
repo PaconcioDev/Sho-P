@@ -1,4 +1,5 @@
 import "./Home.css";
+import { Card } from "../../components/Card/Card.jsx";
 import { useEffect, useState } from "react";
 
 function Home() {
@@ -10,21 +11,17 @@ function Home() {
       .then((data) => setProducts(data));
   }, []);
 
-  if (products?.length > 0) {
-    return (
-      <main>
-        {products.map((product) => (
-          <div>
-            <img src={product.image}></img>
-          </div>
-        ))}
-      </main>
-    );
-  } else {
-    return (
-      <p>Right now we don't have any products available, come back later!</p>
-    );
-  }
+  const renderView = () => {
+    if (products?.length > 0) {
+      return products.map((product) => <Card key={product.id} data={product} />);
+    } else {
+      return (
+        <p>There's no products right available rigth now, come back later!</p>
+      );
+    }
+  };
+
+  return <main>{renderView()}</main>;
 }
 
 export { Home };
