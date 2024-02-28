@@ -1,25 +1,37 @@
-import { useEffect, useState } from "react";
 import "./Hamburger.css";
+import { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { CategoriesContext } from "../../context/CategoriesContext";
 
 function Hamburger() {
   const [menu, setMenu] = useState(false);
-  const [categories, setCategories] = useState(null);
-
-  useEffect(() => {
-    fetch("http://localhost:3030/shop-api/v2/categories")
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
-  }, []);
+  const { setCategoryFilter, categories } =
+    useContext(CategoriesContext);
 
   const toggleMenu = () => {
     setMenu(!menu);
+  };
+
+  const handleCategory = (category) => {
+    const newCategoryName = category.name.toLowerCase().split(" ").join("-");
+    setCategoryFilter({
+      name: newCategoryName,
+    });
   };
 
   const renderCategories = () => {
     if (categories?.length > 0) {
       return categories.map((category) => (
         <li key={category.id} className="hamburger-menu__item">
-          <a href="#">{category.name}</a>
+          <NavLink
+            to={`/products/${category.name.toLowerCase().split(" ").join("-")}`}
+            onClick={() => {
+              handleCategory(category);
+              toggleMenu();
+            }}
+          >
+            {category.name}
+          </NavLink>
           <hr className="hamburger-menu__underline" />
         </li>
       ));

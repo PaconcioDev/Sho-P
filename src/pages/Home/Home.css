@@ -1,15 +1,21 @@
-main {
-  padding: 3em;
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.product-card__container {
+  padding: 3rem;
   display: grid;
   grid-template-columns: repeat(
     auto-fill,
-    minmax(300px, 1fr)
+    minmax(18.75rem, 1fr)
   );
   gap: 1.25rem
 }
 
 @media screen and (min-width: 1024px) {
-  main {
-    padding: 5em 3em 3em 3em;
+
+  .product-card__container {
+    padding: 5rem 3rem 3rem 3rem;
   }
 }

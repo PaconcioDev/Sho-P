@@ -1,8 +1,12 @@
+import "./NavBar.css";
 import { NavLink } from "react-router-dom";
 import { Hamburger } from "../Hamburger/Hamburger.jsx";
-import "./NavBar.css";
+import { useContext } from "react";
+import { CategoriesContext } from "../../context/CategoriesContext.jsx";
 
 function NavBar() {
+  const { setCategoryFilter } = useContext(CategoriesContext);
+
   return (
     <header>
       <nav className="navbar">
@@ -24,7 +28,11 @@ function NavBar() {
         </ul>
         <ul className="navbar__item-container">
           <li className="navbar__item">
-            <NavLink className="navbar__title" to={"/Sho-P"}>
+            <NavLink
+              className="navbar__title"
+              to={"/products/all"}
+              onClick={() => setCategoryFilter({ name: "all" })}
+            >
               Sho-P
             </NavLink>
           </li>

@@ -11,13 +11,13 @@ header {
   justify-content: space-between;
   align-items: center;
   margin: 0;
-  padding: 0.5em;
+  padding: 0.5rem;
 }
 
 .navbar__item-container {
   list-style: none;
   padding: 0;
-  margin: 0.5em;
+  margin: 0.5rem;
 }
 
 .navbar__item {
@@ -28,9 +28,9 @@ header {
   font-size: larger;
   font-weight: bold;
   background-color: #ed7d31;
-  border: solid 1px #ed7d31;
-  border-radius: 10px;
-  padding: 0.3em 1em;
+  border: solid 0.0625rem #ed7d31;
+  border-radius: 0.625rem;
+  padding: 0.3rem 1rem;
   color: #4f4a45;
   text-decoration: none;
 }
@@ -38,12 +38,12 @@ header {
 .navbar__item-container:first-child,
 .navbar__item-container:last-child {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   align-items: center;
 }
 
 /* media querys */
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 64rem) {
   .navbar__item-container:first-child {
     gap: 0;
   }
