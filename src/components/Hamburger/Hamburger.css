@@ -122,7 +122,7 @@
 
   .hamburger-menu__list {
     flex-direction: row;
-    padding: 0 4rem 0 0;
+    padding: 0;
     gap: 0.5rem;
   }
 

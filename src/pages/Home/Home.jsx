@@ -1,15 +1,30 @@
 import "./Home.css";
-import { Card } from "../../components/Card/Card.jsx";
 import { useContext, useEffect, useState } from "react";
-import { API_URL } from "../../api/apiUrl.js";
-import { CategoriesContext } from "../../context/CategoriesContext.jsx";
 import { useParams } from "react-router-dom";
+import { CategoriesContext } from "../../context/CategoriesContext.jsx";
+import { Card } from "../../components/Card/Card.jsx";
+import { NotFound } from "../../components/NotFound/NotFound.jsx";
+import { API_URL } from "../../api/apiUrl.js";
 
 function Home() {
-  const [products, setProducts] = useState();
   const { categoryFilter, setCategoryFilter, categories } =
     useContext(CategoriesContext);
+
+  //* Filter category by route
   const { categoryParam } = useParams();
+  const normalizedCategoryParam = categoryParam
+    .toLowerCase()
+    .split(" ")
+    .join("-");
+
+  useEffect(() => {
+    setCategoryFilter({
+      name: normalizedCategoryParam,
+    });
+  }, [categoryParam]);
+
+  //* Getting Products
+  const [products, setProducts] = useState();
 
   useEffect(() => {
     fetch(`${API_URL}/products`)
@@ -17,27 +32,21 @@ function Home() {
       .then((data) => setProducts(data));
   }, []);
 
-  useEffect(() => {
-    setCategoryFilter({
-      name: categoryParam,
-    });
-  }, [categoryParam]);
-
+  //* Render function
   const renderView = () => {
     if (categories?.length > 0) {
       const isCategoryReal =
-        categoryParam === "all"
-          ? categoryParam
+        normalizedCategoryParam === "all"
+          ? normalizedCategoryParam
           : categories.find(
               (category) =>
                 category.name.toLowerCase().split(" ").join("-") ===
-                categoryParam
+                normalizedCategoryParam
             );
       if (!isCategoryReal) {
-        //TODO: Make 404 NotFound component
         return (
           <main className="main">
-            <p>404</p>
+            <NotFound />
           </main>
         );
       }
@@ -46,7 +55,7 @@ function Home() {
       const cards = products
         .filter(
           (product) =>
-            categoryParam === "all" ||
+            normalizedCategoryParam === "all" ||
             product.category.name.toLowerCase().split(" ").join("-") ===
               categoryFilter.name
         )

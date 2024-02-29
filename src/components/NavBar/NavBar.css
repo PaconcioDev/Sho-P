@@ -47,4 +47,7 @@ header {
   .navbar__item-container:first-child {
     gap: 0;
   }
+  .navbar__item--space {
+    margin-right: 2.5rem;
+  }
 }
