@@ -133,7 +133,7 @@
   }
 
   .hamburger-menu__item > a {
-    font-weight: bolder;
+    font-weight: normal;
     font-size: large;
     text-decoration: none;
     color: #f6f1ee;

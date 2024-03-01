@@ -1,36 +1,26 @@
 import "./Home.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { ProductsContext } from "../../context/ProductsContext.jsx";
 import { CategoriesContext } from "../../context/CategoriesContext.jsx";
 import { Card } from "../../components/Card/Card.jsx";
-import { NotFound } from "../../components/NotFound/NotFound.jsx";
-import { API_URL } from "../../api/apiUrl.js";
+import { NotFound } from "../NotFound/NotFound.jsx";
+import { normalizeString } from "../../utils/normalizeString.js";
 
 function Home() {
   const { categoryFilter, setCategoryFilter, categories } =
     useContext(CategoriesContext);
+  const { products } = useContext(ProductsContext);
 
   //* Filter category by route
   const { categoryParam } = useParams();
-  const normalizedCategoryParam = categoryParam
-    .toLowerCase()
-    .split(" ")
-    .join("-");
+  const normalizedCategoryParam = normalizeString(categoryParam);
 
   useEffect(() => {
     setCategoryFilter({
       name: normalizedCategoryParam,
     });
   }, [categoryParam]);
-
-  //* Getting Products
-  const [products, setProducts] = useState();
-
-  useEffect(() => {
-    fetch(`${API_URL}/products`)
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
 
   //* Render function
   const renderView = () => {
@@ -40,8 +30,7 @@ function Home() {
           ? normalizedCategoryParam
           : categories.find(
               (category) =>
-                category.name.toLowerCase().split(" ").join("-") ===
-                normalizedCategoryParam
+                normalizeString(category.name) === normalizedCategoryParam
             );
       if (!isCategoryReal) {
         return (
@@ -56,11 +45,9 @@ function Home() {
         .filter(
           (product) =>
             normalizedCategoryParam === "all" ||
-            product.category.name.toLowerCase().split(" ").join("-") ===
-              categoryFilter.name
+            normalizeString(product.category.name) === categoryFilter.name
         )
         .map((product) => <Card key={product.id} data={product} />);
-
       return <main className="product-card__container">{cards}</main>;
     } else {
       return (

@@ -2,18 +2,18 @@ import "./Hamburger.css";
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { CategoriesContext } from "../../context/CategoriesContext";
+import { normalizeString } from "../../utils/normalizeString";
 
 function Hamburger() {
   const [menu, setMenu] = useState(false);
-  const { setCategoryFilter, categories } =
-    useContext(CategoriesContext);
+  const { setCategoryFilter, categories } = useContext(CategoriesContext);
 
   const toggleMenu = () => {
     setMenu(!menu);
   };
 
   const handleCategory = (category) => {
-    const newCategoryName = category.name.toLowerCase().split(" ").join("-");
+    const newCategoryName = normalizeString(category.name);
     setCategoryFilter({
       name: newCategoryName,
     });
@@ -24,7 +24,7 @@ function Hamburger() {
       return categories.map((category) => (
         <li key={category.id} className="hamburger-menu__item">
           <NavLink
-            to={`/products/${category.name.toLowerCase().split(" ").join("-")}`}
+            to={`/products/${normalizeString(category.name)}`}
             onClick={() => {
               handleCategory(category);
               toggleMenu();

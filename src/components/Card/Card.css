@@ -25,11 +25,12 @@
   animation: slide 0.5s ease 0s 1 normal both;
 }
 
-.product-card:hover > .product-card__info {
+.product-card__link:hover > .product-card__info {
   display: flex;
 }
 
 .product-card__name {
+  font-weight: normal;
   font-size: 1.25rem;
   margin: 0;
   color: #f6f1ee;
@@ -50,7 +51,7 @@
   transition: opacity 0.5s ease;
 }
 
-.product-card:hover > .product-card__image-overlay {
+.product-card__link:hover > .product-card__image-overlay {
   opacity: 1;
 }
 
