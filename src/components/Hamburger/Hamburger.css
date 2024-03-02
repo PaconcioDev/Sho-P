@@ -16,7 +16,7 @@
   top: 0;
   bottom: 0;
   left: -100vmax;
-  width: 45%;
+  width: 50%;
   height: 100vh;
   background-color: #f6f1ee;
   border: solid .0625rem #f6f1ee;
@@ -95,7 +95,7 @@
 }
 
 /* media querys */
-@media screen and (min-width: 64rem) {
+@media screen and (min-width: 1024px) {
   .hamburger-menu__button {
     display: none;
   }
