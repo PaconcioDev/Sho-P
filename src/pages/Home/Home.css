@@ -1,11 +1,8 @@
 .product-card__container {
   padding: 3rem;
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(18.75rem, 1fr)
-  );
-  gap: 1.25rem
+  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+  gap: 1.25rem;
 }
 
 .main {

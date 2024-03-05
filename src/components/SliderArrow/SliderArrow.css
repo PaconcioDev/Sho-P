@@ -1,0 +1,23 @@
+.slider__btn {
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: none;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.slider__btn--prev {
+  transform: rotate(180deg);
+  left: -35px;
+}
+
+.slider__btn--next {
+  right: -35px;
+}

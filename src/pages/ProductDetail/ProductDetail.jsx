@@ -1,8 +1,12 @@
 import "./ProductDetail.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useContext } from "react";
 import { ProductsContext } from "../../context/ProductsContext";
 import { useParams } from "react-router-dom";
 import { Card } from "../../components/Card/Card.jsx";
+import { SliderArrow } from "../../components/SliderArrow/SliderArrow.jsx";
 import { normalizeString } from "../../utils/normalizeString.js";
 
 function ProductDetail() {
@@ -12,6 +16,45 @@ function ProductDetail() {
   const product = products.find(
     (product) => normalizeString(productName) === normalizeString(product.name)
   );
+
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    centerMode: true,
+    centerPadding: "0.25rem",
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    prevArrow: <SliderArrow direction={false} />,
+    nextArrow: <SliderArrow direction={true} />,
+    responsive: [
+      {
+        breakpoint: 1370,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <>
@@ -35,21 +78,22 @@ function ProductDetail() {
       <aside className="related-products__container">
         <hr />
         <h2 className="related-products__title">Related Products</h2>
-        {/* //TODO: Make slider without scrollbar for desktop and mobile */}
         <section className="related-products__slider">
-          {products
-            .filter(
-              (p) =>
-                p.name
-                  .toLowerCase()
-                  .split(" ")
-                  .some((word) =>
-                    product.name.toLowerCase().split(" ").includes(word)
-                  ) && p.name !== product.name
-            )
-            .map((p) => (
-              <Card key={p.id} data={p} />
-            ))}
+          <Slider {...sliderSettings}>
+            {products
+              .filter(
+                (p) =>
+                  p.name
+                    .toLowerCase()
+                    .split(" ")
+                    .some((word) =>
+                      product.name.toLowerCase().split(" ").includes(word)
+                    ) && p.name !== product.name
+              )
+              .map((p) => (
+                <Card key={p.id} data={p} />
+              ))}
+          </Slider>
         </section>
       </aside>
     </>
