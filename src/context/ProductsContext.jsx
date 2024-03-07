@@ -5,6 +5,8 @@ const ProductsContext = createContext();
 
 function ProductsProvider({ children }) {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
+
 
   useEffect(() => {
     fetch(`${API_URL}/products`)
@@ -13,7 +15,7 @@ function ProductsProvider({ children }) {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ products }}>
+    <ProductsContext.Provider value={{ products, search, setSearch }}>
       {children}
     </ProductsContext.Provider>
   );

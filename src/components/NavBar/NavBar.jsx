@@ -1,8 +1,21 @@
 import "./NavBar.css";
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Hamburger } from "../Hamburger/Hamburger.jsx";
+import { ProductsContext } from "../../context/ProductsContext.jsx";
 
 function NavBar() {
+  const { setSearch } = useContext(ProductsContext);
+  const navigate = useNavigate();
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter" && event.target.value.trim() !== "") {
+      setSearch(event.target.value.toLowerCase().trim());
+      navigate("products/all");
+      event.target.value = "";
+    }
+  };
+
   return (
     <header>
       <nav className="navbar">
@@ -10,7 +23,13 @@ function NavBar() {
           <li className="navbar__item">
             <Hamburger />
           </li>
-          <li className="navbar__item navbar__item--space">
+          <li className="navbar__item navbar__item--space navbar__item--search">
+            <input
+              className="navbar__input"
+              type="text"
+              placeholder="Search..."
+              onKeyDown={(e) => handleKeyPress(e)}
+            />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -24,10 +43,7 @@ function NavBar() {
         </ul>
         <ul className="navbar__item-container">
           <li className="navbar__item">
-            <NavLink
-              className="navbar__title"
-              to={"/products/all"}
-            >
+            <NavLink onClick={() => setSearch("")} className="navbar__title" to={"/products/all"}>
               Sho-P
             </NavLink>
           </li>

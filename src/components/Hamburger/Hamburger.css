@@ -80,7 +80,7 @@
   transition: all 0.5s ease;
 }
 
-.hamburger-menu__item > a:hover {
+.hamburger-menu__item > a:hover, .hamburger-menu__item > a.active {
   color: #ed7d31;
 }
 

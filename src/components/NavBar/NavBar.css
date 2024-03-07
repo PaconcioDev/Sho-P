@@ -24,6 +24,36 @@ header {
   cursor: pointer;
 }
 
+.navbar__input {
+  opacity: 0;
+  width: 20px;
+  position: absolute;
+  top: 0.675rem;
+  padding: 0.5rem 1rem;
+  outline: none;
+  color: #F6F1EE;
+  font-family: inherit;
+  background-color: #3d3a36;
+  border: 0.125rem solid #2e2b28;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+}
+
+.navbar__item--search > svg {
+  transition: color 0.2s ease;
+}
+
+.navbar__item--search:hover > svg,
+.navbar__input:focus + svg {
+  color: transparent;
+}
+
+.navbar__item--search:hover > .navbar__input,
+.navbar__input:focus {
+  opacity: 1;
+  width: 20%;
+}
+
 .navbar__title {
   font-size: larger;
   font-weight: bold;

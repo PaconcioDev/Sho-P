@@ -1,13 +1,16 @@
+//* Product Detail
 import "./ProductDetail.css";
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
+import { ProductsContext } from "../../context/ProductsContext";
+import { Card } from "../../components/Card/Card.jsx";
+import { normalizeString } from "../../utils/normalizeString.js";
+
+//* Slider
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useContext } from "react";
-import { ProductsContext } from "../../context/ProductsContext";
-import { useParams } from "react-router-dom";
-import { Card } from "../../components/Card/Card.jsx";
 import { SliderArrow } from "../../components/SliderArrow/SliderArrow.jsx";
-import { normalizeString } from "../../utils/normalizeString.js";
 
 function ProductDetail() {
   const { products } = useContext(ProductsContext);
