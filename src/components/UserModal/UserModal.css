@@ -1,0 +1,65 @@
+.user-modal__button--toggle {
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: none;
+}
+
+.user-modal__icon {
+  fill: #ed7d31;
+}
+
+.user-modal {
+  opacity: 0;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  position: absolute;
+  z-index: 1;
+  top: 3.75rem;
+  right: 0.5rem;
+  width: 18.75rem;
+  background-color: #f6f1ee;
+  border: solid 0.0625rem #d4cfcc;
+  border-radius: 0 0 0.625rem 0.625rem;
+  box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.2);
+  transition: opacity 0.2s ease;
+}
+
+.user-modal--active {
+  opacity: 1;
+}
+
+.user-modal__link {
+  cursor: pointer;
+  padding: 0.5rem 6rem;
+  color: #f6f1ee;
+  background-color: #ed7d31;
+  font-family: inherit;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border: 0.125rem solid #ed7d31;
+  border-radius: 0.5rem;
+  transition: all 0.5s ease;
+}
+
+.user-modal__link:hover {
+  color: #ed7d31;
+  background-color: #f6f1ee;
+}
+
+.user-modal__text {
+  color: #1a1a1a;
+  font-size: 0.8rem;
+}
+
+.user-modal__text > a {
+  color: #ed7d31;
+}
+
+.user-modal__text > a:hover {
+  text-decoration: none;
+}

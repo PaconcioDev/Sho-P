@@ -1,0 +1,96 @@
+.login__title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login {
+  padding: 0 0.875rem;
+}
+
+.login__box-container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.login__box {
+  padding: 2.5rem;
+  border: 0.0625rem solid #c9bfbc;
+  border-radius: 0.375rem;
+}
+
+.login__subtitle {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+
+.login__text {
+  margin: 0 0 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login__input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  font-size: 0.9rem;
+  background-color: transparent;
+  border: 0.0625rem solid #c9bfbc;
+  border-radius: 0.375rem;
+  outline: none;
+}
+
+.login__button {
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+  background-color: #ed7d31;
+  border: 0.125rem solid #ed7d31;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  color: #f6f1ee;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+}
+
+.login__button:hover {
+  color: #ed7d31;
+  background-color: #f6f1ee;
+}
+
+.login__recover-password {
+  cursor: pointer;
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  transition: color 0.5s ease;
+}
+
+.login__recover-password:hover {
+  color: #ed7d31;
+}
+
+@media screen and (min-width: 768px) {
+  .login__box-container {
+    flex-direction: row;
+  }
+  .login__box {
+    width: 95%;
+  }
+  .login {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .login__title {
+    margin-top: 4rem;
+  }
+}

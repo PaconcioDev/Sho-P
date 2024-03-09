@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Hamburger } from "../Hamburger/Hamburger.jsx";
 import { ProductsContext } from "../../context/ProductsContext.jsx";
+import { UserModal } from "../UserModal/UserModal.jsx";
 
 function NavBar() {
   const { setSearch } = useContext(ProductsContext);
@@ -43,22 +44,18 @@ function NavBar() {
         </ul>
         <ul className="navbar__item-container">
           <li className="navbar__item">
-            <NavLink onClick={() => setSearch("")} className="navbar__title" to={"/products/all"}>
+            <NavLink
+              onClick={() => setSearch("")}
+              className="navbar__title"
+              to={"/products/all"}
+            >
               Sho-P
             </NavLink>
           </li>
         </ul>
         <ul className="navbar__item-container">
           <li className="navbar__item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="currentColor"
-              viewBox="0 0 16 16"
-            >
-              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
-            </svg>
+            <UserModal />
           </li>
           <li className="navbar__item">
             <svg
