@@ -48,6 +48,16 @@
   outline: none;
 }
 
+.login__failed {
+  width: 100%;
+  padding: 0.5rem;
+  text-align: center;
+  color: #d64c4c;
+  background-color: #ef4b4b28;
+  border: 1px solid #d64c4c;
+  border-radius: 0.375rem;
+}
+
 .login__button {
   cursor: pointer;
   padding: 0.5rem 2rem;
@@ -63,6 +73,11 @@
 .login__button:hover {
   color: #ed7d31;
   background-color: #f6f1ee;
+}
+
+.login__button--link {
+  text-decoration: none;
+  font-size: 0.8rem;
 }
 
 .login__recover-password {

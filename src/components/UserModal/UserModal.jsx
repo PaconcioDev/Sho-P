@@ -1,5 +1,5 @@
 import "./UserModal.css";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function UserModal() {
@@ -47,7 +47,7 @@ function UserModal() {
           LOGIN
         </NavLink>
         <span className="user-modal__text">
-          NEW USER? <NavLink>REGISTER HERE</NavLink>
+          NEW USER? <NavLink to={"/account/register"}>REGISTER HERE</NavLink>
         </span>
       </aside>
     </div>

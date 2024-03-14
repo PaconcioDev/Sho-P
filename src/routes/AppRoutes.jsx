@@ -3,6 +3,7 @@ import { Home } from "../pages/Home/Home.jsx";
 import { NotFound } from "../pages/NotFound/NotFound.jsx";
 import { ProductDetail } from "../pages/ProductDetail/ProductDetail.jsx";
 import { LogIn } from "../pages/LogIn/LogIn.jsx";
+import { Register } from "../pages/Register/Register.jsx";
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -14,6 +15,7 @@ const AppRoutes = () => {
       element: <ProductDetail />,
     },
     { path: "/account/login", element: <LogIn /> },
+    { path: "/account/register", element: <Register /> },
     { path: "*", element: <NotFound /> },
   ]);
 
