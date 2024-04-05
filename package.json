@@ -19,5 +19,8 @@
     "react-router-dom": "6.21.3",
     "react-slick": "0.30.2",
     "slick-carousel": "1.8.1"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/semistandard/eslintrc.json"
   }
 }

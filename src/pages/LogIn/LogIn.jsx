@@ -1,28 +1,19 @@
-import "./LogIn.css";
-import { useContext, useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { AuthService } from "../../services/auth";
-import { ProductsContext } from "../../context/ProductsContext";
+import './LogIn.css';
+import { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useUser } from '../../hooks/useUser';
 
-function LogIn() {
+function LogIn () {
   const navigate = useNavigate();
-  const { setUser } = useContext(ProductsContext);
+  const { login } = useUser();
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: ''
   });
 
-  const [isUser, setIsUser] = useState({ isUser: true, message: "" });
-
-  useEffect(() => {
-    const loggedUserJson = window.localStorage.getItem("loggedShopUser");
-    if (loggedUserJson) {
-      const user = JSON.parse(loggedUserJson);
-      setUser(user);
-    }
-  }, []);
+  const [isUser, setIsUser] = useState({ isUser: true, message: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,21 +23,15 @@ function LogIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await AuthService.login(formData);
-      const data = await res.json();
+      const data = await login({ formData });
 
-      if (!res.ok) {
-        const { error } = data;
-
-        setIsUser({ isUser: false, message: error });
+      if (data.error) {
+        setIsUser({ isUser: false, message: data.error });
       } else {
-        window.localStorage.setItem("loggedShopUser", JSON.stringify(data));
+        setIsUser({ isUser: true, message: '' });
+        setFormData({ email: '', password: '' });
 
-        setIsUser({ isUser: true, message: "" });
-        setFormData({ email: "", password: "" });
-        setUser(data);
-
-        navigate("/products/all");
+        navigate('/products/all');
       }
     } catch (error) {
       console.error(error);
@@ -56,75 +41,77 @@ function LogIn() {
   // TODO: Password recovery
   return (
     <>
-      <h2 className="login__title">My Account</h2>
-      <main className="login">
-        <section className="login__box-container">
-          <article className="login__box">
-            <h3 className="login__subtitle">LOGIN</h3>
-            <p className="login__text">
+      <h2 className='login__title'>My Account</h2>
+      <main className='login'>
+        <section className='login__box-container'>
+          <article className='login__box'>
+            <h3 className='login__subtitle'>LOGIN</h3>
+            <p className='login__text'>
               If you already have an account, please log in.
             </p>
-            <form className="login__form" onSubmit={handleSubmit}>
+            <form className='login__form' onSubmit={handleSubmit}>
               <input
-                className="login__input"
-                name="email"
-                type="email"
-                placeholder="Email"
+                className='login__input'
+                name='email'
+                type='email'
+                placeholder='Email'
                 onChange={handleChange}
               />
               <input
-                className="login__input login__input--password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
+                className='login__input login__input--password'
+                name='password'
+                type={showPassword ? 'text' : 'password'}
+                placeholder='Password'
                 onChange={handleChange}
               />
               <div
-                className="login__password-button"
+                className='login__password-button'
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
-                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z" />
-                    <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829" />
-                    <path d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z" />
-                  </svg>
-                )}
+                {showPassword
+                  ? (
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='24'
+                      height='24'
+                      viewBox='0 0 16 16'
+                    >
+                      <path d='M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z' />
+                      <path d='M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0' />
+                    </svg>
+                    )
+                  : (
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      width='24'
+                      height='24'
+                      viewBox='0 0 16 16'
+                    >
+                      <path d='M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z' />
+                      <path d='M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829' />
+                      <path d='M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z' />
+                    </svg>
+                    )}
               </div>
               {isUser.isUser === false && (
-                <span className="login__failed">{isUser.message}</span>
+                <span className='login__failed'>{isUser.message}</span>
               )}
-              <button className="login__button" type="submit">
+              <button className='login__button' type='submit'>
                 SIGN IN
               </button>
-              <p className="login__recover-password">Forgot your password?</p>
+              <p className='login__recover-password'>Forgot your password?</p>
             </form>
           </article>
-          <article className="login__box">
-            <h3 className="login__subtitle">NEW CUSTOMER?</h3>
-            <p className="login__text">
+          <article className='login__box'>
+            <h3 className='login__subtitle'>NEW CUSTOMER?</h3>
+            <p className='login__text'>
               Registering for this site allows you to purchase items and to
               access to your orders and your order status. Creating an account
               only takes a few minutes.
             </p>
             <NavLink
-              className={"login__button login__button--link"}
-              to={"/account/register"}
+              className='login__button login__button--link'
+              to='/account/register'
             >
               CREATE AN ACCOUNT
             </NavLink>

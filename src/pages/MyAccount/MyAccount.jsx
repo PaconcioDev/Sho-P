@@ -1,6 +1,6 @@
-import "./MyAccount.css";
+import './MyAccount.css';
 
-function MyAccount() {
+function MyAccount () {
   return (
     <>
       <h1>My Account</h1>

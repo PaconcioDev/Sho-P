@@ -1,18 +1,18 @@
 //* Product Detail
-import "./ProductDetail.css";
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
-import { ProductsContext } from "../../context/ProductsContext";
-import { Card } from "../../components/Card/Card.jsx";
-import { normalizeString } from "../../utils/normalizeString.js";
+import './ProductDetail.css';
+import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { ProductsContext } from '../../context/ProductsContext';
+import { Card } from '../../components/Card/Card.jsx';
+import { normalizeString } from '../../utils/normalizeString.js';
 
 //* Slider
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { SliderArrow } from "../../components/SliderArrow/SliderArrow.jsx";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { SliderArrow } from '../../components/SliderArrow/SliderArrow.jsx';
 
-function ProductDetail() {
+function ProductDetail () {
   const { products } = useContext(ProductsContext);
   const { productName } = useParams();
 
@@ -26,71 +26,71 @@ function ProductDetail() {
     speed: 500,
     autoplay: true,
     centerMode: true,
-    centerPadding: "0.25rem",
+    centerPadding: '0.25rem',
     slidesToShow: 5,
     slidesToScroll: 1,
     prevArrow: <SliderArrow direction={false} />,
-    nextArrow: <SliderArrow direction={true} />,
+    nextArrow: <SliderArrow direction />,
     responsive: [
       {
         breakpoint: 1370,
         settings: {
-          slidesToShow: 4,
-        },
+          slidesToShow: 4
+        }
       },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-        },
+          slidesToShow: 3
+        }
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
-        },
+          slidesToShow: 2
+        }
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
+          slidesToShow: 1
+        }
+      }
+    ]
   };
 
   return (
     <>
-      <main className="product__container">
-        <section className="product__image-container">
+      <main className='product__container'>
+        <section className='product__image-container'>
           <img src={product?.image} />
         </section>
-        <div className="product__info-container">
-          <section className="product__title-info">
-            <h1 className="product__name">{product?.name}</h1>
-            <span className="product__price">$ {product?.price}</span>
+        <div className='product__info-container'>
+          <section className='product__title-info'>
+            <h1 className='product__name'>{product?.name}</h1>
+            <span className='product__price'>$ {product?.price}</span>
           </section>
-          <section className="product__purchase-info">
-            <button className="product__btn" type="submit">
+          <section className='product__purchase-info'>
+            <button className='product__btn' type='submit'>
               ADD TO CART
             </button>
-            <p className="product__desc">{product?.description}</p>
+            <p className='product__desc'>{product?.description}</p>
           </section>
         </div>
       </main>
-      <aside className="related-products__container">
+      <aside className='related-products__container'>
         <hr />
-        <h2 className="related-products__title">Related Products</h2>
-        <section className="related-products__slider">
+        <h2 className='related-products__title'>Related Products</h2>
+        <section className='related-products__slider'>
           <Slider {...sliderSettings}>
             {products
               .filter(
                 (p) =>
                   p.name
                     .toLowerCase()
-                    .split(" ")
+                    .split(' ')
                     .some((word) =>
-                      product.name.toLowerCase().split(" ").includes(word)
+                      product.name.toLowerCase().split(' ').includes(word)
                     ) && p.name !== product.name
               )
               .map((p) => (

@@ -1,22 +1,19 @@
-import { createContext, useState, useEffect } from "react";
-import { ProductsService } from "../services/products.js";
-import { CategoriesService } from "../services/categories.js";
+import { createContext, useState, useEffect } from 'react';
+import { ProductsService } from '../services/products.js';
+import { CategoriesService } from '../services/categories.js';
 
 const ProductsContext = createContext();
 
-function ProductsProvider({ children }) {
+function ProductsProvider ({ children }) {
   //* Products
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
 
   //* Categories
   const [categories, setCategories] = useState(null);
   const [categoryFilter, setCategoryFilter] = useState({
-    name: "all",
+    name: 'all'
   });
-
-  //* Users
-  const [user, setUser] = useState(null);
 
   useEffect(
     () => async () => {
@@ -36,9 +33,7 @@ function ProductsProvider({ children }) {
         setSearch,
         categoryFilter,
         setCategoryFilter,
-        categories,
-        user,
-        setUser,
+        categories
       }}
     >
       {children}

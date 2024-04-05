@@ -1,0 +1,33 @@
+import { useEffect, useState } from 'react';
+import { AuthService } from '../services/auth.js';
+
+function useUser () {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const loggedUserJson = window.localStorage.getItem('loggedShopUser');
+    if (loggedUserJson) {
+      const user = JSON.parse(loggedUserJson);
+      setUser(user);
+    }
+  }, []);
+
+  const login = async ({ formData }) => {
+    const res = await AuthService.login(formData);
+    const data = await res.json();
+
+    window.localStorage.setItem('loggedShopUser', JSON.stringify(data));
+    setUser(data);
+
+    return data;
+  };
+
+  const logout = () => {
+    setUser(null);
+    window.localStorage.removeItem('loggedShopUser');
+  };
+
+  return { user, login, logout };
+}
+
+export { useUser };
