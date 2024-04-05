@@ -1,5 +1,6 @@
 import "./Register.css";
 
+// TODO: CSS and http request
 function Register() {
   return (
     <>

@@ -29,10 +29,6 @@
   transition: opacity 0.2s ease;
 }
 
-.user-modal--active {
-  opacity: 1;
-}
-
 .user-modal__link {
   cursor: pointer;
   padding: 0.5rem 6rem;
@@ -44,6 +40,30 @@
   border: 0.125rem solid #ed7d31;
   border-radius: 0.5rem;
   transition: all 0.5s ease;
+}
+
+.user-modal--active {
+  opacity: 1;
+}
+
+.user-modal__link--account {
+  padding: 0.5rem 5rem;
+}
+
+.user-modal__logout {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #1a1a1a;
+  font-family: inherit;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.5s ease;
+}
+
+.user-modal__logout:hover {
+  text-decoration: none;
+  color: #464646;
 }
 
 .user-modal__link:hover {

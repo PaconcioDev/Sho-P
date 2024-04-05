@@ -2,15 +2,19 @@ import "./Home.css";
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ProductsContext } from "../../context/ProductsContext.jsx";
-import { CategoriesContext } from "../../context/CategoriesContext.jsx";
 import { Card } from "../../components/Card/Card.jsx";
 import { NotFound } from "../NotFound/NotFound.jsx";
 import { normalizeString } from "../../utils/normalizeString.js";
 
 function Home() {
-  const { categoryFilter, setCategoryFilter, categories } =
-    useContext(CategoriesContext);
-  const { products, search, setSearch } = useContext(ProductsContext);
+  const {
+    products,
+    search,
+    setSearch,
+    categoryFilter,
+    setCategoryFilter,
+    categories,
+  } = useContext(ProductsContext);
 
   //* Filter category by route
   const { categoryParam } = useParams();

@@ -4,7 +4,7 @@
 }
 
 .login {
-  padding: 0 0.875rem;
+  padding: 0 0.625rem 1rem 0.625rem;
 }
 
 .login__box-container {
@@ -16,6 +16,7 @@
 
 .login__box {
   padding: 2.5rem;
+  position: relative;
   border: 0.0625rem solid #c9bfbc;
   border-radius: 0.375rem;
 }
@@ -41,11 +42,26 @@
   width: 100%;
   padding: 0.5rem 1rem;
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 0.9rem;        
   background-color: transparent;
   border: 0.0625rem solid #c9bfbc;
   border-radius: 0.375rem;
   outline: none;
+}
+
+.login__input--password {
+  padding-right: 3rem;
+}
+
+.login__password-button {
+  cursor: pointer;
+  position: absolute;
+  right: 3.5rem;
+  top: 11.125rem;
+}
+
+.login__password-button > svg {
+  fill: #8d8887;
 }
 
 .login__failed {
@@ -101,6 +117,7 @@
   .login {
     max-width: 64rem;
     margin: 0 auto;
+    padding: 0 0.875rem;
   }
 }
 

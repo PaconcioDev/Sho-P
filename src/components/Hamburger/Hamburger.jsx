@@ -1,12 +1,12 @@
 import "./Hamburger.css";
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { CategoriesContext } from "../../context/CategoriesContext";
+import { ProductsContext } from "../../context/ProductsContext";
 import { normalizeString } from "../../utils/normalizeString";
 
 function Hamburger() {
   const [menu, setMenu] = useState(false);
-  const { setCategoryFilter, categories } = useContext(CategoriesContext);
+  const { setCategoryFilter, categories } = useContext(ProductsContext);
 
   const toggleMenu = () => {
     setMenu(!menu);
