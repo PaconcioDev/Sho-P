@@ -1,11 +1,14 @@
 import './NavBar.css';
-import { useContext } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Hamburger } from '../Hamburger/Hamburger.jsx';
 import { ProductsContext } from '../../context/ProductsContext.jsx';
 import { UserModal } from '../UserModal/UserModal.jsx';
+import { useUser } from '../../hooks/useUser.js';
 
+// TODO: Refactor all of this, maby NavItem component
 function NavBar () {
+  //* Search Bar
   const { setSearch } = useContext(ProductsContext);
   const navigate = useNavigate();
 
@@ -16,6 +19,17 @@ function NavBar () {
       event.target.value = '';
     }
   };
+
+  //* User Modal
+  const [modal, setModal] = useState(false);
+  const iconRef = useRef(null);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  //* User
+  const { user, logout } = useUser();
 
   return (
     <header>
@@ -54,9 +68,46 @@ function NavBar () {
           </li>
         </ul>
         <ul className='navbar__item-container'>
-          <li className='navbar__item'>
-            <UserModal />
+          <li
+            className='navbar__item'
+            ref={iconRef}
+            onClick={toggleModal}
+          >
+            {!user
+              ? (
+                <svg
+                  className='user-modal__icon'
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='24'
+                  height='24'
+                  fill='currentColor'
+                  viewBox='0 0 16 16'
+                >
+                  <path d='M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z' />
+                </svg>
+                )
+              : (
+                <svg
+                  className='user-modal__icon'
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='24'
+                  height='24'
+                  fill='currentColor'
+                  viewBox='0 0 16 16'
+                >
+                  <path d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6' />
+                </svg>
+                )}
           </li>
+          {
+            modal &&
+              <UserModal
+                iconRef={iconRef}
+                user={user}
+                logout={logout}
+                setModal={setModal}
+              />
+          }
           <li className='navbar__item'>
             <svg
               xmlns='http://www.w3.org/2000/svg'

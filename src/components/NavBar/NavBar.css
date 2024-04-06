@@ -39,16 +39,16 @@ header {
   transition: all 0.2s ease;
 }
 
-.navbar__item--search > svg {
+.navbar__item--search>svg {
   transition: color 0.2s ease;
 }
 
-.navbar__item--search:hover > svg,
-.navbar__input:focus + svg {
+.navbar__item--search:hover>svg,
+.navbar__input:focus+svg {
   color: transparent;
 }
 
-.navbar__item--search:hover > .navbar__input,
+.navbar__item--search:hover>.navbar__input,
 .navbar__input:focus {
   opacity: 1;
   width: 20%;
@@ -72,11 +72,16 @@ header {
   align-items: center;
 }
 
+.user-modal__icon {
+  fill: #ed7d31;
+}
+
 /* media querys */
 @media screen and (min-width: 1024px) {
   .navbar__item-container:first-child {
     gap: 0;
   }
+
   .navbar__item--space {
     margin-right: 2.5rem;
   }

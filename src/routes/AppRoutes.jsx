@@ -7,7 +7,6 @@ import { LogIn } from '../pages/LogIn/LogIn.jsx';
 import { MyAccount } from '../pages/MyAccount/MyAccount.jsx';
 import { Register } from '../pages/Register/Register.jsx';
 
-// TODO: Child routes
 const AppRoutes = () => {
   const { user } = useUser();
 
@@ -43,7 +42,12 @@ const AppRoutes = () => {
           <Navigate replace to='/account/my-account' />
           )
     },
-    { path: '/account/my-account', element: <MyAccount /> },
+    {
+      path: '/account/my-account',
+      element: !user
+        ? <Navigate replace to='/account/login' />
+        : <MyAccount />
+    },
     { path: '*', element: <NotFound /> }
   ]);
 

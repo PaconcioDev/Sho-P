@@ -1,16 +1,4 @@
-.user-modal__button--toggle {
-  cursor: pointer;
-  background: none;
-  padding: 0;
-  border: none;
-}
-
-.user-modal__icon {
-  fill: #ed7d31;
-}
-
 .user-modal {
-  opacity: 0;
   cursor: default;
   display: flex;
   flex-direction: column;
@@ -26,7 +14,6 @@
   border: solid 0.0625rem #d4cfcc;
   border-radius: 0 0 0.625rem 0.625rem;
   box-shadow: 0 0 1rem 0.5rem rgba(0, 0, 0, 0.2);
-  transition: opacity 0.2s ease;
 }
 
 .user-modal__link {
@@ -42,9 +29,6 @@
   transition: all 0.5s ease;
 }
 
-.user-modal--active {
-  opacity: 1;
-}
 
 .user-modal__link--account {
   padding: 0.5rem 5rem;
@@ -76,10 +60,10 @@
   font-size: 0.8rem;
 }
 
-.user-modal__text > a {
+.user-modal__text>a {
   color: #ed7d31;
 }
 
-.user-modal__text > a:hover {
+.user-modal__text>a:hover {
   text-decoration: none;
 }
