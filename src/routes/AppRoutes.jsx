@@ -6,6 +6,7 @@ import { ProductDetail } from '../pages/ProductDetail/ProductDetail.jsx';
 import { LogIn } from '../pages/LogIn/LogIn.jsx';
 import { MyAccount } from '../pages/MyAccount/MyAccount.jsx';
 import { Register } from '../pages/Register/Register.jsx';
+import { RecoverPassword } from '../pages/RecoverPassword/RecoverPassword.jsx';
 
 const AppRoutes = () => {
   const { user } = useUser();
@@ -48,6 +49,7 @@ const AppRoutes = () => {
         ? <Navigate replace to='/account/login' />
         : <MyAccount />
     },
+    { path: '/account/recovery/:token', element: <RecoverPassword /> },
     { path: '*', element: <NotFound /> }
   ]);
 

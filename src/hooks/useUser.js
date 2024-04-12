@@ -8,8 +8,10 @@ function useUser () {
     const res = await AuthService.login(formData);
     const data = await res.json();
 
-    window.localStorage.setItem('loggedShopUser', JSON.stringify(data));
-    setUser(data);
+    if (!data.error) {
+      window.localStorage.setItem('loggedShopUser', JSON.stringify(data));
+      setUser(data);
+    }
 
     return data;
   };
