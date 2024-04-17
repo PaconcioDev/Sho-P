@@ -1,0 +1,10 @@
+.form__input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  font-size: 0.9rem;
+  background-color: transparent;
+  border: 0.0625rem solid #c9bfbc;
+  border-radius: 0.375rem;
+  outline: none;
+}

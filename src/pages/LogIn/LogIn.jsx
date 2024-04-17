@@ -3,20 +3,27 @@ import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useUser } from '../../hooks/useUser';
 import { AuthService } from '../../services/auth';
+import { Message } from '../../components/Message/Message.jsx';
+import { FormBox } from '../../components/FormBox/FormBox.jsx';
+import { FormInput } from '../../components/FormInput/FormInput.jsx';
 
 function LogIn () {
   //* Login page
   const [showPassword, setShowPassword] = useState(false);
   const [isUser, setIsUser] = useState({ isUser: true, message: '' });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+  const handlePasswordChange = (e) => {
+    const { value } = e.target;
+    const formatPassword = value.trim();
+    setPassword(formatPassword);
+  };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleEmailChange = (e) => {
+    const { value } = e.target;
+    const formatEmail = value.toLowerCase().trim();
+    setEmail(formatEmail);
   };
 
   //* Login action
@@ -26,13 +33,12 @@ function LogIn () {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const data = await login({ formData });
+      const data = await login({ email, password });
 
       if (data.error) {
         setIsUser({ isUser: false, message: data.error });
       } else {
         setIsUser({ isUser: true, message: '' });
-        setFormData({ email: '', password: '' });
 
         navigate('/products/all');
         window.location.reload();
@@ -48,7 +54,8 @@ function LogIn () {
 
   const handleRecoverEmailChange = (e) => {
     const { value } = e.target;
-    setRecoverEmail({ email: value });
+    const formatEmail = value.toLowerCase().trim();
+    setRecoverEmail({ email: formatEmail });
   };
 
   const handleRecover = async (e) => {
@@ -71,7 +78,7 @@ function LogIn () {
       <h2 className='login__title'>My Account</h2>
       <main className='login'>
         <section className='login__box-container'>
-          <article className='login__box'>
+          <FormBox>
             <h3 className='login__subtitle'>
               {!passwordRecover ? 'LOGIN' : 'Recover your password'}
             </h3>
@@ -85,20 +92,18 @@ function LogIn () {
             {!passwordRecover
               ? (
                 <form className='login__form' onSubmit={handleLogin}>
-                  <input
-                    className='login__input'
+                  <FormInput
                     name='email'
                     type='email'
                     placeholder='Email'
-                    onChange={handleChange}
+                    onChange={handleEmailChange}
                     required
                   />
-                  <input
-                    className='login__input login__input--password'
+                  <FormInput
                     name='password'
-                    type={showPassword ? 'text' : 'password'}
+                    type={!showPassword ? 'password' : 'text'}
                     placeholder='Password'
-                    onChange={handleChange}
+                    onChange={handlePasswordChange}
                     required
                   />
                   <div
@@ -133,11 +138,7 @@ function LogIn () {
                   }
                   </div>
                   {isUser.isUser === false && (
-                    <span
-                      className='login__message login__message--failed'
-                    >
-                      {isUser.message}
-                    </span>
+                    <Message isError>{isUser.message}</Message>
                   )}
                   <button className='login__button' type='submit'>
                     SIGN IN
@@ -162,18 +163,17 @@ function LogIn () {
                 >
                   {(isUser.isUser === false) &&
                     (
-                      <span className='login__message login__message--failed'>
+                      <Message isError>
                         {isUser.message}
-                      </span>
+                      </Message>
                     )}
                   {(isUser.isUser === true && isUser.message) && (
-                    <span className='login__message'>
+                    <Message isError={false}>
                       {isUser.message}
-                    </span>
+                    </Message>
                   )}
-                  <input
+                  <FormInput
                     type='email'
-                    className='login__input'
                     placeholder='Email'
                     onChange={handleRecoverEmailChange}
                     required
@@ -195,8 +195,8 @@ function LogIn () {
                   </a>
                 </form>
                 )}
-          </article>
-          <article className='login__box'>
+          </FormBox>
+          <FormBox>
             <h3 className='login__subtitle'>NEW CUSTOMER?</h3>
             <p className='login__text'>
               Registering for this site allows you to purchase items and to
@@ -209,7 +209,7 @@ function LogIn () {
             >
               CREATE AN ACCOUNT
             </NavLink>
-          </article>
+          </FormBox>
         </section>
       </main>
     </>

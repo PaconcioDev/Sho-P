@@ -4,8 +4,8 @@ import { AuthService } from '../services/auth.js';
 function useUser () {
   const [user, setUser] = useState(null);
 
-  const login = async ({ formData }) => {
-    const res = await AuthService.login(formData);
+  const login = async ({ email, password }) => {
+    const res = await AuthService.login({ email, password });
     const data = await res.json();
 
     if (!data.error) {

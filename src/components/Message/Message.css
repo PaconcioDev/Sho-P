@@ -1,0 +1,15 @@
+.message {
+  width: 100%;
+  padding: 0.5rem;
+  text-align: center;
+  color: #8d8887;
+  background-color: #c9bfbc5b;
+  border: 1px solid #8d8887;
+  border-radius: 0.375rem;
+}
+
+.message--error {
+  color: #d64c4c;
+  background-color: #ef4b4b28;
+  border-color: #d64c4c;
+}
