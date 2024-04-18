@@ -6,6 +6,7 @@ import { ProductsContext } from '../../context/ProductsContext.jsx';
 import { UserModal } from '../UserModal/UserModal.jsx';
 import { useUser } from '../../hooks/useUser.js';
 
+// TODO: useToggle hook?
 function NavBar () {
   //* Search Bar
   const { setSearch } = useContext(ProductsContext);

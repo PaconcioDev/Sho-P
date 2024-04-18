@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { ProductsContext } from '../../context/ProductsContext';
 import { normalizeString } from '../../utils/normalizeString';
 
+// TODO : Maby useToggle hook
 function Hamburger () {
   const [menu, setMenu] = useState(false);
   const { setCategoryFilter, categories } = useContext(ProductsContext);

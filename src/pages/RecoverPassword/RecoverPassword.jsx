@@ -6,6 +6,7 @@ import { Message } from '../../components/Message/Message.jsx';
 import { FormBox } from '../../components/FormBox/FormBox.jsx';
 import { FormInput } from '../../components/FormInput/FormInput.jsx';
 
+// TODO : useFormInput useMessage
 function RecoverPassword () {
   const { token } = useParams();
   const navigate = useNavigate();
@@ -49,13 +50,13 @@ function RecoverPassword () {
 
   return (
     <>
-      <h2 className='title'>
+      <h2 className='recover__title'>
         Recover Your Password
       </h2>
       <main className='recover'>
         <FormBox>
           <form className='recover__form' onSubmit={handleSubmit}>
-            <p className='recover__text'>Enter a new password</p>
+            <h3 className='recover__text'>Enter a new password</h3>
             <label htmlFor='recoverPassword'>Password</label>
             <FormInput
               id='recoverPassword'

@@ -7,6 +7,7 @@ import { Message } from '../../components/Message/Message.jsx';
 import { FormBox } from '../../components/FormBox/FormBox.jsx';
 import { FormInput } from '../../components/FormInput/FormInput.jsx';
 
+// TODO : useFormInput useMessage AND REFACTOR ASAP
 function LogIn () {
   //* Login page
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +23,7 @@ function LogIn () {
 
   const handleEmailChange = (e) => {
     const { value } = e.target;
-    const formatEmail = value.toLowerCase().trim();
+    const formatEmail = value.trim();
     setEmail(formatEmail);
   };
 
