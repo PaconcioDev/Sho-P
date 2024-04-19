@@ -1,48 +1,41 @@
 import './RecoverPassword.css';
-import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useMessage } from '../../hooks/useMessage.js';
+import { useFormInput } from '../../hooks/useFormInput.js';
 import { AuthService } from '../../services/auth.js';
 import { Message } from '../../components/Message/Message.jsx';
 import { FormBox } from '../../components/FormBox/FormBox.jsx';
 import { FormInput } from '../../components/FormInput/FormInput.jsx';
 
-// TODO : useFormInput useMessage
 function RecoverPassword () {
   const { token } = useParams();
   const navigate = useNavigate();
 
   //* On Chage
-  const [passwordForm, setPasswordForm] = useState({ newPassword: '', confirmPassword: '' });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPasswordForm({ ...passwordForm, [name]: value });
-  };
+  const newPassword = useFormInput({ type: 'password' });
+  const confirmPassword = useFormInput({ type: 'password' });
 
   //* On Submit
-  const [message, setMessage] = useState({ isActive: false, data: '' });
+  const { message, onEvent } = useMessage();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { newPassword, confirmPassword } = passwordForm;
 
-    if (newPassword !== confirmPassword) {
-      setMessage({ isActive: true, data: 'Passwords not matching' });
+    if (newPassword.value !== confirmPassword.value) {
+      onEvent('Passwords not matching');
       return;
     }
 
     try {
-      const data = await AuthService.changePassword(token, newPassword);
+      const data = await AuthService.changePassword(token, newPassword.value);
 
       if (data.error) {
-        if (data.error[0].message) {
-          setMessage({ isActive: true, data: data.error[0].message });
-        } else {
-          setMessage({ isActive: true, data: 'Your link has expired' });
-        }
-      } else {
-        navigate('/account');
+        const errorMessage = data.error[0]?.message || 'Your link has expired';
+        onEvent(errorMessage);
+        return;
       }
+
+      navigate('/account');
     } catch (error) {
       console.error(error);
     }
@@ -59,23 +52,21 @@ function RecoverPassword () {
             <h3 className='recover__text'>Enter a new password</h3>
             <label htmlFor='recoverPassword'>Password</label>
             <FormInput
+              {...newPassword}
               id='recoverPassword'
               name='newPassword'
-              type='password'
               placeholder='New Password'
-              onChange={handleChange}
               required
             />
             <label htmlFor='passwordConfirmation'>Confirm Password</label>
             <FormInput
+              {...confirmPassword}
               id='passwordConfirmation'
               name='confirmPassword'
-              type='password'
-              placeholder='New Password'
-              onChange={handleChange}
+              placeholder='Confirm Password'
               required
             />
-            {message.isActive ? (<Message isError>{message.data}</Message>) : ''}
+            {message.isActive && <Message isError>{message.info}</Message>}
             <button className='recover__btn' type='submit'>SUBMIT</button>
           </form>
         </FormBox>

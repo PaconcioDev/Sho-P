@@ -8,7 +8,7 @@ import { FormBox } from '../../components/FormBox/FormBox.jsx';
 import { Message } from '../../components/Message/Message.jsx';
 
 function Register () {
-  const { onEvent, message } = useMessage();
+  const { message, onEvent } = useMessage();
   const navigate = useNavigate();
 
   const firstName = useFormInput({ type: 'text' });
@@ -35,7 +35,7 @@ function Register () {
       const data = await UsersService.create(userData);
 
       if (data.error) {
-        const errorMessage = data.error[0].message || data.error;
+        const errorMessage = data.error[0]?.message || data.error;
         onEvent(errorMessage);
         return;
       }
