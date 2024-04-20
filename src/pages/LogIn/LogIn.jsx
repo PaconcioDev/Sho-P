@@ -5,7 +5,6 @@ import { FormBox } from '../../components/FormBox/FormBox.jsx';
 import { LoginForm } from '../../components/LoginForm/LoginForm.jsx';
 import { RecoveryForm } from '../../components/RecoveryForm/RecoveryForm.jsx';
 
-// TODO : REFACTOR ASAP
 function LogIn () {
   const { isOn: isRecoveryOn, handleState: toggleRecovery } = useToggle();
 

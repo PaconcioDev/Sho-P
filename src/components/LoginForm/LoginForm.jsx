@@ -5,8 +5,8 @@ import { useFormInput } from '../../hooks/useFormInput.js';
 import { useMessage } from '../../hooks/useMessage.js';
 import { FormInput } from '../FormInput/FormInput.jsx';
 import { Message } from '../Message/Message.jsx';
-import { ClosedEye } from '../../icons/ClosedEye/ClosedEye.jsx';
-import { Eye } from '../../icons/Eye/Eye.jsx';
+import { EyeSlashIcon } from '../../icons/EyeSlashIcon.jsx';
+import { EyeIcon } from '../../icons/EyeIcon.jsx';
 
 function LoginForm ({ toggle }) {
   const { login } = useUser();
@@ -65,8 +65,8 @@ function LoginForm ({ toggle }) {
         >
           {
             isPasswordOn
-              ? <ClosedEye />
-              : <Eye />
+              ? <EyeSlashIcon />
+              : <EyeIcon />
           }
         </div>
         {loginMessage.isActive && <Message isError>{loginMessage.info}</Message>}

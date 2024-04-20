@@ -2,7 +2,7 @@ import './UserModal.css';
 import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 
-function UserModal ({ iconRef, user, logout, setModal }) {
+function UserModal ({ iconRef, user, logout, onSetModal }) {
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ function UserModal ({ iconRef, user, logout, setModal }) {
         (modalRef.current && !modalRef.current.contains(event.target)) &&
         (iconRef.current && !iconRef.current.contains(event.target))
       ) {
-        setModal(false);
+        onSetModal();
       }
     };
 
@@ -32,14 +32,14 @@ function UserModal ({ iconRef, user, logout, setModal }) {
           <>
             <NavLink
               className='user-modal__link'
-              onClick={() => setModal(false)}
+              onClick={onSetModal}
               to='/account/login'
             >
               LOGIN
             </NavLink>
             <span className='user-modal__text'>
               NEW USER?{' '}
-              <NavLink onClick={() => setModal(false)} to='/account/register'>
+              <NavLink onClick={onSetModal} to='/account/register'>
                 REGISTER HERE
               </NavLink>
             </span>
@@ -49,7 +49,7 @@ function UserModal ({ iconRef, user, logout, setModal }) {
           <>
             <NavLink
               className='user-modal__link user-modal__link--account'
-              onClick={() => setModal(false)}
+              onClick={onSetModal}
               to='/account/my-account'
             >
               MY ACCOUNT
@@ -58,7 +58,7 @@ function UserModal ({ iconRef, user, logout, setModal }) {
               className='user-modal__logout'
               onClick={() => {
                 logout();
-                setModal(false);
+                onSetModal();
               }}
             >
               LOGOUT

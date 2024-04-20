@@ -12,7 +12,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { SliderArrow } from '../../components/SliderArrow/SliderArrow.jsx';
 
-// TODO : SubmitBtn component?
 function ProductDetail () {
   const { products } = useContext(ProductsContext);
   const { productName } = useParams();
