@@ -18,6 +18,13 @@ class UsersService {
 
     return data;
   }
+
+  static async findOne ({ id }) {
+    const request = await fetch(`${baseUrl}/${id}`);
+    const data = await request.json();
+
+    return data;
+  }
 }
 
 export { UsersService };
