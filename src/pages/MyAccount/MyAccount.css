@@ -1,0 +1,82 @@
+.my-account {
+  padding: 0 0.625rem;
+}
+
+.my-account__title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.my-account__subtitle {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 0;
+}
+
+.my-account__form,
+.my-account__full-name {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.my-account__input {
+  display: flex;
+  align-items: center;
+}
+
+.my-account__input {
+  margin-top: 1rem;
+}
+
+.my-account__input>label {
+  white-space: nowrap;
+  min-width: 5rem;
+  max-width: 5rem;
+}
+
+p {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.my-account__btn {
+  margin: 1.5rem auto 0 auto;
+  width: 10rem;
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+  background-color: #ed7d31;
+  border: 0.125rem solid #ed7d31;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  color: #f6f1ee;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+}
+
+.my-account__btn:hover {
+  color: #ed7d31;
+  background-color: #f6f1ee;
+}
+
+@media screen and (min-width: 768px) {
+  .my-account {
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+
+  .my-account__full-name {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .my-account__input {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .my-account {
+    margin-top: 4rem;
+  }
+}

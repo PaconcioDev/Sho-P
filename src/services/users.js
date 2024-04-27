@@ -13,7 +13,6 @@ class UsersService {
         phone
       })
     });
-
     const data = await request.json();
 
     return data;
@@ -21,6 +20,22 @@ class UsersService {
 
   static async findOne ({ id }) {
     const request = await fetch(`${baseUrl}/${id}`);
+    const data = await request.json();
+
+    return data;
+  }
+
+  static async update (id, token, input) {
+    const request = await fetch(`${baseUrl}/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(input)
+    });
+    console.log(request.url);
+
     const data = await request.json();
 
     return data;
