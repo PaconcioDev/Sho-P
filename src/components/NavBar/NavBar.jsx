@@ -13,7 +13,7 @@ import { CartIcon } from '../../icons/CartIcon.jsx';
 
 function NavBar () {
   //* Search Bar
-  const { setSearch } = useContext(ProductsContext);
+  const { setSearch, user } = useContext(ProductsContext);
   const navigate = useNavigate();
 
   const handleKeyPress = (event) => {
@@ -29,7 +29,7 @@ function NavBar () {
   const iconRef = useRef(null);
 
   //* User
-  const { user, logout } = useUser();
+  const { logout } = useUser();
 
   return (
     <header>

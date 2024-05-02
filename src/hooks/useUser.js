@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { AuthService } from '../services/auth.js';
+import { ProductsContext } from '../context/ProductsContext.jsx';
 
 function useUser () {
-  const [user, setUser] = useState(null);
+  const { setUser } = useContext(ProductsContext);
 
   const login = async ({ email, password }) => {
     const res = await AuthService.login({ email, password });
@@ -19,18 +20,9 @@ function useUser () {
   const logout = () => {
     window.localStorage.removeItem('loggedShopUser');
     setUser(null);
-    window.location.reload();
   };
 
-  useEffect(() => {
-    const loggedUserJson = window.localStorage.getItem('loggedShopUser');
-    if (loggedUserJson) {
-      const user = JSON.parse(loggedUserJson);
-      setUser(user);
-    }
-  }, []);
-
-  return { user, login, logout };
+  return { login, logout };
 }
 
 export { useUser };

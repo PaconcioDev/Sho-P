@@ -15,12 +15,21 @@ function ProductsProvider ({ children }) {
     name: 'all'
   });
 
+  //* User
+  const [user, setUser] = useState(null);
+
   useEffect(
     () => async () => {
       const productsArr = await ProductsService.getAll();
       const categoriesArr = await CategoriesService.getAll();
       setProducts(productsArr);
       setCategories(categoriesArr);
+
+      const loggedUserJson = window.localStorage.getItem('loggedShopUser');
+      if (loggedUserJson) {
+        const user = JSON.parse(loggedUserJson);
+        setUser(user);
+      }
     },
     []
   );
@@ -33,7 +42,9 @@ function ProductsProvider ({ children }) {
         setSearch,
         categoryFilter,
         setCategoryFilter,
-        categories
+        categories,
+        user,
+        setUser
       }}
     >
       {children}

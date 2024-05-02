@@ -40,8 +40,12 @@ p {
   margin-bottom: 0;
 }
 
+.my-account__input--last {
+  margin-bottom: 0.5rem;
+}
+
 .my-account__btn {
-  margin: 1.5rem auto 0 auto;
+  margin: 0.5rem auto 0 auto;
   width: 10rem;
   cursor: pointer;
   padding: 0.5rem 2rem;

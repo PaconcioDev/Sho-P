@@ -1,5 +1,5 @@
+import { useContext } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
-import { useUser } from '../hooks/useUser.js';
 import { Home } from '../pages/Home/Home.jsx';
 import { NotFound } from '../pages/NotFound/NotFound.jsx';
 import { ProductDetail } from '../pages/ProductDetail/ProductDetail.jsx';
@@ -7,9 +7,10 @@ import { LogIn } from '../pages/LogIn/LogIn.jsx';
 import { MyAccount } from '../pages/MyAccount/MyAccount.jsx';
 import { Register } from '../pages/Register/Register.jsx';
 import { RecoverPassword } from '../pages/RecoverPassword/RecoverPassword.jsx';
+import { ProductsContext } from '../context/ProductsContext.jsx';
 
 const AppRoutes = () => {
-  const { user } = useUser();
+  const { user } = useContext(ProductsContext);
 
   const routes = useRoutes([
     { path: '/', element: <Navigate replace to='/products/all' /> },

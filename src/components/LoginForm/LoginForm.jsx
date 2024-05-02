@@ -34,7 +34,6 @@ function LoginForm ({ toggle }) {
       }
 
       navigate('/products/all');
-      window.location.reload();
     } catch (error) {
       console.error(error);
     }
