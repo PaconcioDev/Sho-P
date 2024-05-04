@@ -24,7 +24,22 @@ class AuthService {
     return data;
   }
 
-  static async changePassword (token, newPassword) {
+  static async changePassword (token, id, currentPassword, newPassword) {
+    const request = await fetch(`${baseUrl}/change-password/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ currentPassword, password: newPassword })
+    });
+
+    const data = await request.json();
+
+    return data;
+  }
+
+  static async recoverPassword (token, newPassword) {
     const request = await fetch(`${baseUrl}/recover-password`, {
       method: 'POST',
       headers: {

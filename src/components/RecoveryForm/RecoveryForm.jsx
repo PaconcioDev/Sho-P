@@ -3,6 +3,7 @@ import { useMessage } from '../../hooks/useMessage';
 import { AuthService } from '../../services/auth';
 import { FormInput } from '../FormInput/FormInput';
 import { Message } from '../Message/Message';
+import { SubmitBtn } from '../../components/SubmitBtn/SubmitBtn.jsx';
 
 function RecoveryForm ({ toggle }) {
   const {
@@ -48,9 +49,7 @@ function RecoveryForm ({ toggle }) {
           placeholder='Email'
           required
         />
-        <button className='login__button' type='submit'>
-          SUBMIT
-        </button>
+        <SubmitBtn text='SUBMIT' extraStyle={{ width: 'inherit' }} />
         <a
           className='login__recover-password'
           onClick={() => {

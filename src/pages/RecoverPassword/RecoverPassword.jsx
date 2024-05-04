@@ -6,7 +6,10 @@ import { AuthService } from '../../services/auth.js';
 import { Message } from '../../components/Message/Message.jsx';
 import { FormBox } from '../../components/FormBox/FormBox.jsx';
 import { FormInput } from '../../components/FormInput/FormInput.jsx';
+import { Layout } from '../../components/Layout/Layout.jsx';
+import { SubmitBtn } from '../../components/SubmitBtn/SubmitBtn.jsx';
 
+// TODO : see password
 function RecoverPassword () {
   const { token } = useParams();
   const navigate = useNavigate();
@@ -27,7 +30,7 @@ function RecoverPassword () {
     }
 
     try {
-      const data = await AuthService.changePassword(token, newPassword.value);
+      const data = await AuthService.recoverPassword(token, newPassword.value);
 
       if (data.error) {
         const errorMessage = data.error[0]?.message || 'Your link has expired';
@@ -42,36 +45,31 @@ function RecoverPassword () {
   };
 
   return (
-    <>
-      <h2 className='recover__title'>
-        Recover Your Password
-      </h2>
-      <main className='recover'>
-        <FormBox>
-          <form className='recover__form' onSubmit={handleSubmit}>
-            <h3 className='recover__text'>Enter a new password</h3>
-            <label htmlFor='recoverPassword'>Password</label>
-            <FormInput
-              {...newPassword}
-              id='recoverPassword'
-              name='newPassword'
-              placeholder='New Password'
-              required
-            />
-            <label htmlFor='passwordConfirmation'>Confirm Password</label>
-            <FormInput
-              {...confirmPassword}
-              id='passwordConfirmation'
-              name='confirmPassword'
-              placeholder='Confirm Password'
-              required
-            />
-            {message.isActive && <Message isError>{message.info}</Message>}
-            <button className='recover__btn' type='submit'>SUBMIT</button>
-          </form>
-        </FormBox>
-      </main>
-    </>
+    <Layout title='Recover your password'>
+      <FormBox>
+        <form className='recover__form' onSubmit={handleSubmit}>
+          <h3 className='recover__text'>Enter a new password</h3>
+          <label htmlFor='recoverPassword'>Password</label>
+          <FormInput
+            {...newPassword}
+            id='recoverPassword'
+            name='newPassword'
+            placeholder='New Password'
+            required
+          />
+          <label htmlFor='passwordConfirmation'>Confirm Password</label>
+          <FormInput
+            {...confirmPassword}
+            id='passwordConfirmation'
+            name='confirmPassword'
+            placeholder='Confirm Password'
+            required
+          />
+          {message.isActive && <Message isError>{message.info}</Message>}
+          <SubmitBtn text='SUBMIT' extraStyle={{ alignSelf: 'center' }} />
+        </form>
+      </FormBox>
+    </Layout>
   );
 }
 

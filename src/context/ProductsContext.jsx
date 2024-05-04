@@ -16,7 +16,10 @@ function ProductsProvider ({ children }) {
   });
 
   //* User
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const loggedUserJson = window.localStorage.getItem('loggedShopUser');
+    return loggedUserJson ? JSON.parse(loggedUserJson) : null;
+  });
 
   useEffect(
     () => async () => {
@@ -24,12 +27,6 @@ function ProductsProvider ({ children }) {
       const categoriesArr = await CategoriesService.getAll();
       setProducts(productsArr);
       setCategories(categoriesArr);
-
-      const loggedUserJson = window.localStorage.getItem('loggedShopUser');
-      if (loggedUserJson) {
-        const user = JSON.parse(loggedUserJson);
-        setUser(user);
-      }
     },
     []
   );

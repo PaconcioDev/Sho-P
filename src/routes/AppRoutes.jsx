@@ -7,6 +7,7 @@ import { LogIn } from '../pages/LogIn/LogIn.jsx';
 import { MyAccount } from '../pages/MyAccount/MyAccount.jsx';
 import { Register } from '../pages/Register/Register.jsx';
 import { RecoverPassword } from '../pages/RecoverPassword/RecoverPassword.jsx';
+import { ChangePassword } from '../pages/ChangePassword/ChangePassword.jsx';
 import { ProductsContext } from '../context/ProductsContext.jsx';
 
 const AppRoutes = () => {
@@ -47,10 +48,24 @@ const AppRoutes = () => {
     {
       path: '/account/my-account',
       element: !user
-        ? <Navigate replace to='/account/login' />
-        : <MyAccount />
+        ? (
+          <Navigate replace to='/account/login' />
+          )
+        : (
+          <MyAccount />
+          )
     },
     { path: '/account/recovery/:token', element: <RecoverPassword /> },
+    {
+      path: '/account/change-password',
+      element: !user
+        ? (
+          <Navigate replace to='/account/login' />
+          )
+        : (
+          <ChangePassword />
+          )
+    },
     { path: '*', element: <NotFound /> }
   ]);
 

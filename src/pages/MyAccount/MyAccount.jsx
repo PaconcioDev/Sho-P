@@ -1,5 +1,6 @@
 import './MyAccount.css';
 import { useContext, useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useFormInput } from '../../hooks/useFormInput.js';
 import { useMessage } from '../../hooks/useMessage.js';
 import { FormBox } from '../../components/FormBox/FormBox.jsx';
@@ -7,6 +8,8 @@ import { FormInput } from '../../components/FormInput/FormInput.jsx';
 import { UsersService } from '../../services/users';
 import { ProductsContext } from '../../context/ProductsContext.jsx';
 import { Message } from '../../components/Message/Message.jsx';
+import { Layout } from '../../components/Layout/Layout.jsx';
+import { SubmitBtn } from '../../components/SubmitBtn/SubmitBtn.jsx';
 
 function MyAccount () {
   const { user } = useContext(ProductsContext);
@@ -72,8 +75,7 @@ function MyAccount () {
     !currentUser
       ? <p>Loading...</p>
       : (
-        <main className='my-account'>
-          <h2 className='my-account__title'>My Account</h2>
+        <Layout title='My Account'>
           <FormBox>
             <h3 className='my-account__subtitle'>You can edit your information if you must to</h3>
             <form
@@ -110,10 +112,6 @@ function MyAccount () {
                   required
                 />
               </span>
-              <span className='my-account__input'>
-                <label>Password:</label>
-                <p>********</p>
-              </span>
               <span className='my-account__input my-account__input--last'>
                 <label htmlFor='phone'>Phone:</label>
                 <FormInput
@@ -131,10 +129,16 @@ function MyAccount () {
                 (updateMessage.isActive && updateMessage.info.name) &&
                   <Message>Account Updated</Message>
               }
-              <button className='my-account__btn' type='submit'>SUBMIT</button>
+              <SubmitBtn
+                text='SUBMIT'
+                extraStyle={{
+                  marginTop: '0', margin: '0.5rem auto'
+                }}
+              />
+              <NavLink className='my-account__link' to='/account/change-password'>Change your password</NavLink>
             </form>
           </FormBox>
-        </main>
+        </Layout>
         )
   );
 }

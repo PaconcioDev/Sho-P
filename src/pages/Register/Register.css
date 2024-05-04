@@ -1,12 +1,3 @@
-.register {
-  padding: 0 0.625rem;
-}
-
-.register__title {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
 .register__subtitle {
   margin-top: 0;
 }
@@ -21,36 +12,4 @@
 
 .register__hr {
   margin: 1.5rem 0;
-}
-
-.register__btn {
-  margin-top: 0.5rem;
-  width: 10rem;
-  cursor: pointer;
-  padding: 0.5rem 2rem;
-  background-color: #ed7d31;
-  border: 0.125rem solid #ed7d31;
-  border-radius: 0.5rem;
-  font-family: inherit;
-  color: #f6f1ee;
-  white-space: nowrap;
-  transition: all 0.5s ease;
-}
-
-.register__btn:hover {
-  color: #ed7d31;
-  background-color: #f6f1ee;
-}
-
-@media screen and (min-width: 768px) {
-  .register {
-    max-width: 48rem;
-    margin: 0 auto;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .register {
-    margin-top: 4rem;
-  }
 }

@@ -7,6 +7,7 @@ import { FormInput } from '../FormInput/FormInput.jsx';
 import { Message } from '../Message/Message.jsx';
 import { EyeSlashIcon } from '../../icons/EyeSlashIcon.jsx';
 import { EyeIcon } from '../../icons/EyeIcon.jsx';
+import { SubmitBtn } from '../SubmitBtn/SubmitBtn.jsx';
 
 function LoginForm ({ toggle }) {
   const { login } = useUser();
@@ -69,9 +70,7 @@ function LoginForm ({ toggle }) {
           }
         </div>
         {loginMessage.isActive && <Message isError>{loginMessage.info}</Message>}
-        <button className='login__button' type='submit'>
-          SIGN IN
-        </button>
+        <SubmitBtn text='SIGN IN' extraStyle={{ width: 'inherit' }} />
         <a
           className='login__recover-password'
           onClick={() => {

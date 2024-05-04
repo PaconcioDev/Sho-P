@@ -6,7 +6,10 @@ import { UsersService } from '../../services/users.js';
 import { FormInput } from '../../components/FormInput/FormInput.jsx';
 import { FormBox } from '../../components/FormBox/FormBox.jsx';
 import { Message } from '../../components/Message/Message.jsx';
+import { Layout } from '../../components/Layout/Layout.jsx';
+import { SubmitBtn } from '../../components/SubmitBtn/SubmitBtn.jsx';
 
+// TODO : See passwrod
 function Register () {
   const { message, onEvent } = useMessage();
   const navigate = useNavigate();
@@ -50,59 +53,56 @@ function Register () {
   };
 
   return (
-    <>
-      <main className='register'>
-        <h2 className='register__title'>Create an Account</h2>
-        <FormBox>
-          <form
-            className='register__form'
-            method='post'
-            onSubmit={handleSubmit}
-          >
-            <h3 className='register__subtitle'>Required</h3>
-            <section className='register__section'>
-              <FormInput
-                {...firstName}
-                placeholder='First Name'
-                required
-              />
-              <FormInput
-                {...lastName}
-                placeholder='Last name'
-                required
-              />
-              <FormInput
-                {...email}
-                placeholder='Email'
-                required
-              />
-              <FormInput
-                {...password}
-                placeholder='Password'
-                required
-              />
-            </section>
-            <hr className='register__hr' />
-            <h3 className='register__subtitle'>Optional</h3>
-            <section className='register__section'>
-              <FormInput
-                {...phone}
-                placeholder='Phone'
-              />
-              {
-                (message.isActive && !message.info.name) &&
-                  <Message isError>{message.info}</Message>
-              }
-              {
-                (message.isActive && message.info.name) &&
-                  <Message>Account Created</Message>
-              }
-              <button className='register__btn' type='submit'>SUBMIT</button>
-            </section>
-          </form>
-        </FormBox>
-      </main>
-    </>
+    <Layout title='Create an Account'>
+      <FormBox>
+        <form
+          className='register__form'
+          method='post'
+          onSubmit={handleSubmit}
+        >
+          <h3 className='register__subtitle'>Required</h3>
+          <section className='register__section'>
+            <FormInput
+              {...firstName}
+              placeholder='First Name'
+              required
+            />
+            <FormInput
+              {...lastName}
+              placeholder='Last name'
+              required
+            />
+            <FormInput
+              {...email}
+              placeholder='Email'
+              required
+            />
+            <FormInput
+              {...password}
+              placeholder='Password'
+              required
+            />
+          </section>
+          <hr className='register__hr' />
+          <h3 className='register__subtitle'>Optional</h3>
+          <section className='register__section'>
+            <FormInput
+              {...phone}
+              placeholder='Phone'
+            />
+            {
+              (message.isActive && !message.info.name) &&
+                <Message isError>{message.info}</Message>
+            }
+            {
+              (message.isActive && message.info.name) &&
+                <Message>Account Created</Message>
+            }
+            <SubmitBtn text='SUBMIT' />
+          </section>
+        </form>
+      </FormBox>
+    </Layout>
   );
 }
 
