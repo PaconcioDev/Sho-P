@@ -26,17 +26,6 @@
   padding-right: 3rem;
 }
 
-.login__password-button {
-  cursor: pointer;
-  position: absolute;
-  right: 3.5rem;
-  top: 11.125rem;
-}
-
-.login__password-button>svg {
-  fill: #8d8887;
-}
-
 .login__button {
   cursor: pointer;
   padding: 0.5rem 2rem;

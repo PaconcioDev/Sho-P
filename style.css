@@ -5,10 +5,12 @@
 }
 
 body {
+  position: relative;
+  min-height: 100vh;
   height: 100%;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 0 0 5rem 0;
   background-color: #F6F1EE;
   font-family: "Fjalla One", sans-serif;
   font-size: 100%;

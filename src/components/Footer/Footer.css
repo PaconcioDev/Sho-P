@@ -1,0 +1,31 @@
+.footer {
+  padding: 0.75rem 0.5rem 0.5rem 0.5rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #4F4A45;
+  color: #6e6761;
+}
+
+.footer__list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.footer__item {
+  margin: 0;
+}
+
+.footer__item>a {
+  color: #F6F1EE;
+}
+
+.footer__text {
+  margin: 0.75rem 0 0 0;
+  font-size: 0.8rem;
+  text-align: center;
+}

@@ -2,22 +2,25 @@ import './Register.css';
 import { useNavigate } from 'react-router-dom';
 import { useFormInput } from '../../hooks/useFormInput.js';
 import { useMessage } from '../../hooks/useMessage.js';
+import { useToggle } from '../../hooks/useToggle.js';
 import { UsersService } from '../../services/users.js';
 import { FormInput } from '../../components/FormInput/FormInput.jsx';
 import { FormBox } from '../../components/FormBox/FormBox.jsx';
 import { Message } from '../../components/Message/Message.jsx';
 import { Layout } from '../../components/Layout/Layout.jsx';
 import { SubmitBtn } from '../../components/SubmitBtn/SubmitBtn.jsx';
+import { PasswordBtn } from '../../components/PasswordBtn/PasswordBtn.jsx';
 
-// TODO : See passwrod
 function Register () {
   const { message, onEvent } = useMessage();
   const navigate = useNavigate();
 
+  const { isOn: isPasswordOn, handleState: togglePassword } = useToggle();
+
   const firstName = useFormInput({ type: 'text' });
   const lastName = useFormInput({ type: 'text' });
   const email = useFormInput({ type: 'email' });
-  const password = useFormInput({ type: 'password' });
+  const password = useFormInput({ type: !isPasswordOn ? 'password' : 'text' });
   const phone = useFormInput({ type: 'text' });
 
   const handleSubmit = async (e) => {
@@ -81,6 +84,12 @@ function Register () {
               {...password}
               placeholder='Password'
               required
+            />
+            <PasswordBtn
+              togglePassword={togglePassword}
+              isPasswordOn={isPasswordOn}
+              topPosition='14.75rem'
+              rightPosition='4rem'
             />
           </section>
           <hr className='register__hr' />

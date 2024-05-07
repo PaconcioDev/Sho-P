@@ -5,9 +5,8 @@ import { useFormInput } from '../../hooks/useFormInput.js';
 import { useMessage } from '../../hooks/useMessage.js';
 import { FormInput } from '../FormInput/FormInput.jsx';
 import { Message } from '../Message/Message.jsx';
-import { EyeSlashIcon } from '../../icons/EyeSlashIcon.jsx';
-import { EyeIcon } from '../../icons/EyeIcon.jsx';
 import { SubmitBtn } from '../SubmitBtn/SubmitBtn.jsx';
+import { PasswordBtn } from '../PasswordBtn/PasswordBtn.jsx';
 
 function LoginForm ({ toggle }) {
   const { login } = useUser();
@@ -59,16 +58,12 @@ function LoginForm ({ toggle }) {
           placeholder='Password'
           required
         />
-        <div
-          className='login__password-button'
-          onClick={() => togglePassword()}
-        >
-          {
-            isPasswordOn
-              ? <EyeSlashIcon />
-              : <EyeIcon />
-          }
-        </div>
+        <PasswordBtn
+          togglePassword={togglePassword}
+          isPasswordOn={isPasswordOn}
+          topPosition='11.125rem'
+          rightPosition='3.5rem'
+        />
         {loginMessage.isActive && <Message isError>{loginMessage.info}</Message>}
         <SubmitBtn text='SIGN IN' extraStyle={{ width: 'inherit' }} />
         <a
