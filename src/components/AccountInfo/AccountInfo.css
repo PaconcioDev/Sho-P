@@ -1,0 +1,40 @@
+.my-account__subtitle {
+  margin-top: 0;
+}
+
+.my-account__form,
+.my-account__full-name {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.my-account__input {
+  display: flex;
+  align-items: center;
+}
+
+.my-account__input {
+  margin-top: 1rem;
+}
+
+.my-account__input>label {
+  white-space: nowrap;
+  min-width: 5rem;
+  max-width: 5rem;
+}
+
+.my-account__input--last {
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .my-account__full-name {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .my-account__input {
+    width: 100%;
+  }
+}

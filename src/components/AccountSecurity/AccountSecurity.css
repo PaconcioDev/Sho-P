@@ -1,0 +1,27 @@
+.security__subtitle {
+  margin-top: 0;
+
+}
+
+.security__btn-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.security__link {
+  font-size: 0.875rem;
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+  color: #F6F1EE;
+  background-color: #ed4731;
+  border: 0.125rem solid #ed4731;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+}
+
+.security__link:hover {
+  color: #ed4731;
+  background-color: #F6F1EE;
+}

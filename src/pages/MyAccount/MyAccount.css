@@ -1,76 +1,11 @@
-.my-account__subtitle {
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 0;
-}
-
-.my-account__form,
-.my-account__full-name {
+.my-account__box-container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
-.my-account__input {
-  display: flex;
-  align-items: center;
-}
-
-.my-account__input {
-  margin-top: 1rem;
-}
-
-.my-account__input>label {
-  white-space: nowrap;
-  min-width: 5rem;
-  max-width: 5rem;
-}
-
-.my-account__input--last {
-  margin-bottom: 0.5rem;
-}
-
-.my-account__btn {
-  margin: 0.5rem auto;
-  width: 10rem;
-  cursor: pointer;
-  padding: 0.5rem 2rem;
-  background-color: #ed7d31;
-  border: 0.125rem solid #ed7d31;
-  border-radius: 0.5rem;
-  font-family: inherit;
-  color: #f6f1ee;
-  white-space: nowrap;
-  transition: all 0.5s ease;
-}
-
-.my-account__link {
-  margin: 0 auto;
-  width: fit-content;
-  text-decoration: none;
-  cursor: pointer;
-  color: inherit;
-  padding: 0;
-  font-size: 0.875rem;
-  font-family: inherit;
-  background-color: transparent;
-  border: none;
-  transition: color 0.5s ease;
-}
-
-.my-account__link:hover {
-  color: #ed7d31;
-  text-decoration: underline;
-}
-
-@media screen and (min-width: 768px) {
-  .my-account__full-name {
+@media screen and (min-width: 1024px) {
+  .my-account__box-container {
     flex-direction: row;
-    gap: 1rem;
-  }
-
-  .my-account__input {
-    width: 100%;
   }
 }
-
