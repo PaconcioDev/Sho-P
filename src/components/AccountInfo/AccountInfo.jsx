@@ -111,11 +111,12 @@ function AccountInfo ({ currentUser, user }) {
             <Message>Account Updated</Message>
         }
         <SubmitBtn
-          text='SUBMIT'
           extraStyle={{
             marginTop: '0', margin: '0.5rem auto'
           }}
-        />
+        >
+          SUBMIT
+        </SubmitBtn>
       </form>
     </>
   );

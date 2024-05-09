@@ -9,9 +9,12 @@
   justify-content: space-around;
 }
 
-.security__link {
+.security__btn {
+  cursor: pointer;
+  font-family: inherit;
   font-size: 0.875rem;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 0.5rem;
+  min-width: inherit;
   text-decoration: none;
   color: #F6F1EE;
   background-color: #ed4731;
@@ -21,7 +24,21 @@
   transition: all 0.5s ease;
 }
 
-.security__link:hover {
+.security__btn:hover {
   color: #ed4731;
   background-color: #F6F1EE;
+}
+
+.modal__text + input {
+  margin-top: 1rem;
+}
+
+form > .security__btn-container {
+  margin-top: 0.5rem;
+}
+
+@media screen and (min-width: 480px) {
+  .security__btn {
+    padding: 0.5rem 2rem;
+  }
 }

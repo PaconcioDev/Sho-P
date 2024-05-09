@@ -15,8 +15,8 @@ function MyAccount () {
     () => async () => {
       const data = await UsersService.findOne({ id: user.id });
       setCurrentUser(data);
-    }
-    , []);
+    }, []
+  );
 
   return (
     !currentUser

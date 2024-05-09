@@ -12,7 +12,16 @@
   transition: all 0.5s ease;
 }
 
+.submit-btn--red {
+  background-color: #ed4731;
+  border-color: #ed4731;
+}
+
 .submit-btn:hover {
   color: #ed7d31;
   background-color: #f6f1ee;
+}
+
+.submit-btn--red:hover {
+  color: #ed4731;
 }

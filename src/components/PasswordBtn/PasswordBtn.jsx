@@ -2,18 +2,20 @@ import './PasswordBtn.css';
 import { EyeSlashIcon } from '../../icons/EyeSlashIcon.jsx';
 import { EyeIcon } from '../../icons/EyeIcon.jsx';
 
-function PasswordBtn ({ togglePassword, isPasswordOn, topPosition, rightPosition }) {
+function PasswordBtn ({ togglePassword, isPasswordOn, children }) {
   return (
-    <div
-      style={{ top: topPosition, right: rightPosition }}
-      className='password-btn'
-      onClick={() => togglePassword()}
-    >
-      {
+    <div className='password__container'>
+      {children}
+      <div
+        className='password__btn'
+        onClick={() => togglePassword()}
+      >
+        {
         isPasswordOn
           ? <EyeSlashIcon />
           : <EyeIcon />
       }
+      </div>
     </div>
   );
 }

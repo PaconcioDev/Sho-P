@@ -16,7 +16,7 @@ import { AuthService } from '../../services/auth.js';
 function ChangePassword () {
   const { user } = useContext(ProductsContext);
 
-  //* Inputs
+  //* Inputs State
   const {
     isOn: isCurrentPasswordOn,
     handleState: toggleCurrentPassword
@@ -30,6 +30,7 @@ function ChangePassword () {
     handleState: toggleConfirmPassword
   } = useToggle();
 
+  //* Inputs
   const currentPassword = useFormInput({
     type: !isCurrentPasswordOn
       ? 'password'
@@ -89,49 +90,46 @@ function ChangePassword () {
         <form className='change-password__form' onSubmit={handleSubmit}>
           <h3 className='change-password__text'>Change your password</h3>
           <label htmlFor='currentPassword'>Enter your current password</label>
-          <FormInput
-            {...currentPassword}
-            id='currentPassword'
-            placeholder='Current password'
-            required
-          />
           <PasswordBtn
             togglePassword={toggleCurrentPassword}
             isPasswordOn={isCurrentPasswordOn}
-            topPosition='8.85rem'
-            rightPosition='3.5rem'
-          />
+          >
+            <FormInput
+              {...currentPassword}
+              id='currentPassword'
+              placeholder='Current password'
+              required
+            />
+          </PasswordBtn>
           <hr className='change-password__hr' />
           <label htmlFor='newPassword'>
             Enter your new password
           </label>
-          <FormInput
-            {...newPassword}
-            id='newPassword'
-            placeholder='New password'
-            required
-          />
           <PasswordBtn
             togglePassword={toggleNewPassword}
             isPasswordOn={isNewPasswordOn}
-            topPosition='16.50rem'
-            rightPosition='3.5rem'
-          />
+          >
+            <FormInput
+              {...newPassword}
+              id='newPassword'
+              placeholder='New password'
+              required
+            />
+          </PasswordBtn>
           <label htmlFor='confirmNewPassword'>
             Confirm your new password
           </label>
-          <FormInput
-            {...confirmNewPassword}
-            id='confirmNewPassword'
-            placeholder='Confirm new password'
-            required
-          />
           <PasswordBtn
             togglePassword={toggleConfirmPassword}
             isPasswordOn={isConfirmPasswordOn}
-            topPosition='22.15rem'
-            rightPosition='3.5rem'
-          />
+          >
+            <FormInput
+              {...confirmNewPassword}
+              id='confirmNewPassword'
+              placeholder='Confirm new password'
+              required
+            />
+          </PasswordBtn>
           {
             (message.isActive && !message.info.message) &&
               <Message isError>{message.info}</Message>
@@ -140,7 +138,9 @@ function ChangePassword () {
             (message.isActive && message.info.message) &&
               <Message>{message.info.message}</Message>
           }
-          <SubmitBtn text='SUBMIT' extraStyle={{ alignSelf: 'center' }} />
+          <SubmitBtn extraStyle={{ alignSelf: 'center' }}>
+            SUBMIT
+          </SubmitBtn>
         </form>
       </FormBox>
     </Layout>

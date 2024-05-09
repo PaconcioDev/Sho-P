@@ -13,9 +13,10 @@
 }
 
 .modal {
+  padding: 2rem;
   position: absolute;
-  width: 65%;
-  height: 45%;
+  max-width: 75%;
+  min-width: 40%;
   background-color: #F6F1EE;
   border-radius: 0.5rem;
 }

@@ -68,35 +68,33 @@ function RecoverPassword () {
         <form className='recover__form' onSubmit={handleSubmit}>
           <h3 className='recover__text'>Enter a new password</h3>
           <label htmlFor='recoverPassword'>Password</label>
-          <FormInput
-            {...newPassword}
-            id='recoverPassword'
-            name='newPassword'
-            placeholder='New Password'
-            required
-          />
           <PasswordBtn
             togglePassword={toggleNewPassword}
             isPasswordOn={isNewPasswordOn}
-            topPosition='8.80rem'
-            rightPosition='3.5rem'
-          />
+          >
+            <FormInput
+              {...newPassword}
+              id='recoverPassword'
+              name='newPassword'
+              placeholder='New Password'
+              required
+            />
+          </PasswordBtn>
           <label htmlFor='passwordConfirmation'>Confirm Password</label>
-          <FormInput
-            {...confirmPassword}
-            id='passwordConfirmation'
-            name='confirmPassword'
-            placeholder='Confirm Password'
-            required
-          />
           <PasswordBtn
             togglePassword={toggleConfirmPassword}
             isPasswordOn={isConfirmPasswordOn}
-            topPosition='14.35rem'
-            rightPosition='3.5rem'
-          />
+          >
+            <FormInput
+              {...confirmPassword}
+              id='passwordConfirmation'
+              name='confirmPassword'
+              placeholder='Confirm Password'
+              required
+            />
+          </PasswordBtn>
           {message.isActive && <Message isError>{message.info}</Message>}
-          <SubmitBtn text='SUBMIT' extraStyle={{ alignSelf: 'center' }} />
+          <SubmitBtn extraStyle={{ alignSelf: 'center' }}>SUBMIT</SubmitBtn>
         </form>
       </FormBox>
     </Layout>

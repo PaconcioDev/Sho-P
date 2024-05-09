@@ -80,17 +80,16 @@ function Register () {
               placeholder='Email'
               required
             />
-            <FormInput
-              {...password}
-              placeholder='Password'
-              required
-            />
             <PasswordBtn
               togglePassword={togglePassword}
               isPasswordOn={isPasswordOn}
-              topPosition='14.75rem'
-              rightPosition='4rem'
-            />
+            >
+              <FormInput
+                {...password}
+                placeholder='Password'
+                required
+              />
+            </PasswordBtn>
           </section>
           <hr className='register__hr' />
           <h3 className='register__subtitle'>Optional</h3>
@@ -107,7 +106,7 @@ function Register () {
               (message.isActive && message.info.name) &&
                 <Message>Account Created</Message>
             }
-            <SubmitBtn text='SUBMIT' />
+            <SubmitBtn>REGISTER</SubmitBtn>
           </section>
         </form>
       </FormBox>

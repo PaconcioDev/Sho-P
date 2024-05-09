@@ -52,20 +52,19 @@ function LoginForm ({ toggle }) {
           placeholder='Email'
           required
         />
-        <FormInput
-          {...password}
-          name='password'
-          placeholder='Password'
-          required
-        />
         <PasswordBtn
           togglePassword={togglePassword}
           isPasswordOn={isPasswordOn}
-          topPosition='11.125rem'
-          rightPosition='3.5rem'
-        />
+        >
+          <FormInput
+            {...password}
+            name='password'
+            placeholder='Password'
+            required
+          />
+        </PasswordBtn>
         {loginMessage.isActive && <Message isError>{loginMessage.info}</Message>}
-        <SubmitBtn text='SIGN IN' extraStyle={{ width: 'inherit' }} />
+        <SubmitBtn extraStyle={{ width: 'inherit' }}>SIGN IN</SubmitBtn>
         <a
           className='login__recover-password'
           onClick={() => {

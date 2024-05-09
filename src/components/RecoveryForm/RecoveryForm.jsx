@@ -49,7 +49,7 @@ function RecoveryForm ({ toggle }) {
           placeholder='Email'
           required
         />
-        <SubmitBtn text='SUBMIT' extraStyle={{ width: 'inherit' }} />
+        <SubmitBtn extraStyle={{ width: 'inherit' }}>SEND EMAIL</SubmitBtn>
         <a
           className='login__recover-password'
           onClick={() => {

@@ -1,9 +1,13 @@
 import './SubmitBtn.css';
 
-function SubmitBtn ({ text, extraStyle }) {
+function SubmitBtn ({ extraStyle, isWarn, children }) {
   return (
-    <button type='submit' className='submit-btn' style={extraStyle}>
-      {text}
+    <button
+      type='submit'
+      className={`submit-btn ${isWarn ? 'submit-btn--red' : ''}`}
+      style={extraStyle}
+    >
+      {children}
     </button>
   );
 }
