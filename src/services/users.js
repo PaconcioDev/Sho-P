@@ -34,9 +34,23 @@ class UsersService {
       },
       body: JSON.stringify(input)
     });
-    console.log(request.url);
 
     const data = await request.json();
+
+    return data;
+  }
+
+  static async delete (id, token, password) {
+    const request = await fetch(`${baseUrl}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ password })
+    });
+
+    const data = request.json();
 
     return data;
   }

@@ -29,10 +29,6 @@
   background-color: #F6F1EE;
 }
 
-.modal__text + input {
-  margin-top: 1rem;
-}
-
 form > .security__btn-container {
   margin-top: 0.5rem;
 }

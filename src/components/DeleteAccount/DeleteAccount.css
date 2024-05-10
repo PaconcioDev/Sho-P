@@ -1,0 +1,9 @@
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.password__container ~ .security__btn-container {
+  margin-top: 0;
+}
