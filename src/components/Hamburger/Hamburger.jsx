@@ -42,14 +42,15 @@ function Hamburger () {
       <button
         className='hamburger-menu__button'
         onClick={menu.handleState}
-        type='checkbox'
       >
         <ListIcon />
       </button>
-      <section
-        className={`hamburger-menu__section ${
-          menu.isOn ? 'hamburger-menu__section--active' : ''
-        }`}
+      <div
+        className={`hamburger-menu__backdrop ${menu.isOn ? 'hamburger-menu__backdrop--active' : ''}`}
+        onClick={() => menu.manualOff()}
+      />
+      <aside
+        className={`hamburger-menu__section ${menu.isOn ? 'hamburger-menu__section--active' : ''}`}
       >
         <button
           className='hamburger-menu__button hamburger-menu__button--close'
@@ -58,11 +59,7 @@ function Hamburger () {
           <CloseIcon />
         </button>
         <ul className='hamburger-menu__list'>{renderCategories()}</ul>
-      </section>
-      <div
-        className='hamburger-menu__background-overlay'
-        onClick={menu.handleState}
-      />
+      </aside>
     </>
   );
 }

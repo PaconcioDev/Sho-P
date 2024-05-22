@@ -6,10 +6,10 @@ import { useUser } from '../../hooks/useUser.js';
 import { ProductsContext } from '../../context/ProductsContext.jsx';
 import { Hamburger } from '../Hamburger/Hamburger.jsx';
 import { UserModal } from '../UserModal/UserModal.jsx';
+import { Cart } from '../Cart/Cart.jsx';
 import { SearchIcon } from '../../icons/SearchIcon.jsx';
 import { UserIcon } from '../../icons/UserIcon.jsx';
 import { UserFillIcon } from '../../icons/UserFillIcon.jsx';
-import { CartIcon } from '../../icons/CartIcon.jsx';
 
 function NavBar () {
   //* Search Bar
@@ -85,7 +85,7 @@ function NavBar () {
               />
           }
           <li className='navbar__item'>
-            <CartIcon />
+            <Cart />
           </li>
         </ul>
       </nav>
