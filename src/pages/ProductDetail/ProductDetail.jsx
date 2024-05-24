@@ -6,6 +6,9 @@ import { ProductsContext } from '../../context/ProductsContext';
 import { Card } from '../../components/Card/Card.jsx';
 import { normalizeString } from '../../utils/normalizeString.js';
 
+//* Cart
+import { useCart } from '../../hooks/useCart.js';
+
 //* Slider
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -13,6 +16,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { SliderArrow } from '../../components/SliderArrow/SliderArrow.jsx';
 
 function ProductDetail () {
+  //* Products
   const { products } = useContext(ProductsContext);
   const { productName } = useParams();
 
@@ -20,6 +24,10 @@ function ProductDetail () {
     (product) => normalizeString(productName) === normalizeString(product.name)
   );
 
+  //* Cart
+  const { addToCart } = useCart();
+
+  //* Slider
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -71,7 +79,7 @@ function ProductDetail () {
             <span className='product__price'>$ {product?.price}</span>
           </section>
           <section className='product__purchase-info'>
-            <button className='product__btn' type='submit'>
+            <button className='product__btn' onClick={() => addToCart(product)}>
               ADD TO CART
             </button>
             <p className='product__desc'>{product?.description}</p>

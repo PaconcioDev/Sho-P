@@ -1,12 +1,18 @@
 import './Cart.css';
 import { useToggle } from '../../hooks/useToggle.js';
-import { CartItem } from '../CartItem/CartItem.jsx';
+import { useCart } from '../../hooks/useCart.js';
 import { CartIcon } from '../../icons/CartIcon.jsx';
 import { CloseIcon } from '../../icons/CloseIcon';
+import { CartEmptyView } from '../CartEmptyView/CartEmptyView.jsx';
+import { CartList } from '../CartList/CartList.jsx';
 
-// TODO: Scroll, total and all real functions
 function Cart () {
   const menu = useToggle();
+  const { cart } = useCart();
+
+  const totalProducts = cart.reduce((sum, product) => (
+    sum + product.quantity
+  ), 0);
 
   return (
     <>
@@ -15,6 +21,12 @@ function Cart () {
         onClick={menu.handleState}
       >
         <CartIcon />
+        {
+        totalProducts !== 0 &&
+          <div className='cart-menu__quantity'>
+            {totalProducts < 10 ? totalProducts : '9+'}
+          </div>
+        }
       </button>
       <div
         className={`cart-menu__backdrop ${menu.isOn ? 'cart-menu__backdrop--active' : ''}`}
@@ -32,14 +44,13 @@ function Cart () {
             <CloseIcon />
           </button>
         </div>
-        <ul className='cart-menu__items'>
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
-        </ul>
+        {
+          cart.length > 0
+            ? (
+              <CartList cart={cart} menu={menu} />
+              )
+            : <CartEmptyView menu={menu} />
+        }
       </aside>
     </>
   );
