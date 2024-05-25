@@ -2,6 +2,7 @@ import './Card.css';
 import { NavLink } from 'react-router-dom';
 import { normalizeString } from '../../utils/normalizeString';
 
+// TODO: Name size
 function Card ({ data }) {
   const normalizedCategory = normalizeString(data.category.name);
   const normalizedName = normalizeString(data.name);

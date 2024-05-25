@@ -12,11 +12,22 @@
   text-align: center;
 }
 
-.footer__btn--empty-cart {
+.empty__btn {
+  width: 65%;
   text-decoration: none;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   font-size: small;
   padding: 0.75rem 2rem;
-  width: inherit;
+  text-align: center;
+  color: #f6f1ee;
+  background-color: #ED7D31;
+  border: solid .125rem #ED7D31;
+  border-radius: .5rem;
+  transition: all 0.5s ease;
+}
+
+.empty__btn:hover {
+  color: #ED7D31;
+  background-color: #f6f1ee;
 }

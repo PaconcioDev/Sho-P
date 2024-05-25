@@ -44,7 +44,7 @@ function CartItem ({ product, handleClose, addToCart, removeOne, removeFromCart 
           <div className='item__bottom-info'>
             <div className='item__quantity-container'>
               <button className='item__btn' onClick={removeOne}>-</button>
-              <span className='item__quantity'>{product.quantity}</span>
+              <div className='item__quantity'>{product.quantity}</div>
               <button className='item__btn' onClick={addToCart}>+</button>
             </div>
             <span className='item__total-price'>

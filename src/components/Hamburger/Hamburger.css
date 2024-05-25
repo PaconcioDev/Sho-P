@@ -59,6 +59,10 @@
   margin-bottom: 2.5rem;
 }
 
+.hamburger-menu__title {
+  margin: 1rem 0 0 1rem;
+}
+
 .hamburger-menu__list {
   display: flex;
   flex-direction: column;
@@ -98,6 +102,10 @@
 /* media querys */
 @media screen and (min-width: 1024px) {
   .hamburger-menu__button {
+    display: none;
+  }
+
+  .hamburger-menu__title {
     display: none;
   }
 

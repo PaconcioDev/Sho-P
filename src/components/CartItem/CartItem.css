@@ -59,6 +59,7 @@
   cursor: pointer;
   border: none;
   background-color: none;
+  background: none;
   transition: color 0.5s ease;
 }
 
@@ -93,6 +94,8 @@
 
 .item__quantity {
   color: #F6F1EE;
+  width: 1rem;
+  text-align: center;
 }
 
 .item__btn {

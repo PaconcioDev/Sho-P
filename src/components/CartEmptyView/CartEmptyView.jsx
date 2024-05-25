@@ -8,7 +8,7 @@ function CartEmptyView ({ menu }) {
     >
       <p className='empty__text'>There's nothing in your cart! Go and put some nice things in it!</p>
       <NavLink
-        className='footer__btn footer__btn--empty-cart'
+        className='empty__btn'
         to='/products'
         onClick={() => menu.manualOff()}
       >

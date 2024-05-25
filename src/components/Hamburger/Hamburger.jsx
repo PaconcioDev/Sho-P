@@ -58,6 +58,7 @@ function Hamburger () {
         >
           <CloseIcon />
         </button>
+        <h2 className='hamburger-menu__title'>Categories</h2>
         <ul className='hamburger-menu__list'>{renderCategories()}</ul>
       </aside>
     </>
