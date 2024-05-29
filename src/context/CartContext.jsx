@@ -21,12 +21,15 @@ function CartProvider ({ children }) {
     payload: product
   });
 
+  const cleanCart = () => dispatch({ type: 'CLEAN_CART' });
+
   return (
     <CartContext.Provider value={{
       cart: state,
       addToCart,
       removeOne,
-      removeFromCart
+      removeFromCart,
+      cleanCart
     }}
     >
       {children}

@@ -9,6 +9,7 @@ import { Register } from '../pages/Register/Register.jsx';
 import { RecoverPassword } from '../pages/RecoverPassword/RecoverPassword.jsx';
 import { ChangePassword } from '../pages/ChangePassword/ChangePassword.jsx';
 import { ProductsContext } from '../context/ProductsContext.jsx';
+import { Order } from '../pages/Order/Order.jsx';
 
 const AppRoutes = () => {
   const { user } = useContext(ProductsContext);
@@ -64,6 +65,16 @@ const AppRoutes = () => {
           )
         : (
           <ChangePassword />
+          )
+    },
+    {
+      path: '/orders/:id',
+      element: !user
+        ? (
+          <Navigate replace to='/account' />
+          )
+        : (
+          <Order />
           )
     },
     { path: '*', element: <NotFound /> }

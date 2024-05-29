@@ -3,7 +3,8 @@ const cartInitialState = JSON.parse(window.localStorage.getItem('cart')) || [];
 const CART_ACTION_TYPES = {
   ADD_TO_CART: 'ADD_TO_CART',
   REMOVE_FROM_CART: 'REMOVE_FROM_CART',
-  REMOVE_ONE: 'REMOVE_ONE'
+  REMOVE_ONE: 'REMOVE_ONE',
+  CLEAN_CART: 'CLEAN_CART'
 };
 
 const updateLocalStorage = state => {
@@ -61,6 +62,12 @@ const cartReducer = (state, action) => {
         updateLocalStorage(newState);
         return newState;
       }
+      return;
+    }
+
+    case CART_ACTION_TYPES.CLEAN_CART: {
+      updateLocalStorage([]);
+      return [];
     }
   }
 

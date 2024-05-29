@@ -18,7 +18,7 @@ function CartItem ({ product, handleClose, addToCart, removeOne, removeFromCart 
             to={`/products/${productUrl}`}
             onClick={handleClose}
           >
-            <img src={product.image} />
+            <img src={product.image} alt={product.name} />
           </NavLink>
         </section>
         <section className='item__info-section'>
