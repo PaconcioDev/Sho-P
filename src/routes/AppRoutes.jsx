@@ -10,6 +10,7 @@ import { RecoverPassword } from '../pages/RecoverPassword/RecoverPassword.jsx';
 import { ChangePassword } from '../pages/ChangePassword/ChangePassword.jsx';
 import { ProductsContext } from '../context/ProductsContext.jsx';
 import { Order } from '../pages/Order/Order.jsx';
+import { MyOrders } from '../pages/MyOrders/MyOrders.jsx';
 
 const AppRoutes = () => {
   const { user } = useContext(ProductsContext);
@@ -68,13 +69,23 @@ const AppRoutes = () => {
           )
     },
     {
-      path: '/orders/:id',
+      path: '/my-orders/order/:id',
       element: !user
         ? (
           <Navigate replace to='/account' />
           )
         : (
           <Order />
+          )
+    },
+    {
+      path: '/my-orders',
+      element: !user
+        ? (
+          <Navigate replace to='/account' />
+          )
+        : (
+          <MyOrders />
           )
     },
     { path: '*', element: <NotFound /> }

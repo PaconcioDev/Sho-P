@@ -63,6 +63,13 @@ function UserModal ({ iconRef, user, logout, onSetModal }) {
             >
               LOGOUT
             </button>
+            <NavLink
+              className='user-modal__link user-modal__link--orders'
+              onClick={onSetModal}
+              to='/my-orders'
+            >
+              MY ORDERS
+            </NavLink>
           </>
           )}
     </aside>

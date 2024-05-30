@@ -14,6 +14,12 @@
   font-family: "Montserrat", sans-serif;
 }
 
+.item--border {
+  padding: .5rem;
+  border: solid .0625rem #d3d3d3;
+  border-radius: .5rem;
+}
+
 .item__img-link>img {
   width: 5rem;
   object-fit: cover;
@@ -98,12 +104,21 @@
   text-align: center;
 }
 
+.item__quantity--small {
+  font-size: small;
+  font-weight: bold;
+}
+
 .item__btn {
   font-size: large;
   color: #F6F1EE;
   cursor: pointer;
   border: none;
   background-color: transparent;
+}
+
+.item__btn--invisible {
+  display: none;
 }
 
 .item__total-price {

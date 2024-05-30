@@ -1,0 +1,43 @@
+.order__container {
+  width: 85%;
+  max-width: 35rem;
+  margin: 3rem auto;
+}
+
+.order__header,
+.order__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order__btn {
+  padding-top: 0.1rem;
+  transform: rotate(180deg);
+  text-decoration: none;
+  color: #707070;
+  transition: all 0.5s ease;
+}
+
+.order__btn:hover {
+  color: #ED7D31;
+}
+
+.order__date {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+}
+
+.order__list {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.order__footer {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 1.25rem;
+}

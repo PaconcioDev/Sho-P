@@ -8,6 +8,15 @@ class OrdersService {
     return response;
   }
 
+  static async findOrderByUserId ({ token, userId }) {
+    const request = await fetch(`${baseUrl}/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    const response = await request.json();
+    return response;
+  }
+
   static async create ({ token, userId, orderItems, total }) {
     const request = await fetch(`${baseUrl}/${userId}`, {
       method: 'POST',

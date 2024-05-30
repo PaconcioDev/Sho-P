@@ -29,9 +29,22 @@
   transition: all 0.5s ease;
 }
 
-
 .user-modal__link--account {
   padding: 0.5rem 5rem;
+}
+
+.user-modal__link--orders {
+  background-color: transparent;
+  color: #1a1a1a;
+  border: none;
+  text-decoration: underline;
+  padding: 0 0.5rem;
+  margin: -.3125rem 0 0 0;
+  transition: all 0.5s ease;
+}
+
+.user-modal__link--orders:hover {
+  text-decoration: none;
 }
 
 .user-modal__logout {
