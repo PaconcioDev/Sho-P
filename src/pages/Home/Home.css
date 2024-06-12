@@ -1,7 +1,7 @@
 .product-card__container {
   padding: 3rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(13.75rem, 1fr));
   gap: 1.25rem;
 }
 
@@ -21,6 +21,12 @@
 }
 
 /* media querys */
+@media screen and (min-width: 480px) {
+  .product-card__container {
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .product-card__container {
     padding: 5rem 3rem 3rem 3rem;

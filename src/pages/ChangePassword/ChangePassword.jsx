@@ -55,6 +55,9 @@ function ChangePassword () {
 
     if (newPassword.value !== confirmNewPassword.value) {
       onEvent('Passwords not matching');
+      setTimeout(() => {
+        onEvent();
+      }, 2000);
       return;
     }
 

@@ -43,13 +43,17 @@ function Register () {
       if (data.error) {
         const errorMessage = data.error[0]?.message || data.error;
         onEvent(errorMessage);
+        setTimeout(() => {
+          onEvent();
+        }, 2000);
         return;
       }
 
       onEvent(data);
       setTimeout(() => {
+        onEvent();
         navigate('/account/login');
-      }, 5000);
+      }, 1500);
     } catch (error) {
       console.error(error);
     }

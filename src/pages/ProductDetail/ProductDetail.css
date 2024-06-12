@@ -8,6 +8,7 @@
 
 .product__image-container {
   padding: 0 2rem;
+  max-width: 40rem;
 }
 
 .product__image-container > img {

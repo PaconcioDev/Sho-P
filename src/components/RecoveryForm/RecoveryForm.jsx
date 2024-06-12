@@ -20,6 +20,9 @@ function RecoveryForm ({ toggle }) {
 
       if (data.error) {
         onRecoverEvent(data.error);
+        setTimeout(() => {
+          onRecoverEvent();
+        }, 1500);
         return;
       }
 

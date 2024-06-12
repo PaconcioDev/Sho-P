@@ -42,3 +42,32 @@
 .orders__btn:hover {
   color: #ED7D31;
 }
+
+.empty-orders__container {
+  margin-top: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-orders__text {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  width: 30rem;
+}
+
+.empty-orders__link {
+  text-decoration: none;
+  color: #F6F1EE;
+  background-color: #ED7D31;
+  border: .125rem solid #ED7D31;
+  padding: 0.5rem 3rem;
+  border-radius: 0.5rem;
+  transition: all 0.5s ease;
+}
+
+.empty-orders__link:hover {
+  color: #ED7D31;
+  background-color: #F6F1EE;
+}

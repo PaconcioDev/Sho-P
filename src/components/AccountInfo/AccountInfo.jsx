@@ -6,6 +6,7 @@ import { FormInput } from '../../components/FormInput/FormInput.jsx';
 import { Message } from '../../components/Message/Message.jsx';
 import { SubmitBtn } from '../../components/SubmitBtn/SubmitBtn.jsx';
 import { UsersService } from '../../services/users.js';
+import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter.js';
 
 function AccountInfo ({ currentUser, user }) {
   const firstName = useFormInput({ type: 'text' });
@@ -31,8 +32,8 @@ function AccountInfo ({ currentUser, user }) {
     e.preventDefault();
 
     const newUserInfo = {
-      ...(firstName.value !== currentUser.name && { name: firstName.value }),
-      ...(lastName.value !== currentUser.lastName && { lastName: lastName.value }),
+      ...(capitalizeFirstLetter(firstName.value) !== currentUser.name && { name: capitalizeFirstLetter(firstName.value) }),
+      ...(capitalizeFirstLetter(lastName.value) !== currentUser.lastName && { lastName: capitalizeFirstLetter(lastName.value) }),
       ...(email.value.toLowerCase() !== currentUser.email && { email: email.value }),
       ...(phone.value !== currentUser.phone && { phone: phone.value })
     };
@@ -50,7 +51,7 @@ function AccountInfo ({ currentUser, user }) {
         onUpdateEvent(data);
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 700);
       }
     } catch (error) {
       console.error(error);
