@@ -1,0 +1,77 @@
+.product-admin {
+  max-width: 55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Montserrat", sans-serif;
+  padding: .5rem;
+  border: solid .0625rem #d3d3d3;
+  border-radius: .5rem;
+}
+
+.product-admin__img-section {
+  width: 6rem;
+}
+
+.product-admin__img-link>img {
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  border: solid 0.0625rem #d3d3d3;
+  border-radius: 0.5rem;
+  transition: opacity 0.5s ease;
+}
+
+.product-admin__img-link>img:hover {
+  opacity: 80%;
+}
+
+.product-admin>div {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-admin__info {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  min-width: 5rem;
+}
+
+.product-admin__name {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: bold;
+  font-size: small;
+  transition: color 0.5s ease;
+}
+
+.product-admin__category {
+  font-size: 0.8rem;
+}
+
+.product-admin__price {
+  color: #4f4a45;
+  font-size: 0.8rem;
+}
+
+.product-admin__btn-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-admin__btn {
+  cursor: pointer;
+  color: #6C5F5B;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: all 0.5s ease;
+}
+
+.product-admin__btn:hover {
+  color: #ED7D31;
+}

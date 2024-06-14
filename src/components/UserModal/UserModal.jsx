@@ -54,6 +54,23 @@ function UserModal ({ iconRef, user, logout, onSetModal }) {
             >
               MY ACCOUNT
             </NavLink>
+            {
+              user.role === 'admin' &&
+                <NavLink
+                  className='user-modal__link user-modal__link--orders'
+                  onClick={onSetModal}
+                  to='/admin-tools'
+                >
+                  ADMIN TOOLS
+                </NavLink>
+            }
+            <NavLink
+              className='user-modal__link user-modal__link--orders'
+              onClick={onSetModal}
+              to='/my-orders'
+            >
+              MY ORDERS
+            </NavLink>
             <button
               className='user-modal__logout'
               onClick={() => {
@@ -63,13 +80,6 @@ function UserModal ({ iconRef, user, logout, onSetModal }) {
             >
               LOGOUT
             </button>
-            <NavLink
-              className='user-modal__link user-modal__link--orders'
-              onClick={onSetModal}
-              to='/my-orders'
-            >
-              MY ORDERS
-            </NavLink>
           </>
           )}
     </aside>

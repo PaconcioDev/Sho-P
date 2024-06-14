@@ -11,6 +11,7 @@ import { ChangePassword } from '../pages/ChangePassword/ChangePassword.jsx';
 import { ProductsContext } from '../context/ProductsContext.jsx';
 import { Order } from '../pages/Order/Order.jsx';
 import { MyOrders } from '../pages/MyOrders/MyOrders.jsx';
+import { AdminTools } from '../pages/AdminTools/AdminTools.jsx';
 
 const AppRoutes = () => {
   const { user } = useContext(ProductsContext);
@@ -86,6 +87,16 @@ const AppRoutes = () => {
           )
         : (
           <MyOrders />
+          )
+    },
+    {
+      path: '/admin-tools',
+      element: user.role !== 'admin'
+        ? (
+          <NotFound />
+          )
+        : (
+          <AdminTools />
           )
     },
     { path: '*', element: <NotFound /> }

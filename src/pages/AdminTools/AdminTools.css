@@ -1,0 +1,54 @@
+.tools__container {
+  width: 100%;
+  display: flex;
+}
+
+.tools__options {
+  margin-top: .3rem;
+  margin-right: .1rem;
+}
+
+.tools__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.tools__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #6C5F5B;
+  transition: all  0.5s ease;
+}
+
+.tools__btn:hover {
+  color: #ED7D31;
+}
+
+.tools__name {
+  font-size: larger;
+  font-weight: bold;
+  display: none;
+}
+
+.tools__option-view {
+  width: 100%;
+  padding-left: .5rem;
+  border-left: .125rem solid #d3d3d3;
+}
+
+@media screen and (min-width: 768px) {
+  .tools__name {
+    display: block;
+  }
+  .tools__options {
+    padding-left: 5rem;
+  }
+}

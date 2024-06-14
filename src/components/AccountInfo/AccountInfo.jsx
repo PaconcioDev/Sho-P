@@ -60,11 +60,19 @@ function AccountInfo ({ currentUser, user }) {
   return (
     <>
       <h3 className='my-account__subtitle'>Account Information</h3>
+      <p>You can edit your information if you must to.</p>
       <form
         className='my-account__form'
         method='post'
         onSubmit={handleSubmit}
       >
+        <span className='my-account__input'>
+          <label htmlFor='role'>Role:</label>
+          <FormInput
+            value={capitalizeFirstLetter(currentUser.role)}
+            disabled
+          />
+        </span>
         <section className='my-account__full-name'>
           <span className='my-account__input'>
             <label htmlFor='firstName'>First Name:</label>
