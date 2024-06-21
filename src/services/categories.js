@@ -6,6 +6,17 @@ class CategoriesService {
     const response = await request.json();
     return response;
   }
+
+  static async delete (id, token) {
+    const request = await fetch(`${baseUrl}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const response = await request.json();
+    return response;
+  }
 }
 
 export { CategoriesService };

@@ -29,7 +29,6 @@ function LoginForm ({ toggle }) {
       const data = await login({ email: email.value.toLowerCase(), password: password.value });
 
       if (data.error) {
-        console.log(data.error);
         onLoginEvent(data.error);
         setTimeout(() => {
           onLoginEvent();

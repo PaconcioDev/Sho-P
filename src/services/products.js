@@ -6,6 +6,19 @@ class ProductsService {
     const response = await request.json();
     return response;
   }
+
+  static async delete (id, token) {
+    console.log(id);
+    console.log(token);
+    const request = await fetch(`${baseUrl}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const response = await request.json();
+    return response;
+  }
 }
 
 export { ProductsService };

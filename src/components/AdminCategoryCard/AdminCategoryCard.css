@@ -1,0 +1,24 @@
+.category__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 1rem;
+  border: solid .0625rem #d3d3d3;
+  border-radius: .5rem;
+}
+
+.category__btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #6C5F5B;
+  transition: all 0.5s ease;
+}
+
+.category__btn:hover {
+  color: #ED7D31;
+}
+
+.category__btn--red:hover {
+  color: #ed4731;
+}

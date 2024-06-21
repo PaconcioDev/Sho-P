@@ -31,7 +31,6 @@ function CartList ({ cart, menu }) {
       if (request.error) return;
 
       navigate(`/my-orders/order/${request.id}`);
-      // window.location.reload();
       cleanCart();
       menu.manualOff();
     } catch (error) {

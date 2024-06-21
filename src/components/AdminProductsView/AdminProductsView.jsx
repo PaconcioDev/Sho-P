@@ -1,10 +1,10 @@
 import './AdminProductsView.css';
 import { useContext } from 'react';
-import { AdminProductCard } from '../../components/AdminProductCard/AdminProductCard.jsx';
+import { AdminProductCard } from '../AdminProductCard/AdminProductCard.jsx';
 import { ProductsContext } from '../../context/ProductsContext.jsx';
 import { SearchIcon } from '../../icons/SearchIcon.jsx';
 
-function AdminProductView () {
+function AdminProductsView () {
   const { products } = useContext(ProductsContext);
 
   return (
@@ -17,10 +17,14 @@ function AdminProductView () {
         Create New Product +
       </article>
       <div className='products__view'>
-        {products.map(product => <AdminProductCard product={product} key={product.id} />)}
+        {products?.map(product =>
+          <AdminProductCard
+            product={product}
+            key={product.id}
+          />)}
       </div>
     </>
   );
 }
 
-export { AdminProductView };
+export { AdminProductsView };

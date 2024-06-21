@@ -91,7 +91,7 @@ const AppRoutes = () => {
     },
     {
       path: '/admin-tools',
-      element: user.role !== 'admin'
+      element: user?.role !== 'admin'
         ? (
           <NotFound />
           )

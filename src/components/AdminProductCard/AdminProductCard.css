@@ -4,7 +4,7 @@
   align-items: center;
   gap: 0.5rem;
   font-family: "Montserrat", sans-serif;
-  padding: .5rem;
+  padding: .5rem 1.5rem .5rem .5rem;
   border: solid .0625rem #d3d3d3;
   border-radius: .5rem;
 }
@@ -74,4 +74,28 @@
 
 .product-admin__btn:hover {
   color: #ED7D31;
+}
+
+.product-admin__btn--red:hover {
+  color: #ed4731;
+}
+
+.security__btn {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.5rem;
+  min-width: inherit;
+  text-decoration: none;
+  color: #F6F1EE;
+  background-color: #ed4731;
+  border: 0.125rem solid #ed4731;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  transition: all 0.5s ease;
+}
+
+.security__btn:hover {
+  color: #ed4731;
+  background-color: #F6F1EE;
 }
