@@ -8,10 +8,8 @@ class ProductsService {
   }
 
   static async delete (id, token) {
-    console.log(id);
-    console.log(token);
-    const request = await fetch(`${baseUrl}/${id}`, {
-      method: 'DELETE',
+    const request = await fetch(`${baseUrl}/delete/${id}`, {
+      method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`
       }
