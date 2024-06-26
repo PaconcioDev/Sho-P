@@ -1,23 +1,23 @@
 import './AdminProductsView.css';
 import { useContext } from 'react';
+import { useSearch } from '../../hooks/useSearch.js';
 import { AdminProductCard } from '../AdminProductCard/AdminProductCard.jsx';
 import { ProductsContext } from '../../context/ProductsContext.jsx';
-import { SearchIcon } from '../../icons/SearchIcon.jsx';
 
-function AdminProductsView () {
+function AdminProductsView ({ search }) {
   const { products } = useContext(ProductsContext);
+  const filteredProducts = useSearch({
+    items: products,
+    inputValue: search
+  });
 
   return (
     <>
-      <div className='products__search-container'>
-        <input className='products__search' type='text' placeholder='Search...' />
-        <SearchIcon />
-      </div>
       <article className='products__create'>
         Create New Product +
       </article>
       <div className='products__view'>
-        {products?.map(product =>
+        {filteredProducts?.map(product =>
           <AdminProductCard
             product={product}
             key={product.id}

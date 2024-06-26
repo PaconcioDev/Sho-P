@@ -1,0 +1,36 @@
+.category__form {
+  display: flex;
+  align-items: center;
+  margin: 1.0938rem 0;
+  position: relative;
+}
+
+.category__form>input {
+  border-color: #9c9896;
+}
+
+.category__form>input:focus {
+  border-color: #6C5F5B;
+}
+
+.category__btn-container {
+  position: absolute;
+  right: 1rem;
+
+}
+
+.category__btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #6C5F5B;
+  transition: all 0.5s ease;
+}
+
+.category__btn:hover {
+  color: #ED7D31;
+}
+
+.category__btn--red:hover {
+  color: #ed4731
+}

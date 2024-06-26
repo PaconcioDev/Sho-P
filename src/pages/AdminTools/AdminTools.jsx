@@ -1,11 +1,12 @@
 import './AdminTools.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Layout } from '../../components/Layout/Layout.jsx';
 import { AdminProductsView } from '../../components/AdminProductsView/AdminProductsView.jsx';
 import { AdminCategoriesView } from '../../components/AdminCategoriesView/AdminCategoriesView.jsx';
 import { useToggle } from '../../hooks/useToggle.js';
 import { ProductIcon } from '../../icons/ProductIcon.jsx';
 import { CategoryIcon } from '../../icons/CategoryIcon.jsx';
+import { SearchIcon } from '../../icons/SearchIcon.jsx';
 
 function AdminTools () {
   const productsView = useToggle(
@@ -31,6 +32,8 @@ function AdminTools () {
       window.localStorage.removeItem('productView');
     };
   }, []);
+
+  const [search, setSearch] = useState('');
 
   return (
     <Layout title='Admin Tools'>
@@ -64,8 +67,24 @@ function AdminTools () {
           </ul>
         </aside>
         <section className='tools__option-view'>
-          {productsView.isOn && (<AdminProductsView />)}
-          {categoriesView.isOn && (<AdminCategoriesView />)}
+          <div className='tools__search-container'>
+            <input
+              className='tools__search'
+              placeholder='Search...'
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <SearchIcon />
+          </div>
+          {productsView.isOn && (
+            <AdminProductsView
+              search={search}
+            />
+          )}
+          {categoriesView.isOn && (
+            <AdminCategoriesView
+              search={search}
+            />
+          )}
         </section>
       </div>
     </Layout>

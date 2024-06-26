@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-function useFormInput ({ type }) {
-  const [value, setValue] = useState('');
+function useFormInput ({ type, initialState = '' }) {
+  const [value, setValue] = useState(initialState);
 
   const onChange = (e) => {
     const trimValue = e.target.value.trim();

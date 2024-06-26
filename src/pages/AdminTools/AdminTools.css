@@ -64,6 +64,34 @@
   border-left: .125rem solid #d3d3d3;
 }
 
+.tools__search-container {
+  max-width: 55rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tools__search-container>svg {
+  cursor: pointer;
+  color: #6C5F5B;
+  transition: all 0.5s ease;
+}
+
+.tools__search-container>svg:hover {
+  color: #ED7D31;
+}
+
+.tools__search {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  outline: none;
+  font-family: inherit;
+  background-color: #eee8e5;
+  border: 0.125rem solid #dad8d8;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+}
+
 @media screen and (min-width: 768px) {
   .tools__name {
     display: block;
@@ -71,5 +99,9 @@
 
   .tools__options {
     padding-left: 5rem;
+  }
+
+  .tools__search-container {
+    margin-right: 5rem;
   }
 }
