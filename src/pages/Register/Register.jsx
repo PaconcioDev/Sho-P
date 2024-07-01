@@ -1,4 +1,5 @@
 import './Register.css';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormInput } from '../../hooks/useFormInput.js';
 import { useMessage } from '../../hooks/useMessage.js';
@@ -17,6 +18,7 @@ function Register () {
 
   const { isOn: isPasswordOn, handleState: togglePassword } = useToggle();
 
+  const [roleValue, setRoleValue] = useState('customer');
   const firstName = useFormInput({ type: 'text' });
   const lastName = useFormInput({ type: 'text' });
   const email = useFormInput({ type: 'email' });
@@ -27,6 +29,7 @@ function Register () {
     e.preventDefault();
 
     const userData = {
+      role: roleValue,
       name: firstName.value,
       lastName: lastName.value,
       email: email.value.toLowerCase(),
@@ -63,12 +66,26 @@ function Register () {
     <Layout title='Create an Account'>
       <FormBox>
         <form
+          id='registerForm'
           className='register__form'
           method='post'
           onSubmit={handleSubmit}
         >
           <h3 className='register__subtitle'>Required</h3>
           <section className='register__section'>
+            <select
+              className='register__select'
+              form='registerForm'
+              onChange={(e) => {
+                setRoleValue(e.target.value);
+              }}
+              defaultValue='Select Role...'
+              required
+            >
+              <option disabled>Select Role...</option>
+              <option value='customer'>Customer</option>
+              <option value='admin'>Admin</option>
+            </select>
             <FormInput
               {...firstName}
               placeholder='First Name'

@@ -10,6 +10,17 @@
   padding: 0 0.5rem;
 }
 
+.register__select {
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+  font: inherit;
+  font-size: 0.9rem;
+  background-color: transparent;
+  border: 0.0625rem solid #c9bfbc;
+  border-radius: 0.375rem;
+  outline: none
+}
+
 .register__hr {
   margin: 1.5rem 0;
 }

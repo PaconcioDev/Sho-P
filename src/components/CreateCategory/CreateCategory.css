@@ -34,3 +34,9 @@
 .category__btn--red:hover {
   color: #ed4731
 }
+
+@media screen and (min-width: 768px) {
+  .category__form {
+    margin-right: 5rem;
+  }
+}
