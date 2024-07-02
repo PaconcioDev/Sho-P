@@ -69,6 +69,7 @@ function AccountInfo ({ currentUser, user }) {
         <span className='my-account__input'>
           <label htmlFor='role'>Role:</label>
           <FormInput
+            id='role'
             value={capitalizeFirstLetter(currentUser.role)}
             disabled
           />

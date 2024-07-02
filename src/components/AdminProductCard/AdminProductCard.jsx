@@ -2,6 +2,7 @@ import './AdminProductCard.css';
 import { NavLink } from 'react-router-dom';
 import { useToggle } from '../../hooks/useToggle.js';
 import { AdminDeleteModal } from '../AdminDeleteModal/AdminDeleteModal.jsx';
+import { EditProduct } from '../EditProduct/EditProduct.jsx';
 import { ProductsService } from '../../services/products.js';
 import { Trash } from '../../icons/Trash.jsx';
 import { EditIcon } from '../../icons/EditIcon.jsx';
@@ -9,6 +10,7 @@ import { normalizeString } from '../../utils/normalizeString.js';
 
 function AdminProductCard ({ product }) {
   const deleteModal = useToggle();
+  const editModal = useToggle();
 
   const normalizedCategory = normalizeString(product.category.name);
   const normalizedName = normalizeString(product.name);
@@ -41,7 +43,10 @@ function AdminProductCard ({ product }) {
             </div>
           </section>
           <section className='product-admin__btn-section'>
-            <button className='product-admin__btn'>
+            <button
+              className='product-admin__btn'
+              onClick={() => editModal.manualOn()}
+            >
               <EditIcon />
             </button>
             <button
@@ -60,6 +65,13 @@ function AdminProductCard ({ product }) {
             itemType='Product'
             modalView={deleteModal}
             service={ProductsService}
+          />
+      }
+      {
+        editModal.isOn &&
+          <EditProduct
+            product={product}
+            modalView={editModal}
           />
       }
     </>
