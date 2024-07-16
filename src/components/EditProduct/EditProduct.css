@@ -1,8 +1,17 @@
+.edit-product__title {
+  padding-left: 2rem;
+}
+
+.edit-product__form {
+  padding: 0 2rem;
+}
+
 .edit-product__img {
   cursor: pointer;
   max-width: 20rem;
   border-radius: 0.5rem;
   position: relative;
+  margin-bottom: 1rem;
 }
 
 .edit-product__overlay {
@@ -18,14 +27,17 @@
   transition: all 0.5s ease;
 }
 
+.edit-product__overlay--front {
+  cursor: pointer;
+  z-index: 1;
+}
+
 .edit-product__img>img {
   width: 100%;
-  z-index: 1;
   object-fit: cover;
   aspect-ratio: 1/1;
   border-radius: 0.5rem;
   border: solid 0.0625rem #d3d3d3;
-  margin-bottom: 1rem;
   transition: opacity 0.5s ease;
 }
 
@@ -36,6 +48,12 @@
 .edit-product__img:hover>.edit-product__overlay {
   opacity: 1;
 }
+
+.edit-product__overlay--front::file-selector-button {
+  cursor: pointer;
+  opacity: 0;
+}
+
 
 .edit-product__info {
   width: 100%;
@@ -82,5 +100,10 @@
   .edit-product__sections {
     display: flex;
     gap: 1rem;
+  }
+
+  .edit-product__img {
+    margin-bottom: 0;
+    height: 14.5rem;
   }
 }

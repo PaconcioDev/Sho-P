@@ -7,6 +7,19 @@ class ProductsService {
     return response;
   }
 
+  static async update (id, token, input) {
+    const request = await fetch(`${baseUrl}/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(input)
+    });
+    const response = await request.json();
+    return response;
+  }
+
   static async delete (id, token) {
     const request = await fetch(`${baseUrl}/delete/${id}`, {
       method: 'PATCH',

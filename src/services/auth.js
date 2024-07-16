@@ -1,6 +1,5 @@
 const baseUrl = 'http://localhost:3030/shop-api/v2/auth';
 
-// TODO: Register
 class AuthService {
   static async login ({ email, password }) {
     const request = await fetch(`${baseUrl}/login`, {
