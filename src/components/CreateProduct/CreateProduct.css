@@ -1,12 +1,12 @@
-.edit-product__title {
+.create-product__title {
   padding-left: 2rem;
 }
 
-.edit-product__form {
+.create-product__form {
   padding: 0 2rem;
 }
 
-.edit-product__img {
+.create-product__img {
   cursor: pointer;
   max-width: 20rem;
   border-radius: 0.5rem;
@@ -14,7 +14,7 @@
   margin-bottom: 1rem;
 }
 
-.edit-product__overlay {
+.create-product__overlay {
   opacity: 0;
   z-index: 0;
   display: flex;
@@ -27,42 +27,43 @@
   transition: all 0.5s ease;
 }
 
-.edit-product__overlay--front {
+.create-product__overlay--front {
   cursor: pointer;
   z-index: 1;
 }
 
-.edit-product__img>img {
+.create-product__img>img {
   width: 100%;
   object-fit: cover;
   aspect-ratio: 1/1;
-  border-radius: 0.5rem;
   border: solid 0.0625rem #d3d3d3;
+  border-radius: 0.5rem;
   transition: opacity 0.5s ease;
 }
 
-.edit-product__img:hover>img {
+.create-product__img:hover>img {
   opacity: 50%;
 }
 
-.edit-product__img:hover>.edit-product__overlay {
+.create-product__img:hover>.create-product__overlay {
+  font-size: 5.5rem;
   opacity: 1;
 }
 
-.edit-product__overlay--front::file-selector-button {
+.create-product__overlay--front::file-selector-button {
   cursor: pointer;
   opacity: 0;
 }
 
 
-.edit-product__info {
+.create-product__info {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.edit-product__description {
+.create-product__description {
   width: 100%;
   height: 5rem;
   padding: 0.5rem 1rem;
@@ -74,12 +75,12 @@
   resize: none;
 }
 
-.edit-product__container {
+.create-product__container {
   display: flex;
   flex-direction: column;
 }
 
-.edit-product__category {
+.create-product__category {
   width: 100%;
   padding: 0.5rem;
   font: inherit;
@@ -90,19 +91,19 @@
   outline: none;
 }
 
-.edit-product__btn {
+.create-product__btn {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
 }
 
 @media screen and (min-width: 768px) {
-  .edit-product__sections {
+  .create-product__sections {
     display: flex;
     gap: 1rem;
   }
 
-  .edit-product__img {
+  .create-product__img {
     margin-bottom: 0;
     min-width: 20.4rem;
   }

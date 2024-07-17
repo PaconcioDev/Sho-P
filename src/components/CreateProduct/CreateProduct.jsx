@@ -1,32 +1,25 @@
-import './EditProduct.css';
+import './CreateProduct.css';
 import { useContext, useState } from 'react';
-import { useFormInput } from '../../hooks/useFormInput.js';
-import { Modal } from '../Modal/Modal.jsx';
-import { FormInput } from '../FormInput/FormInput.jsx';
-import { SubmitBtn } from '../SubmitBtn/SubmitBtn.jsx';
-import { Message } from '../Message/Message.jsx';
-import { ProductsContext } from '../../context/ProductsContext.jsx';
-import { ProductsService } from '../../services/products.js';
-import { ImagesService } from '../../services/images.js';
 import { useMessage } from '../../hooks/useMessage.js';
+import { useFormInput } from '../../hooks/useFormInput.js';
+import { FormInput } from '../FormInput/FormInput.jsx';
+import { Modal } from '../Modal/Modal.jsx';
+import { Message } from '../Message/Message.jsx';
+import { SubmitBtn } from '../SubmitBtn/SubmitBtn.jsx';
+import { ProductsContext } from '../../context/ProductsContext.jsx';
+import { ImagesService } from '../../services/images.js';
+import { ProductsService } from '../../services/products.js';
 
-function EditProduct ({ product, modalView }) {
-  const { categories, user } = useContext(ProductsContext);
-  const { message, onEvent } = useMessage();
+function CreateProduct ({ view }) {
+  const { user, categories } = useContext(ProductsContext);
+  const { onEvent, message } = useMessage();
 
-  const name = useFormInput({
-    type: 'text',
-    initialState: product.name,
-    trim: false
-  });
-  const price = useFormInput({
-    type: 'number',
-    initialState: product.price
-  });
+  const [categoryValue, setCategoryValye] = useState(null);
+  const name = useFormInput({ type: 'text', trim: false });
+  const description = useFormInput({ type: 'text', trim: false });
+  const price = useFormInput({ type: 'number' });
 
-  const [descriptionValue, setDescriptionValue] = useState(product.description);
-  const [categoryValue, setCategoryValue] = useState(product.category.id);
-  const [imagePreview, setImagePreview] = useState(product.image);
+  const [imagePreview, setImagePreview] = useState(null);
   const [file, setFile] = useState(null);
 
   const handleChange = (e) => {
@@ -37,52 +30,59 @@ function EditProduct ({ product, modalView }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let uploadedImageUrl = product.image;
-    if (file) {
-      try {
-        const deletedImage = await ImagesService.deletePrevious(user.token, product.id);
-        if (!deletedImage) return;
+    let imageUrl;
+    let imageId;
+    if (
+      !file ||
+      !name ||
+      !description ||
+      !price ||
+      !categoryValue
+    ) return;
 
-        const { public_id: publicId, url } = await ImagesService.cloudinaryUpload(user.token, file);
+    try {
+      const { public_id: publicId, url } = await ImagesService.cloudinaryUpload(user.token, file);
 
-        if (!publicId || !url) return;
-
-        const data = await ImagesService.upload(user.token, publicId, url, product.id);
-
-        if (data.error) {
-          onEvent(data.error);
-          setTimeout(() => {
-            onEvent();
-          }, 3500);
-          return;
-        }
-
-        uploadedImageUrl = url;
-      } catch (error) {
-        console.error(error);
-      }
+      imageId = publicId;
+      imageUrl = url;
+    } catch (error) {
+      console.error(error);
     }
 
     const newProduct = {
       name: name.value.trim(),
-      description: descriptionValue.trim(),
+      description: description.value.trim(),
       category_id: parseInt(categoryValue, 10),
       price: parseInt(price.value, 10),
-      image: uploadedImageUrl
+      image: imageUrl
     };
 
     try {
-      const data = await ProductsService.update(product.id, user.token, newProduct);
-      if (data.error) {
-        const errorMessage = data.error[0]?.message || data.error;
+      const product = await ProductsService.create(user.token, newProduct);
+
+      if (product.error) {
+        await ImagesService.deleteCurrent(user.token, imageId);
+
+        const errorMessage = product.error[0]?.message || product.error;
         onEvent(errorMessage);
+
         setTimeout(() => {
           onEvent();
         }, 3500);
         return;
       }
 
-      onEvent(data);
+      const data = await ImagesService.upload(user.token, imageId, imageUrl, product.id);
+
+      if (data.error) {
+        onEvent(data.error);
+        setTimeout(() => {
+          onEvent();
+        }, 3500);
+        return;
+      }
+
+      onEvent(product);
       setTimeout(() => {
         onEvent();
         window.location.reload();
@@ -94,29 +94,30 @@ function EditProduct ({ product, modalView }) {
 
   return (
     <Modal
-      onClose={() => modalView.manualOff()}
+      onClose={() => view.manualOff()}
     >
-      <h3 className='edit-product__title'>Edit Product</h3>
+      <h3 className='create-product__title'>Create Product</h3>
       <form
-        className='edit-product__form'
+        className='create-product__form'
         action='submit'
-        method='patch'
+        method='post'
         onSubmit={handleSubmit}
       >
-        <div className='edit-product__sections'>
-          <section className='edit-product__img'>
+        <div className='create-product__sections'>
+          <section className='create-product__img'>
             <input
-              className='edit-product__overlay edit-product__overlay--front'
+              className='create-product__overlay create-product__overlay--front'
               type='file'
               name='image'
+              required
               onChange={handleChange}
             />
-            <div className='edit-product__overlay'>
+            <div className='create-product__overlay'>
               <div>+</div>
             </div>
-            <img src={imagePreview} alt={product.name} />
+            <img src={imagePreview} />
           </section>
-          <section className='edit-product__info'>
+          <section className='create-product__info'>
             <span>
               <label htmlFor='productName'>Name</label>
               <FormInput
@@ -129,12 +130,11 @@ function EditProduct ({ product, modalView }) {
             <span>
               <label htmlFor='productDescription'>Description</label>
               <textarea
-                className='edit-product__description'
+                className='create-product__description'
                 id='productDescription'
-                defaultValue={product.description}
-                onChange={(e) => {
-                  setDescriptionValue(e.target.value);
-                }}
+                placeholder='Describe your product here...'
+                {...description}
+                required
               />
             </span>
             <span>
@@ -146,16 +146,18 @@ function EditProduct ({ product, modalView }) {
                 required
               />
             </span>
-            <span className='edit-product__container'>
+            <span className='create-product__container'>
               <label htmlFor='productCategory'>Category</label>
               <select
-                className='edit-product__category'
+                className='create-product__category'
                 id='productCategory'
-                defaultValue={product.category.id}
                 onChange={(e) => {
-                  setCategoryValue(e.target.value);
+                  setCategoryValye(e.target.value);
                 }}
+                defaultValue=''
+                required
               >
+                <option disabled value=''>Select category...</option>
                 {categories.map(category =>
                   <option
                     key={category.id}
@@ -172,11 +174,11 @@ function EditProduct ({ product, modalView }) {
             }
             {
               (message.isActive && message.info.name) &&
-                <Message>Product updated successfully!</Message>
+                <Message>Product created successfully!</Message>
             }
           </section>
         </div>
-        <div className='edit-product__btn'>
+        <div className='create-product__btn'>
           <SubmitBtn>DONE</SubmitBtn>
         </div>
       </form>
@@ -184,4 +186,4 @@ function EditProduct ({ product, modalView }) {
   );
 }
 
-export { EditProduct };
+export { CreateProduct };
