@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3030/shop-api/v2/images';
+const baseUrl = 'https://shop-api.up.railway.app/images';
 
 class ImagesService {
   static async cloudinaryUpload (token, file) {

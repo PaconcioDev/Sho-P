@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3030/shop-api/v2/orders';
+const baseUrl = 'https://shop-api.up.railway.app/orders';
 
 class OrdersService {
   static async findOrderById ({ orderId }) {

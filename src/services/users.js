@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3030/shop-api/v2/users';
+const baseUrl = 'https://shop-api.up.railway.app/users';
 
 class UsersService {
   static async create ({ role, name, lastName, email, password, phone }) {

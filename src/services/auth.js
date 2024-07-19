@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3030/shop-api/v2/auth';
+const baseUrl = 'https://shop-api.up.railway.app/auth';
 
 class AuthService {
   static async login ({ email, password }) {

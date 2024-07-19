@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3030/shop-api/v2/categories';
+const baseUrl = 'https://shop-api.up.railway.app/categories';
 
 class CategoriesService {
   static async getAll () {
