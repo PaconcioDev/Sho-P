@@ -11,8 +11,8 @@ function Order () {
   const [order, setOrder] = useState({});
   const [orderItems, setOrderItems] = useState([]);
 
-  useEffect(
-    () => async () => {
+  useEffect(() => {
+    const fetchOrder = async () => {
       try {
         const order = await OrdersService.findOrderById({ orderId });
         setOrderItems(order.orderItems);
@@ -20,9 +20,10 @@ function Order () {
       } catch (error) {
         console.error(error);
       }
-    },
-    [orderId]
-  );
+    };
+
+    fetchOrder();
+  }, [orderId]);
 
   return (
     <Layout>

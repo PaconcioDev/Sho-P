@@ -13,8 +13,8 @@ function MyOrders () {
   const { user } = useContext(ProductsContext);
   const [orders, setOrders] = useState([]);
 
-  useEffect(
-    () => async () => {
+  useEffect(() => {
+    const fetchUserOrders = async () => {
       try {
         const userOrders = await OrdersService.findOrderByUserId({
           token: user.token,
@@ -24,9 +24,10 @@ function MyOrders () {
       } catch (error) {
         console.error(error);
       }
-    },
-    []
-  );
+    };
+
+    fetchUserOrders();
+  }, [user.token, user.id]);
 
   return (
     <Layout title='My Orders'>

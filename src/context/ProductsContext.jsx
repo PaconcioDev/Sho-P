@@ -21,15 +21,20 @@ function ProductsProvider ({ children }) {
     return loggedUserJson ? JSON.parse(loggedUserJson) : null;
   });
 
-  useEffect(
-    () => async () => {
-      const productsArr = await ProductsService.getAll();
-      const categoriesArr = await CategoriesService.getAll();
-      setProducts(productsArr);
-      setCategories(categoriesArr);
-    },
-    []
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productsArr = await ProductsService.getAll();
+        const categoriesArr = await CategoriesService.getAll();
+        setProducts(productsArr);
+        setCategories(categoriesArr);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <ProductsContext.Provider

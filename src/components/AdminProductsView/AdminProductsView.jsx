@@ -8,7 +8,6 @@ import { ProductsContext } from '../../context/ProductsContext.jsx';
 
 function AdminProductsView ({ search }) {
   const { products } = useContext(ProductsContext);
-
   const createView = useToggle();
 
   const filteredProducts = useSearch({

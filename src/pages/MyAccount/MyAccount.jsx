@@ -11,12 +11,18 @@ function MyAccount () {
   const { user } = useContext(ProductsContext);
   const [currentUser, setCurrentUser] = useState(null);
 
-  useEffect(
-    () => async () => {
-      const data = await UsersService.findOne({ id: user.id });
-      setCurrentUser(data);
-    }, []
-  );
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await UsersService.findOne({ id: user.id });
+        setCurrentUser(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserData();
+  }, [user.id]);
 
   return (
     !currentUser

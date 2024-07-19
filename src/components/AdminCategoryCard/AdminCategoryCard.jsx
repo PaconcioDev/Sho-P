@@ -12,12 +12,20 @@ function AdminCategoryCard ({ category }) {
   const deleteModal = useToggle();
   const editModal = useToggle();
 
-  useEffect(() => async () => {
-    const productsInCategory = await CategoriesService.findProducts({
-      id: category.id
-    });
-    setHasProducts(productsInCategory);
-  }, []);
+  useEffect(() => {
+    const fetchProductsInCategory = async () => {
+      try {
+        const productsInCategory = await CategoriesService.findProducts({
+          id: category.id
+        });
+        setHasProducts(productsInCategory);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProductsInCategory();
+  }, [category.id]);
 
   return (
     <article className='category__container'>
