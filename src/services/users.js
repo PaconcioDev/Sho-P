@@ -1,8 +1,9 @@
-const baseUrl = 'https://shop-api.up.railway.app/users';
+import { baseUrl } from './baseUrl.js';
+const url = `${baseUrl}/users`;
 
 class UsersService {
   static async create ({ role, name, lastName, email, password, phone }) {
-    const request = await fetch(`${baseUrl}`, {
+    const request = await fetch(`${url}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -20,14 +21,14 @@ class UsersService {
   }
 
   static async findOne ({ id }) {
-    const request = await fetch(`${baseUrl}/${id}`);
+    const request = await fetch(`${url}/${id}`);
     const data = await request.json();
 
     return data;
   }
 
   static async update (id, token, input) {
-    const request = await fetch(`${baseUrl}/${id}`, {
+    const request = await fetch(`${url}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +43,7 @@ class UsersService {
   }
 
   static async delete (id, token, password) {
-    const request = await fetch(`${baseUrl}/${id}`, {
+    const request = await fetch(`${url}/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

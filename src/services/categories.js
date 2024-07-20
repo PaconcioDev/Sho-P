@@ -1,20 +1,21 @@
-const baseUrl = 'https://shop-api.up.railway.app/categories';
+import { baseUrl } from './baseUrl.js';
+const url = `${baseUrl}/categories`;
 
 class CategoriesService {
   static async getAll () {
-    const request = await fetch(baseUrl);
+    const request = await fetch(url);
     const response = await request.json();
     return response;
   }
 
   static async findProducts ({ id }) {
-    const request = await fetch(`${baseUrl}/${id}/products`);
+    const request = await fetch(`${url}/${id}/products`);
     const response = await request.json();
     return response;
   }
 
   static async create (token, input) {
-    const request = await fetch(`${baseUrl}`, {
+    const request = await fetch(`${url}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +28,7 @@ class CategoriesService {
   }
 
   static async update (id, token, name) {
-    const request = await fetch(`${baseUrl}/${id}`, {
+    const request = await fetch(`${url}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ class CategoriesService {
   }
 
   static async delete (id, token) {
-    const request = await fetch(`${baseUrl}/delete/${id}`, {
+    const request = await fetch(`${url}/delete/${id}`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`

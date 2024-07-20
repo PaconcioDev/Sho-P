@@ -1,14 +1,15 @@
-const baseUrl = 'https://shop-api.up.railway.app/products';
+import { baseUrl } from './baseUrl.js';
+const url = `${baseUrl}/products`;
 
 class ProductsService {
   static async getAll () {
-    const request = await fetch(baseUrl);
+    const request = await fetch(url);
     const response = await request.json();
     return response;
   }
 
   static async create (token, input) {
-    const request = await fetch(baseUrl, {
+    const request = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +23,7 @@ class ProductsService {
   }
 
   static async update (id, token, input) {
-    const request = await fetch(`${baseUrl}/${id}`, {
+    const request = await fetch(`${url}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +36,7 @@ class ProductsService {
   }
 
   static async delete (id, token) {
-    const request = await fetch(`${baseUrl}/delete/${id}`, {
+    const request = await fetch(`${url}/delete/${id}`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`

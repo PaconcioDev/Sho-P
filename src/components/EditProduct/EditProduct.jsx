@@ -38,6 +38,7 @@ function EditProduct ({ product, modalView }) {
     e.preventDefault();
 
     let uploadedImageUrl = product.image;
+    let imageId;
     if (file) {
       try {
         const deletedImage = await ImagesService.deletePrevious(user.token, product.id);
@@ -58,6 +59,7 @@ function EditProduct ({ product, modalView }) {
         }
 
         uploadedImageUrl = url;
+        imageId = publicId;
       } catch (error) {
         console.error(error);
       }
@@ -74,6 +76,8 @@ function EditProduct ({ product, modalView }) {
     try {
       const data = await ProductsService.update(product.id, user.token, newProduct);
       if (data.error) {
+        await ImagesService.deleteCurrent(user.token, imageId);
+
         const errorMessage = data.error[0]?.message || data.error;
         onEvent(errorMessage);
         setTimeout(() => {

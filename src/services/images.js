@@ -1,11 +1,12 @@
-const baseUrl = 'https://shop-api.up.railway.app/images';
+import { baseUrl } from './baseUrl.js';
+const url = `${baseUrl}/images`;
 
 class ImagesService {
   static async cloudinaryUpload (token, file) {
     const formData = new FormData();
     formData.append('image', file);
 
-    const request = await fetch(`${baseUrl}/cloudinary`, {
+    const request = await fetch(`${url}/cloudinary`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -17,7 +18,7 @@ class ImagesService {
   }
 
   static async upload (token, publicId, url, productId) {
-    const request = await fetch(`${baseUrl}/${productId}`, {
+    const request = await fetch(`${url}/${productId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ class ImagesService {
   }
 
   static async deleteCurrent (token, imageId) {
-    const request = await fetch(`${baseUrl}/delete/${imageId}`, {
+    const request = await fetch(`${url}/delete/${imageId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`
@@ -43,7 +44,7 @@ class ImagesService {
   }
 
   static async deletePrevious (token, productId) {
-    const request = await fetch(`${baseUrl}/${productId}`, {
+    const request = await fetch(`${url}/${productId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`

@@ -1,15 +1,16 @@
-const baseUrl = 'https://shop-api.up.railway.app/orders';
+import { baseUrl } from './baseUrl.js';
+const url = `${baseUrl}/orders`;
 
 class OrdersService {
   static async findOrderById ({ orderId }) {
-    const request = await fetch(`${baseUrl}/order/${orderId}`);
+    const request = await fetch(`${url}/order/${orderId}`);
 
     const response = await request.json();
     return response;
   }
 
   static async findOrderByUserId ({ token, userId }) {
-    const request = await fetch(`${baseUrl}/${userId}`, {
+    const request = await fetch(`${url}/${userId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
 
@@ -18,7 +19,7 @@ class OrdersService {
   }
 
   static async create ({ token, userId, orderItems, total }) {
-    const request = await fetch(`${baseUrl}/${userId}`, {
+    const request = await fetch(`${url}/${userId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
