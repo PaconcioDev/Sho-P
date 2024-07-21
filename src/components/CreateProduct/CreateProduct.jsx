@@ -71,7 +71,6 @@ function CreateProduct ({ view }) {
         }, 3500);
         return;
       }
-
       const data = await ImagesService.upload(user.token, imageId, imageUrl, product.id);
 
       if (data.error) {

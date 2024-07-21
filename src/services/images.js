@@ -17,14 +17,14 @@ class ImagesService {
     return response;
   }
 
-  static async upload (token, publicId, url, productId) {
+  static async upload (token, publicId, imageUrl, productId) {
     const request = await fetch(`${url}/${productId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify({ publicId, url })
+      body: JSON.stringify({ publicId, imageUrl })
     });
 
     const response = request.json();

@@ -1,2 +1,2 @@
-const baseUrl = 'https://shop-api.up.railway.app';
+const baseUrl = 'http://localhost:3030';
 export { baseUrl };
