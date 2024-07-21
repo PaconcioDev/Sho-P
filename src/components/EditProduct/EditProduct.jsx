@@ -41,15 +41,11 @@ function EditProduct ({ product, modalView }) {
     let imageId;
     if (file) {
       try {
-        const deletedImage = await ImagesService.deletePrevious(user.token, product.id);
-        if (!deletedImage) return;
-
         const { public_id: publicId, url: imageUrl } = await ImagesService.cloudinaryUpload(user.token, file);
 
         if (!publicId || !imageUrl) return;
 
         const data = await ImagesService.upload(user.token, publicId, imageUrl, product.id);
-        console.log(data);
 
         if (data.error) {
           onEvent(data.error);
@@ -75,9 +71,7 @@ function EditProduct ({ product, modalView }) {
     };
 
     try {
-      console.log('going to update');
       const data = await ProductsService.update(product.id, user.token, newProduct);
-      console.log(data);
       if (data.error) {
         await ImagesService.deleteCurrent(user.token, imageId);
 
@@ -88,6 +82,9 @@ function EditProduct ({ product, modalView }) {
         }, 3500);
         return;
       }
+
+      const deletedImage = await ImagesService.deletePrevious(user.token, product.id);
+      if (!deletedImage) return;
 
       onEvent(data);
       setTimeout(() => {
