@@ -24,8 +24,18 @@ function ProductDetail () {
     (product) => normalizeString(productName) === normalizeString(product.name)
   );
 
+  const relatedProducts = products.filter((p) =>
+    p.name
+      .toLowerCase()
+      .split(' ')
+      .some((word) =>
+        product.name.toLowerCase().split(' ').includes(word)
+      ) && p.name !== product.name
+  );
+
   //* Cart
-  const { addToCart } = useCart();
+  const { cart, addToCart, removeOne } = useCart();
+  const productInCart = cart.filter((p) => p?.id === product?.id);
 
   //* Slider
   const sliderSettings = {
@@ -37,6 +47,7 @@ function ProductDetail () {
     centerPadding: '0.25rem',
     slidesToShow: 5,
     slidesToScroll: 1,
+    adaptiveHeight: true,
     prevArrow: <SliderArrow direction={false} />,
     nextArrow: <SliderArrow direction />,
     responsive: [
@@ -79,34 +90,37 @@ function ProductDetail () {
             <span className='product__price'>$ {product?.price}</span>
           </section>
           <section className='product__purchase-info'>
-            <button className='product__btn' onClick={() => addToCart(product)}>
-              ADD TO CART
-            </button>
+            {productInCart.length <= 0
+              ? (
+                <button className='product__btn' onClick={() => addToCart(product)}>
+                  ADD TO CART
+                </button>
+                )
+              : (
+                <div className='product__quantity-container'>
+                  <button className='product__btn product__btn--quantity' onClick={() => removeOne(product)}>-</button>
+                  <span>
+                    {productInCart[0]?.quantity}
+                  </span>
+                  <button className='product__btn product__btn--quantity' onClick={() => addToCart(product)}>+</button>
+                </div>
+                )}
             <p className='product__desc'>{product?.description}</p>
           </section>
         </div>
       </main>
-      <aside className='related-products__container'>
-        <hr />
-        <h2 className='related-products__title'>Related Products</h2>
-        <section className='related-products__slider'>
-          <Slider {...sliderSettings}>
-            {products
-              .filter(
-                (p) =>
-                  p.name
-                    .toLowerCase()
-                    .split(' ')
-                    .some((word) =>
-                      product.name.toLowerCase().split(' ').includes(word)
-                    ) && p.name !== product.name
-              )
-              .map((p) => (
+      {relatedProducts.length > 0 &&
+        <aside className='related-products__container'>
+          <hr />
+          <h2 className='related-products__title'>Related Products</h2>
+          <section className='related-products__slider'>
+            <Slider {...sliderSettings}>
+              {relatedProducts.map((p) => (
                 <Card key={p.id} data={p} />
               ))}
-          </Slider>
-        </section>
-      </aside>
+            </Slider>
+          </section>
+        </aside>}
     </>
   );
 }

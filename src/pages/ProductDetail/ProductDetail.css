@@ -69,6 +69,27 @@
   color: #ed7d31;
 }
 
+.product__quantity-container {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.1rem;
+  color: #f6f1ee;
+  background-color: #ed7d31;
+  border-radius: 0.3125rem;
+}
+
+.product__btn--quantity {
+  padding: 0.5rem 1.5rem;
+  border: none;
+}
+
+.product__btn--quantity:hover {
+  background-color: #db722b;
+  color: #f6f1ee;
+}
+
 .product__desc {
   margin: 1rem 0 0 0;
   padding: 0 2rem;
@@ -136,6 +157,14 @@
   .product__btn {
     padding: 0.5rem 4rem;
     margin-top: auto;
+  }
+
+  .product__quantity-container {
+    margin-top: auto;
+  }
+
+  .product__btn--quantity {
+    padding: 0.5rem 2.5rem;
   }
 }
 

@@ -14,6 +14,8 @@ function CreateProduct ({ view }) {
   const { user, categories } = useContext(ProductsContext);
   const { onEvent, message } = useMessage();
 
+  const [disabledBtn, setDisabledBtn] = useState(false);
+
   const [categoryValue, setCategoryValye] = useState(null);
   const name = useFormInput({ type: 'text', trim: false });
   const description = useFormInput({ type: 'text', trim: false });
@@ -40,12 +42,15 @@ function CreateProduct ({ view }) {
       !categoryValue
     ) return;
 
+    setDisabledBtn(true);
+
     try {
       const { public_id: publicId, url } = await ImagesService.cloudinaryUpload(user.token, file);
 
       imageId = publicId;
       imageUrl = url;
     } catch (error) {
+      setDisabledBtn(false);
       console.error(error);
     }
 
@@ -68,6 +73,7 @@ function CreateProduct ({ view }) {
 
         setTimeout(() => {
           onEvent();
+          setDisabledBtn(false);
         }, 3500);
         return;
       }
@@ -77,6 +83,7 @@ function CreateProduct ({ view }) {
         onEvent(data.error);
         setTimeout(() => {
           onEvent();
+          setDisabledBtn(false);
         }, 3500);
         return;
       }
@@ -178,7 +185,7 @@ function CreateProduct ({ view }) {
           </section>
         </div>
         <div className='create-product__btn'>
-          <SubmitBtn>DONE</SubmitBtn>
+          <SubmitBtn disabled={disabledBtn}>DONE</SubmitBtn>
         </div>
       </form>
     </Modal>

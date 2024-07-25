@@ -25,3 +25,11 @@
 .submit-btn--red:hover {
   color: #ed4731;
 }
+
+.submit-btn:disabled,
+.submit-btn[disabled] {
+  cursor: initial;
+  background-color: #ed7c318c;
+  border-color: #ed7c3131;
+  color: #f6f1eecb;
+}

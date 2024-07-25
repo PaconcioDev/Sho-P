@@ -24,6 +24,8 @@ function EditProduct ({ product, modalView }) {
     initialState: product.price
   });
 
+  const [disabledBtn, setDisabledBtn] = useState(false);
+
   const [descriptionValue, setDescriptionValue] = useState(product.description);
   const [categoryValue, setCategoryValue] = useState(product.category.id);
   const [imagePreview, setImagePreview] = useState(product.image);
@@ -37,6 +39,7 @@ function EditProduct ({ product, modalView }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setDisabledBtn(true);
     let uploadedImageUrl = product.image;
     let imageId;
     if (file) {
@@ -51,6 +54,7 @@ function EditProduct ({ product, modalView }) {
           onEvent(data.error);
           setTimeout(() => {
             onEvent();
+            setDisabledBtn(false);
           }, 3500);
           return;
         }
@@ -79,12 +83,16 @@ function EditProduct ({ product, modalView }) {
         onEvent(errorMessage);
         setTimeout(() => {
           onEvent();
+          setDisabledBtn(false);
         }, 3500);
         return;
       }
 
       const deletedImage = await ImagesService.deletePrevious(user.token, product.id);
-      if (!deletedImage) return;
+      if (!deletedImage) {
+        setDisabledBtn(false);
+        return;
+      }
 
       onEvent(data);
       setTimeout(() => {
@@ -181,7 +189,7 @@ function EditProduct ({ product, modalView }) {
           </section>
         </div>
         <div className='edit-product__btn'>
-          <SubmitBtn>DONE</SubmitBtn>
+          <SubmitBtn disabled={disabledBtn}>DONE</SubmitBtn>
         </div>
       </form>
     </Modal>

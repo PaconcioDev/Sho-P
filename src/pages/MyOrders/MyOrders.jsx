@@ -40,7 +40,13 @@ function MyOrders () {
                   <section className='orders__section orders__section--first'>
                     <CartIcon />
                     <span className='orders__quantity'>
-                      <strong>{order.orderItems.length}</strong> products
+                      <strong>
+                        {order.orderItems
+                          .map(product =>
+                            product.quantity
+                          )
+                          .reduce((acum, current) => acum + current, 0)}
+                      </strong> products
                     </span>
                   </section>
                   <section className='orders__section orders__section--second'>
