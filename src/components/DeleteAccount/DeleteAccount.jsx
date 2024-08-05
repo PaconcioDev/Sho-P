@@ -34,7 +34,7 @@ function DeleteAccount () {
         onEvent(errorMessage);
         setTimeout(() => {
           onEvent();
-        }, 3000);
+        }, 10000);
         return;
       }
 

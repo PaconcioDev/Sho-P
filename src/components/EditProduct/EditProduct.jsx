@@ -55,7 +55,7 @@ function EditProduct ({ product, modalView }) {
           setTimeout(() => {
             onEvent();
             setDisabledBtn(false);
-          }, 3500);
+          }, 10000);
           return;
         }
 
@@ -84,7 +84,7 @@ function EditProduct ({ product, modalView }) {
         setTimeout(() => {
           onEvent();
           setDisabledBtn(false);
-        }, 3500);
+        }, 10000);
         return;
       }
 

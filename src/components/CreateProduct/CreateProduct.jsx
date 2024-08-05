@@ -45,10 +45,20 @@ function CreateProduct ({ view }) {
     setDisabledBtn(true);
 
     try {
-      const { public_id: publicId, url } = await ImagesService.cloudinaryUpload(user.token, file);
+      const request = await ImagesService.cloudinaryUpload(user.token, file);
 
-      imageId = publicId;
-      imageUrl = url;
+      if (request.error) {
+        onEvent(request.error);
+        setTimeout(() => {
+          onEvent();
+          setDisabledBtn(false);
+        }, 10000);
+
+        return;
+      }
+
+      imageId = request.public_id;
+      imageUrl = request.url;
     } catch (error) {
       setDisabledBtn(false);
       console.error(error);
@@ -74,7 +84,7 @@ function CreateProduct ({ view }) {
         setTimeout(() => {
           onEvent();
           setDisabledBtn(false);
-        }, 3500);
+        }, 10000);
         return;
       }
       const data = await ImagesService.upload(user.token, imageId, imageUrl, product.id);
@@ -84,7 +94,7 @@ function CreateProduct ({ view }) {
         setTimeout(() => {
           onEvent();
           setDisabledBtn(false);
-        }, 3500);
+        }, 1000);
         return;
       }
 

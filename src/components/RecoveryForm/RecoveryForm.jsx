@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useFormInput } from '../../hooks/useFormInput';
 import { useMessage } from '../../hooks/useMessage';
 import { AuthService } from '../../services/auth';
@@ -6,6 +7,7 @@ import { Message } from '../Message/Message';
 import { SubmitBtn } from '../../components/SubmitBtn/SubmitBtn.jsx';
 
 function RecoveryForm ({ toggle }) {
+  const [disabledBtn, setDisabledBtn] = useState(false);
   const {
     message: recoverMessage,
     onEvent: onRecoverEvent
@@ -15,6 +17,8 @@ function RecoveryForm ({ toggle }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setDisabledBtn(true);
+
     try {
       const data = await AuthService.sendPasswordEmail(email.value.toLowerCase());
 
@@ -22,11 +26,16 @@ function RecoveryForm ({ toggle }) {
         onRecoverEvent(data.error);
         setTimeout(() => {
           onRecoverEvent();
-        }, 1500);
+          setDisabledBtn(false);
+        }, 10000);
         return;
       }
 
       onRecoverEvent(data);
+      setTimeout(() => {
+        setDisabledBtn(false);
+        onRecoverEvent();
+      }, 40000);
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +61,7 @@ function RecoveryForm ({ toggle }) {
           placeholder='Email'
           required
         />
-        <SubmitBtn extraStyle={{ width: 'inherit' }}>SEND EMAIL</SubmitBtn>
+        <SubmitBtn extraStyle={{ width: 'inherit' }} disabled={disabledBtn}>SEND EMAIL</SubmitBtn>
         <a
           className='login__recover-password'
           onClick={() => {

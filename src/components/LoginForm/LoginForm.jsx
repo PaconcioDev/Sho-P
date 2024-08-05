@@ -32,7 +32,7 @@ function LoginForm ({ toggle }) {
         onLoginEvent(data.error);
         setTimeout(() => {
           onLoginEvent();
-        }, 1500);
+        }, 10000);
         return;
       }
 

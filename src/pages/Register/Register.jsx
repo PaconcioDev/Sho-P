@@ -48,7 +48,7 @@ function Register () {
         onEvent(errorMessage);
         setTimeout(() => {
           onEvent();
-        }, 2000);
+        }, 5000);
         return;
       }
 

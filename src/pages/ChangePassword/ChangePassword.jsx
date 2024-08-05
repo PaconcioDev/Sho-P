@@ -57,7 +57,7 @@ function ChangePassword () {
       onEvent('Passwords not matching');
       setTimeout(() => {
         onEvent();
-      }, 2000);
+      }, 10000);
       return;
     }
 
@@ -74,7 +74,7 @@ function ChangePassword () {
         onEvent(errorMessage);
         setTimeout(() => {
           onEvent();
-        }, 3000);
+        }, 10000);
         return;
       }
 
