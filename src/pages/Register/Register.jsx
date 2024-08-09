@@ -19,19 +19,19 @@ function Register () {
   const { isOn: isPasswordOn, handleState: togglePassword } = useToggle();
 
   const [roleValue, setRoleValue] = useState('customer');
-  const firstName = useFormInput({ type: 'text' });
-  const lastName = useFormInput({ type: 'text' });
+  const firstName = useFormInput({ type: 'text', trim: false });
+  const lastName = useFormInput({ type: 'text', trim: false });
   const email = useFormInput({ type: 'email' });
   const password = useFormInput({ type: !isPasswordOn ? 'password' : 'text' });
-  const phone = useFormInput({ type: 'text' });
+  const phone = useFormInput({ type: 'number' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userData = {
       role: roleValue,
-      name: firstName.value,
-      lastName: lastName.value,
+      name: firstName.value.trim(),
+      lastName: lastName.value.trim(),
       email: email.value.toLowerCase(),
       password: password.value
     };
@@ -118,6 +118,7 @@ function Register () {
             <FormInput
               {...phone}
               placeholder='Phone'
+              removeNumberArrows
             />
             {
               (message.isActive && !message.info.name) &&

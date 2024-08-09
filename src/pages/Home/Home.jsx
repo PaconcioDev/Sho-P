@@ -58,7 +58,11 @@ function Home () {
             normalizeString(product.category.name) === categoryFilter.name
         )
         .map((product) => <Card key={product.id} data={product} />);
-      return <main className='product-card__container'>{cards}</main>;
+      return (
+        cards.length > 0
+          ? <main className='product-card__container'>{cards}</main>
+          : <h2 className='product-card__empty'>There's no products in "{normalizedCategoryParam.charAt(0).toUpperCase() + normalizedCategoryParam.slice(1)}" category.</h2>
+      );
     } else if (products?.length > 0 && search) {
       const cards = products
         .filter((product) => product.name.toLowerCase().includes(search))

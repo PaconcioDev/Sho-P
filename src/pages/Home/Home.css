@@ -5,13 +5,18 @@
   gap: 1.25rem;
 }
 
-.product-card__search {
+.product-card__empty {
+  padding-top: 2rem;
+}
+
+.product-card__search,
+.product-card__empty {
   padding: 0;
   margin: 2rem 0 0 0;
   text-align: center;
 }
 
-.product-card__search + .product-card__container {
+.product-card__search+.product-card__container {
   padding-top: 2rem;
 }
 
@@ -31,11 +36,13 @@
   .product-card__container {
     padding: 5rem 3rem 3rem 3rem;
   }
-  .product-card__search {
+
+  .product-card__search,
+  .product-card__empty {
     margin-top: 5rem;
   }
 
-  .product-card__search + .product-card__container {
+  .product-card__search+.product-card__container {
     padding-top: 2rem;
   }
 }

@@ -6,7 +6,12 @@ import { Mail } from '../../icons/Mail';
 
 function Footer () {
   const handleContact = () => {
-    window.location.href = 'mailto:pgomezdev@gmail.com';
+    const email = 'pgomezdev@gmail.com';
+    const subject = encodeURIComponent('Quiero contactarte');
+    const body = encodeURIComponent('Hola Francisco! He visto tu página "Sho-P" y estoy interesado en contactarte.');
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+    window.open(gmailUrl, '_blank');
   };
 
   return (
