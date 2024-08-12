@@ -12,6 +12,18 @@ class AuthService {
     return request;
   }
 
+  static async checkExpiredToken (token) {
+    const request = await fetch(`${url}/check-token`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await request.json();
+    return data;
+  }
+
   static async sendPasswordEmail (email) {
     const request = await fetch(`${url}/recovery`, {
       method: 'POST',
