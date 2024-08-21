@@ -1,5 +1,4 @@
-import { baseUrl } from './baseUrl.js';
-const url = `${baseUrl}/users`;
+const url = `${import.meta.env.VITE_BASE_URL}/users`;
 
 class UsersService {
   static async create ({ role, name, lastName, email, password, phone }) {

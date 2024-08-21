@@ -1,5 +1,4 @@
-import { baseUrl } from './baseUrl.js';
-const url = `${baseUrl}/images`;
+const url = `${import.meta.env.VITE_BASE_URL}/images`;
 
 class ImagesService {
   static async cloudinaryUpload (token, file) {

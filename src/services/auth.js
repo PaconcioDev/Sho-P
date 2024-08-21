@@ -1,5 +1,4 @@
-import { baseUrl } from './baseUrl.js';
-const url = `${baseUrl}/auth`;
+const url = `${import.meta.env.VITE_BASE_URL}/auth`;
 
 class AuthService {
   static async login ({ email, password }) {

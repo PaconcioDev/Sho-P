@@ -2,3 +2,8 @@
   display: flex;
   justify-content: center;
 }
+
+.edit-category__message-container {
+  display: flex;
+  margin: 0.5rem 0;
+}

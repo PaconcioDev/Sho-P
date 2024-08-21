@@ -1,9 +1,11 @@
 import './EditCategory.css';
 import { useContext } from 'react';
+import { useFormInput } from '../../hooks/useFormInput.js';
+import { useMessage } from '../../hooks/useMessage.js';
 import { Modal } from '../Modal/Modal.jsx';
 import { FormInput } from '../FormInput/FormInput.jsx';
 import { SubmitBtn } from '../SubmitBtn/SubmitBtn.jsx';
-import { useFormInput } from '../../hooks/useFormInput.js';
+import { Message } from '../Message/Message.jsx';
 import { CategoriesService } from '../../services/categories.js';
 import { ProductsContext } from '../../context/ProductsContext.jsx';
 import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter.js';
@@ -16,11 +18,22 @@ function EditCategory ({ category, modalView }) {
     initialState: category.name
   });
 
+  const { message, onEvent } = useMessage();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = await CategoriesService.update(category.id, user.token, capitalizeFirstLetter(name.value));
-      if (data) window.location.reload();
+      if (data.error) {
+        const errorMessage = data.error[0]?.message || data.error;
+        onEvent(errorMessage);
+        setTimeout(() => {
+          onEvent();
+        }, 5000);
+        return;
+      }
+
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -37,6 +50,12 @@ function EditCategory ({ category, modalView }) {
         <FormInput
           {...name}
         />
+        {
+          message.isActive &&
+            <div className='edit-category__message-container'>
+              <Message isError>{message.info}</Message>
+            </div>
+        }
         <div className='btn__container'>
           <SubmitBtn>
             DONE

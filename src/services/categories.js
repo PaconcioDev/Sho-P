@@ -1,5 +1,4 @@
-import { baseUrl } from './baseUrl.js';
-const url = `${baseUrl}/categories`;
+const url = `${import.meta.env.VITE_BASE_URL}/categories`;
 
 class CategoriesService {
   static async getAll () {

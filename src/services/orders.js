@@ -1,5 +1,4 @@
-import { baseUrl } from './baseUrl.js';
-const url = `${baseUrl}/orders`;
+const url = `${import.meta.env.VITE_BASE_URL}/orders`;
 
 class OrdersService {
   static async findOrderById ({ orderId }) {

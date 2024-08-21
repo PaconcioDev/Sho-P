@@ -8,7 +8,7 @@ import { CategoriesService } from '../../services/categories';
 import { ProductsContext } from '../../context/ProductsContext.jsx';
 import { capitalizeFirstLetter } from '../../utils/capitalizeFirstLetter.js';
 
-function CreateCategory ({ view }) {
+function CreateCategory ({ view, setMessage }) {
   const { user } = useContext(ProductsContext);
   const newCategory = useFormInput({ type: 'text' });
 
@@ -33,10 +33,18 @@ function CreateCategory ({ view }) {
         user.token,
         capitalizeFirstLetter(newCategory.value)
       );
-      if (data) {
-        view.manualOff();
-        window.location.reload();
+
+      if (data.error) {
+        const errorMessage = data.error[0]?.message || data.error;
+        setMessage(errorMessage);
+        setTimeout(() => {
+          setMessage();
+        }, 5000);
+        return;
       }
+
+      view.manualOff();
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }

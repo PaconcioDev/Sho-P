@@ -5,6 +5,11 @@
   gap: .5rem;
 }
 
+.categories__message-container {
+  margin: 1rem 0;
+  display: flex;
+}
+
 .categories__create {
   cursor: pointer;
   max-width: 55rem;
@@ -32,7 +37,8 @@
   }
 
   .categories__create,
-  .categories__form {
+  .categories__form,
+  .categories__message-container {
     margin-right: 5rem;
   }
 }
